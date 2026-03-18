@@ -1,15 +1,13 @@
 import { NavBar } from "@/components/NavBar"
+import { Hero } from "@/components/Hero"
+import { Footer } from "@/components/Footer"
 
 export default function Home() {
   return (
     <>
       <NavBar />
       <main className="pt-20">
-        <section id="hero" aria-label="Accueil" className="min-h-screen flex items-center justify-center px-4">
-          <h1 className="text-4xl font-bold text-text-primary">
-            Portfolio — En construction
-          </h1>
-        </section>
+        <Hero />
 
         <section id="projets" aria-label="Projets" className="min-h-screen flex items-center justify-center px-4">
           <h2 className="text-3xl font-bold text-text-primary">Projets</h2>
@@ -35,6 +33,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-text-primary">Contact</h2>
         </section>
       </main>
+      <Footer />
     </>
   )
 }
