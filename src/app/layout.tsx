@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Providers } from "@/components/Providers";
-import "@/globals.css";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio de Yoann Laubert, développeur full-stack React/Next.js & Java basé à Vannes. Du concept au produit. Vite, bien, et en clair.",
   openGraph: {
-    title: "Yoann Laubert — Développeur Full-Stack React & Java",
+    title: "Yoann Laubert — Développeur Full-Stack React & Java | Vannes",
     description:
       "Portfolio de Yoann Laubert, développeur full-stack React/Next.js & Java basé à Vannes. Du concept au produit. Vite, bien, et en clair.",
     type: "website",

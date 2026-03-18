@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Scroll offset pour nav fixe */
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Smooth scroll uniquement si l'utilisateur n'a pas demande de reduire les animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Design tokens dark mode (défaut) */
 @theme {
   --color-accent: #f59e0b;
