@@ -1,0 +1,29 @@
+export interface SkillData {
+  id: string
+  name: string
+  category: string
+}
+
+export const skills: SkillData[] = [
+  // Frontend
+  { id: "react", name: "React", category: "Frontend" },
+  { id: "nextjs", name: "Next.js", category: "Frontend" },
+  { id: "typescript", name: "TypeScript", category: "Frontend" },
+  { id: "tailwindcss", name: "Tailwind CSS", category: "Frontend" },
+  { id: "motion", name: "Motion", category: "Frontend" },
+  { id: "html-css", name: "HTML / CSS", category: "Frontend" },
+
+  // Backend
+  { id: "java", name: "Java", category: "Backend" },
+  { id: "spring-boot", name: "Spring Boot", category: "Backend" },
+  { id: "nodejs", name: "Node.js", category: "Backend" },
+  { id: "rest-api", name: "REST API", category: "Backend" },
+  { id: "postgresql", name: "PostgreSQL", category: "Backend" },
+
+  // Outils & DevOps
+  { id: "git", name: "Git", category: "Outils" },
+  { id: "docker", name: "Docker", category: "Outils" },
+  { id: "vercel", name: "Vercel", category: "Outils" },
+  { id: "vscode", name: "VS Code", category: "Outils" },
+  { id: "linux", name: "Linux", category: "Outils" },
+]
