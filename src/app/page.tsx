@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero"
 import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
 import { SkillsSection } from "@/components/SkillsSection"
+import { MCPSection } from "@/components/MCPSection"
 import { Footer } from "@/components/Footer"
 
 export default function Home() {
@@ -18,9 +19,7 @@ export default function Home() {
 
         <SkillsSection />
 
-        <section id="mcp" aria-label="MCP" className="min-h-screen flex items-center justify-center px-4">
-          <h2 className="text-3xl font-bold text-text-primary">MCP</h2>
-        </section>
+        <MCPSection />
 
         <section id="a-propos" aria-label="À propos" className="min-h-screen flex items-center justify-center px-4">
           <h2 className="text-3xl font-bold text-text-primary">À propos</h2>
