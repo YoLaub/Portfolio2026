@@ -4,6 +4,7 @@ import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
 import { SkillsSection } from "@/components/SkillsSection"
 import { MCPSection } from "@/components/MCPSection"
+import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 
 export default function Home() {
@@ -25,9 +26,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-text-primary">À propos</h2>
         </section>
 
-        <section id="contact" aria-label="Contact" className="min-h-screen flex items-center justify-center px-4">
-          <h2 className="text-3xl font-bold text-text-primary">Contact</h2>
-        </section>
+        <ContactSection />
       </main>
       <Footer />
     </>
