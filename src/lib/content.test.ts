@@ -90,5 +90,11 @@ describe("content helpers", () => {
 
       expect(project).toBeNull()
     })
+
+    it("returns null for path traversal attempts", () => {
+      const project = getProjectById("../../etc/passwd")
+
+      expect(project).toBeNull()
+    })
   })
 })
