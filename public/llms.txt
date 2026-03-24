@@ -1,0 +1,22 @@
+# Yoann Laubert — Portfolio Developpeur Full-Stack
+
+> Du concept au produit. Vite, bien, et en clair.
+
+## Links
+
+- Website: https://yoann-laubert.dev
+- AI-Friendly Profile: https://yoann-laubert.dev/ai.md
+- API Documentation: https://yoann-laubert.dev/api/docs
+- GitHub: https://github.com/yoann-laubert
+- LinkedIn: https://linkedin.com/in/yoann-laubert
+- Contact: contact@yoann-laubert.dev
+
+## API Endpoints
+
+- GET /api/portfolio/profile — Profil complet (JSON)
+- GET /api/portfolio/projects — Liste des projets (JSON)
+- GET /api/portfolio/projects/:id — Detail d'un projet (JSON)
+- GET /api/portfolio/skills — Competences (JSON)
+- GET /api/portfolio/services — Services (JSON)
+- GET /api/docs — Specification OpenAPI 3.0 (JSON)
+- GET /ai.md — Profil complet en Markdown brut

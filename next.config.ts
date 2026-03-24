@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/ai.md",
+        destination: "/api/ai",
+      },
+    ];
+  },
   async headers() {
     return [
       {
