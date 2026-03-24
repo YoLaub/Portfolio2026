@@ -93,6 +93,47 @@ describe("RootLayout", () => {
     })
   })
 
+  describe("Skip Link", () => {
+    it("renders a skip link targeting #main-content", async () => {
+      const { default: RootLayout } = await import("@/app/layout")
+      const { container } = render(
+        <RootLayout>
+          <main id="main-content">Content</main>
+        </RootLayout>
+      )
+      const skipLink = container.querySelector('a[href="#main-content"]')
+      expect(skipLink).toBeInTheDocument()
+      expect(skipLink).toHaveTextContent("Aller au contenu principal")
+    })
+
+    it("skip link has sr-only class for visual hiding", async () => {
+      const { default: RootLayout } = await import("@/app/layout")
+      const { container } = render(
+        <RootLayout>
+          <main id="main-content">Content</main>
+        </RootLayout>
+      )
+      const skipLink = container.querySelector('a[href="#main-content"]')
+      expect(skipLink).toHaveClass("sr-only")
+    })
+
+    it("skip link appears before providers content", async () => {
+      const { default: RootLayout } = await import("@/app/layout")
+      const { container } = render(
+        <RootLayout>
+          <main id="main-content">Content</main>
+        </RootLayout>
+      )
+      const skipLink = container.querySelector('a[href="#main-content"]')
+      const providers = container.querySelector('[data-testid="providers"]')
+      expect(skipLink).toBeInTheDocument()
+      expect(providers).toBeInTheDocument()
+      // Skip link should come before providers in DOM order
+      const comparison = skipLink!.compareDocumentPosition(providers!)
+      expect(comparison & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    })
+  })
+
   describe("Metadata export", () => {
     it("exports metadata with openGraph configuration", async () => {
       const { metadata } = await import("@/app/layout")

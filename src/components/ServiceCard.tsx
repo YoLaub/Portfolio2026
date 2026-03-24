@@ -49,7 +49,7 @@ function getServiceIcon(icon: string) {
 
 export function ServiceCard({ service }: { service: ServiceData }) {
   return (
-    <div className="bg-bg-secondary border border-border rounded-xl p-6 hover:border-accent transition-colors duration-200">
+    <article className="bg-bg-secondary border border-border rounded-xl p-6 hover:border-accent transition-colors duration-200">
       <div className="text-accent mb-4">
         {getServiceIcon(service.icon)}
       </div>
@@ -59,6 +59,6 @@ export function ServiceCard({ service }: { service: ServiceData }) {
       <p className="text-text-secondary leading-relaxed">
         {service.description}
       </p>
-    </div>
+    </article>
   )
 }

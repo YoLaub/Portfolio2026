@@ -68,7 +68,7 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
 
       {prefersReduced ? (
         isOpen && (
-          <div id={contentId} className="px-6 pb-6 border-t border-border pt-4">
+          <div id={contentId} role="region" aria-label={project.title} className="px-6 pb-6 border-t border-border pt-4">
             <ProjectCardContent project={project} />
           </div>
         )
@@ -78,6 +78,8 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
             <motion.div
               key="content"
               id={contentId}
+              role="region"
+              aria-label={project.title}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
