@@ -1,0 +1,13 @@
+{
+  "name": "Yoann Laubert",
+  "jobTitle": "Développeur Full-Stack React & Java",
+  "location": "Vannes, Bretagne",
+  "bio": "Du concept au produit. Vite, bien, et en clair.",
+  "email": "contact@yoann-laubert.dev",
+  "links": {
+    "github": "https://github.com/yoann-laubert",
+    "linkedin": "https://linkedin.com/in/yoann-laubert",
+    "website": "https://yoann-laubert.dev",
+    "calendly": "https://calendly.com/yoann-laubert"
+  }
+}

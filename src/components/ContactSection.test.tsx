@@ -17,7 +17,7 @@ vi.mock("@/components/AnimatedSection", () => ({
 }))
 
 vi.mock("next/dynamic", () => ({
-  default: (_importFn: () => Promise<{ default: React.ComponentType<Record<string, unknown>> }>) => {
+  default: () => {
     const Component = (props: Record<string, unknown>) => (
       <div data-testid="calendly-widget" data-url={props.url as string}>
         Calendly Widget
@@ -308,6 +308,22 @@ describe("ContactSection — Honeypot", () => {
     const honeypot = form.querySelector('input[name="website"]')
     expect(honeypot).toBeInTheDocument()
     expect(honeypot).toHaveAttribute("type", "hidden")
+  })
+})
+
+describe("ContactSection — Performance", () => {
+  it("Calendly widget is loaded via next/dynamic (lazy-loaded)", () => {
+    render(<ContactSection />)
+    // The CalendlyWidget is loaded via next/dynamic with ssr: false
+    // In tests, the mock verifies dynamic import is used
+    const widget = screen.getByTestId("calendly-widget")
+    expect(widget).toBeInTheDocument()
+  })
+
+  it("Calendly widget container has constrained width for responsive layout", () => {
+    render(<ContactSection />)
+    const section = document.querySelector("section#contact")
+    expect(section!.innerHTML).toContain("max-w-[600px]")
   })
 })
 

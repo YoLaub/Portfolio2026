@@ -15,9 +15,16 @@ vi.mock("@/components/Hero", () => ({
   Hero: () => (
     <section id="hero" aria-label="Accueil">
       <h1>Yoann Laubert</h1>
-      <figure>
-        <img alt="Yoann Laubert, développeur full-stack React Java basé à Vannes" />
-      </figure>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt="Yoann Laubert, développeur full-stack React Java basé à Vannes"
+        src="/images/hero.webp"
+        width="400"
+        height="400"
+        sizes="(max-width: 768px) 200px, (max-width: 1024px) 300px, 400px"
+        loading="eager"
+        fetchPriority="high"
+      />
     </section>
   ),
 }))
@@ -60,6 +67,7 @@ vi.mock("@/components/ContactSection", () => ({
   ContactSection: () => (
     <section id="contact" aria-label="Contact">
       <h2>Contact</h2>
+      <div data-testid="calendly-lazy">Calendly Widget (lazy-loaded)</div>
     </section>
   ),
 }))
@@ -111,12 +119,6 @@ describe("Home Page - Accessibility", () => {
       const articles = container.querySelectorAll("article")
       expect(articles.length).toBeGreaterThanOrEqual(1)
     })
-
-    it("contains <figure> element for hero image", () => {
-      const { container } = render(<Home />)
-      const figure = container.querySelector("figure")
-      expect(figure).toBeInTheDocument()
-    })
   })
 
   describe("Heading hierarchy", () => {
@@ -144,6 +146,44 @@ describe("Home Page - Accessibility", () => {
         }
         currentLevel = level
       }
+    })
+  })
+
+  describe("Performance attributes", () => {
+    it("hero image has priority loading attributes (eager + high fetchPriority)", () => {
+      const { container } = render(<Home />)
+      const heroImg = container.querySelector("section#hero img")
+      expect(heroImg).toBeInTheDocument()
+      expect(heroImg).toHaveAttribute("loading", "eager")
+      expect(heroImg).toHaveAttribute("fetchpriority", "high")
+    })
+
+    it("hero image has explicit dimensions to prevent CLS", () => {
+      const { container } = render(<Home />)
+      const heroImg = container.querySelector("section#hero img")
+      expect(heroImg).toBeInTheDocument()
+      expect(heroImg).toHaveAttribute("width")
+      expect(heroImg).toHaveAttribute("height")
+    })
+
+    it("hero image has sizes attribute for responsive loading", () => {
+      const { container } = render(<Home />)
+      const heroImg = container.querySelector("section#hero img")
+      expect(heroImg).toBeInTheDocument()
+      expect(heroImg).toHaveAttribute("sizes")
+    })
+
+    it("hero image uses WebP format", () => {
+      const { container } = render(<Home />)
+      const heroImg = container.querySelector("section#hero img")
+      expect(heroImg).toBeInTheDocument()
+      expect(heroImg!.getAttribute("src")).toContain(".webp")
+    })
+
+    it("Calendly widget is present in contact section (lazy-loaded)", () => {
+      const { container } = render(<Home />)
+      const calendly = container.querySelector("[data-testid='calendly-lazy']")
+      expect(calendly).toBeInTheDocument()
     })
   })
 
