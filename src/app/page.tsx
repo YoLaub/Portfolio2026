@@ -6,6 +6,7 @@ import { SkillsSection } from "@/components/SkillsSection"
 import { MCPSection } from "@/components/MCPSection"
 import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
+import { ChatAgent } from "@/components/ChatAgent"
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <ChatAgent />
     </>
   )
 }
