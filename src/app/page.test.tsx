@@ -57,8 +57,8 @@ vi.mock("@/components/SkillsSection", () => ({
 
 vi.mock("@/components/MCPSection", () => ({
   MCPSection: () => (
-    <section id="mcp" aria-label="Connecteur MCP">
-      <h2>MCP</h2>
+    <section id="mcp" aria-label="API & IA">
+      <h2>API & IA</h2>
     </section>
   ),
 }))
@@ -212,10 +212,10 @@ describe("Home Page - Accessibility", () => {
       expect(competences).toHaveAttribute("aria-label", "Compétences")
     })
 
-    it("MCP section has aria-label 'Connecteur MCP'", () => {
+    it("MCP section has aria-label 'API & IA'", () => {
       const { container } = render(<Home />)
       const mcp = container.querySelector("section#mcp")
-      expect(mcp).toHaveAttribute("aria-label", "Connecteur MCP")
+      expect(mcp).toHaveAttribute("aria-label", "API & IA")
     })
 
     it("About section has aria-label 'À propos'", () => {

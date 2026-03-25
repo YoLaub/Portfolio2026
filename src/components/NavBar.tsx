@@ -165,7 +165,7 @@ export function NavBar() {
             href="#mcp"
             className="font-mono text-sm text-accent bg-accent-soft rounded px-2 py-1 hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            MCP
+            API
           </a>
 
           <ThemeToggle />
@@ -286,7 +286,7 @@ export function NavBar() {
                   onClick={closeMenu}
                   className="font-mono text-lg text-accent bg-accent-soft rounded px-3 py-1.5 hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
-                  MCP
+                  API
                 </a>
               </li>
             </ul>
