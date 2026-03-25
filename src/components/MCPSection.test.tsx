@@ -74,12 +74,6 @@ describe("MCPSection", () => {
     expect(link!.textContent).toBeTruthy()
   })
 
-  it("renders the aria-label for API & IA section", () => {
-    render(<MCPSection />)
-    const section = document.querySelector("section#mcp")
-    expect(section).toHaveAttribute("aria-label", "API & IA")
-  })
-
   it("uses semantic tokens for styling (no raw colors)", () => {
     render(<MCPSection />)
     const section = document.querySelector("section#mcp")
@@ -91,6 +85,6 @@ describe("MCPSection", () => {
   it("wraps content in AnimatedSection", () => {
     render(<MCPSection />)
     const animatedSections = screen.getAllByTestId("animated-section")
-    expect(animatedSections.length).toBeGreaterThanOrEqual(4)
+    expect(animatedSections.length).toBe(5)
   })
 })

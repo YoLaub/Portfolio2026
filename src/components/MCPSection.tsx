@@ -34,7 +34,7 @@ export function MCPSection() {
               </div>
               <pre className="font-mono text-sm">
                 <code className="text-accent">
-                  {`$ curl https://yoannlaubert.dev/api/portfolio/projects`}
+                  {`$ curl https://yoann-laubert.dev/api/portfolio/projects`}
                 </code>
               </pre>
 
@@ -74,7 +74,7 @@ export function MCPSection() {
               </div>
               <pre className="font-mono text-sm">
                 <code className="text-accent">
-                  {`$ curl https://yoannlaubert.dev/ai.md`}
+                  {`$ curl https://yoann-laubert.dev/ai.md`}
                 </code>
               </pre>
 
@@ -109,7 +109,7 @@ Vannes, Bretagne
               </div>
               <pre className="font-mono text-sm">
                 <code className="text-accent">
-                  {`$ curl https://yoannlaubert.dev/api/mcp`}
+                  {`$ curl https://yoann-laubert.dev/api/mcp`}
                 </code>
               </pre>
 

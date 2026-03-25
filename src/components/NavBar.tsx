@@ -160,7 +160,7 @@ export function NavBar() {
 
         {/* Desktop right section */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Badge MCP */}
+          {/* Badge API */}
           <a
             href="#mcp"
             className="font-mono text-sm text-accent bg-accent-soft rounded px-2 py-1 hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -279,7 +279,7 @@ export function NavBar() {
                 </li>
               ))}
 
-              {/* MCP badge in mobile */}
+              {/* API badge in mobile */}
               <li>
                 <a
                   href="#mcp"
