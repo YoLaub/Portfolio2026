@@ -111,7 +111,7 @@ describe("Home Page - Accessibility", () => {
     it("contains multiple <section> elements with aria-labels", () => {
       const { container } = render(<Home />)
       const sections = container.querySelectorAll("section[aria-label]")
-      expect(sections.length).toBeGreaterThanOrEqual(7)
+      expect(sections.length).toBeGreaterThanOrEqual(6)
     })
 
     it("contains <article> elements for content cards", () => {
@@ -131,7 +131,7 @@ describe("Home Page - Accessibility", () => {
     it("has h2 elements for each major section", () => {
       const { container } = render(<Home />)
       const h2s = container.querySelectorAll("h2")
-      expect(h2s.length).toBeGreaterThanOrEqual(6)
+      expect(h2s.length).toBeGreaterThanOrEqual(5)
     })
 
     it("has no heading level gaps (no h3 without h2 parent)", () => {
@@ -216,12 +216,6 @@ describe("Home Page - Accessibility", () => {
       const { container } = render(<Home />)
       const mcp = container.querySelector("section#mcp")
       expect(mcp).toHaveAttribute("aria-label", "API & IA")
-    })
-
-    it("About section has aria-label 'À propos'", () => {
-      const { container } = render(<Home />)
-      const about = container.querySelector("section#a-propos")
-      expect(about).toHaveAttribute("aria-label", "À propos")
     })
 
     it("Contact section has aria-label 'Contact'", () => {

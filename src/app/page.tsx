@@ -23,10 +23,6 @@ export default function Home() {
 
         <MCPSection />
 
-        <section id="a-propos" aria-label="À propos" className="min-h-screen flex items-center justify-center px-4">
-          <h2 className="text-3xl font-bold text-text-primary">À propos</h2>
-        </section>
-
         <ContactSection />
       </main>
       <Footer />

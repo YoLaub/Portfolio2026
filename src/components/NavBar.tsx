@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { label: "Projets", href: "#projets" },
   { label: "Services", href: "#services" },
   { label: "Compétences", href: "#competences" },
-  { label: "À propos", href: "#a-propos" },
 ] as const
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(1))
