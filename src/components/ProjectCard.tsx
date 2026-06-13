@@ -22,11 +22,6 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
         isOpen ? "border-accent" : "border-border hover:border-accent hover:-translate-y-1 hover:shadow-lg"
       }`}
     >
-      {project.screens && project.screens.length > 0 && (
-        <div className="px-6 pt-6 flex justify-center">
-          <PhoneMockup screens={project.screens} appName={project.title} />
-        </div>
-      )}
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
@@ -113,6 +108,11 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
 function ProjectCardContent({ project }: { project: ProjectData }) {
   return (
     <>
+      {project.screens && project.screens.length > 0 && (
+        <div className="mb-6 flex justify-center">
+          <PhoneMockup screens={project.screens} appName={project.title} />
+        </div>
+      )}
       <p className="text-text-secondary mb-4">{project.longDescription}</p>
       <div className="flex flex-wrap gap-3">
         {project.liveUrl && (

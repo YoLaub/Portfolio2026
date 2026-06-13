@@ -34,10 +34,15 @@ const webProject: ProjectData = {
 }
 
 describe("ProjectCard - mobile mockup", () => {
-  it("affiche le PhoneMockup (image d'écran) pour un projet avec screens, même fermé", () => {
-    render(<ProjectCard project={mobileProject} isOpen={false} onToggle={() => {}} />)
+  it("affiche le PhoneMockup (image d'écran) dans le tiroir quand la carte est ouverte", () => {
+    render(<ProjectCard project={mobileProject} isOpen={true} onToggle={() => {}} />)
     const imgs = screen.getAllByRole("img")
     expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("screen-1.webp"))).toBe(true)
+  })
+
+  it("n'affiche pas le PhoneMockup tant que la carte est fermée", () => {
+    render(<ProjectCard project={mobileProject} isOpen={false} onToggle={() => {}} />)
+    expect(screen.queryByRole("img")).not.toBeInTheDocument()
   })
 
   it("affiche un badge Mobile pour un projet platform mobile", () => {
