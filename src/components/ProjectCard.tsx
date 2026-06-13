@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import type { ProjectData } from "@/data/projects"
+import { PhoneMockup } from "@/components/PhoneMockup"
 
 interface ProjectCardProps {
   project: ProjectData
@@ -21,6 +22,11 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
         isOpen ? "border-accent" : "border-border hover:border-accent hover:-translate-y-1 hover:shadow-lg"
       }`}
     >
+      {project.screens && project.screens.length > 0 && (
+        <div className="px-6 pt-6 flex justify-center">
+          <PhoneMockup screens={project.screens} appName={project.title} />
+        </div>
+      )}
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
@@ -31,6 +37,11 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
           <h3 className="text-xl font-bold text-text-primary mb-2">
             {project.title}
           </h3>
+          {project.platform === "mobile" && (
+            <span className="inline-block mb-2 bg-accent-soft text-accent font-mono text-xs px-2 py-1 rounded">
+              Mobile · React Native
+            </span>
+          )}
           <p className="text-text-secondary mb-3">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
