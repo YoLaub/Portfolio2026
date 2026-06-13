@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import type { ProjectData } from "@/data/projects"
+import { PhoneMockup } from "@/components/PhoneMockup"
 
 interface ProjectCardProps {
   project: ProjectData
@@ -31,6 +32,11 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
           <h3 className="text-xl font-bold text-text-primary mb-2">
             {project.title}
           </h3>
+          {project.platform === "mobile" && (
+            <span className="inline-block mb-2 bg-accent-soft text-accent font-mono text-xs px-2 py-1 rounded">
+              Mobile · React Native
+            </span>
+          )}
           <p className="text-text-secondary mb-3">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
@@ -102,6 +108,11 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
 function ProjectCardContent({ project }: { project: ProjectData }) {
   return (
     <>
+      {project.screens && project.screens.length > 0 && (
+        <div className="mb-6 flex justify-center">
+          <PhoneMockup screens={project.screens} appName={project.title} />
+        </div>
+      )}
       <p className="text-text-secondary mb-4">{project.longDescription}</p>
       <div className="flex flex-wrap gap-3">
         {project.liveUrl && (
