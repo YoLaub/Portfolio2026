@@ -7,9 +7,30 @@ export interface ProjectData {
   image: string
   liveUrl?: string
   githubUrl?: string
+  screens?: string[]
+  featured?: boolean
+  platform?: string
 }
 
 export const projects: ProjectData[] = [
+  {
+    id: "loar",
+    title: "LOAR",
+    description:
+      "Compagnon IA mobile spécialisé en SMOP, avec onboarding guidé et traitement confidentiel des données.",
+    longDescription:
+      "Application mobile React Native : compagnon IA spécialisé en SMOP. Onboarding guidé, backend Python, stockage objet MinIO et anonymisation des données personnelles via Presidio pour garantir la confidentialité.",
+    techStack: ["Python", "React Native", "MinIO", "Presidio"],
+    image: "/images/projects/loar/cover.webp",
+    screens: [
+      "/images/projects/loar/screen-1.webp",
+      "/images/projects/loar/screen-2.webp",
+      "/images/projects/loar/screen-3.webp",
+      "/images/projects/loar/screen-4.webp",
+    ],
+    featured: true,
+    platform: "mobile",
+  },
   {
     id: "restobook",
     title: "RestoBook",
