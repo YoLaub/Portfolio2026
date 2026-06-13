@@ -8,6 +8,10 @@ import { AnimatedSection } from "@/components/AnimatedSection"
 export function ProjectsSection() {
   const [openId, setOpenId] = useState<string | null>(null)
 
+  const orderedProjects = [...projects].sort(
+    (a, b) => Number(b.featured ?? false) - Number(a.featured ?? false)
+  )
+
   const handleToggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id))
   }
@@ -21,7 +25,7 @@ export function ProjectsSection() {
           </h2>
         </AnimatedSection>
         <div className="flex flex-col gap-6">
-          {projects.map((project, index) => (
+          {orderedProjects.map((project, index) => (
             <AnimatedSection key={project.id} delay={index * 0.08}>
               <ProjectCard
                 project={project}
