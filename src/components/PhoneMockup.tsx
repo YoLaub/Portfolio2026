@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useId } from "react"
 import Image from "next/image"
 import { motion, useReducedMotion } from "motion/react"
 
@@ -12,14 +12,17 @@ interface PhoneMockupProps {
 export function PhoneMockup({ screens, appName }: PhoneMockupProps) {
   const prefersReduced = useReducedMotion()
   const [index, setIndex] = useState(0)
+  const regionId = useId()
   const count = screens.length
 
   const go = (next: number) => setIndex(((next % count) + count) % count)
 
+  if (count === 0) return null
+
   return (
     <div className="flex flex-col items-center gap-4">
       {/* Coque plate / minimale */}
-      <div className="relative w-55 aspect-9/19 rounded-[1.75rem] border border-border bg-bg-primary overflow-hidden shadow-lg">
+      <div id={regionId} className="relative w-55 aspect-9/19 rounded-[1.75rem] border border-border bg-bg-primary overflow-hidden shadow-lg">
         <motion.div
           key={index}
           initial={prefersReduced ? false : { opacity: 0 }}
@@ -50,12 +53,14 @@ export function PhoneMockup({ screens, appName }: PhoneMockupProps) {
           </svg>
         </button>
 
-        <div role="tablist" aria-label={`Écrans de ${appName}`} className="flex gap-2">
+        <div role="radiogroup" aria-label={`Écrans de ${appName}`} className="flex gap-2">
           {screens.map((_, i) => (
             <button
               key={i}
-              role="tab"
-              aria-selected={i === index}
+              type="button"
+              role="radio"
+              aria-checked={i === index}
+              aria-controls={regionId}
               aria-label={`Aller à l'écran ${i + 1}`}
               onClick={() => go(i)}
               className={`h-2.5 w-2.5 rounded-full transition-colors cursor-pointer ${

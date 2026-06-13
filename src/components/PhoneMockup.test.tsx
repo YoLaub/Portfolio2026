@@ -23,7 +23,7 @@ describe("PhoneMockup", () => {
 
   it("rend un point indicateur par écran", () => {
     render(<PhoneMockup screens={screens} appName="LOAR" />)
-    expect(screen.getAllByRole("tab")).toHaveLength(4)
+    expect(screen.getAllByRole("radio")).toHaveLength(4)
   })
 
   it("le bouton suivant change l'écran affiché", () => {
@@ -43,8 +43,13 @@ describe("PhoneMockup", () => {
 
   it("cliquer un point indicateur va à l'écran correspondant", () => {
     render(<PhoneMockup screens={screens} appName="LOAR" />)
-    fireEvent.click(screen.getAllByRole("tab")[2])
+    fireEvent.click(screen.getAllByRole("radio")[2])
     const src = screen.getByRole("img").getAttribute("src") ?? ""
     expect(src).toContain("screen-3.webp")
+  })
+
+  it("ne rend rien si aucun écran n'est fourni", () => {
+    const { container } = render(<PhoneMockup screens={[]} appName="LOAR" />)
+    expect(container.firstChild).toBeNull()
   })
 })
