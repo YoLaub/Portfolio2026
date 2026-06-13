@@ -42,7 +42,7 @@ describe("ProjectCard - mobile mockup", () => {
 
   it("affiche un badge Mobile pour un projet platform mobile", () => {
     render(<ProjectCard project={mobileProject} isOpen={false} onToggle={() => {}} />)
-    expect(screen.getByText(/mobile/i)).toBeInTheDocument()
+    expect(screen.getByText("Mobile · React Native")).toBeInTheDocument()
   })
 
   it("n'affiche ni mockup ni badge pour un projet web", () => {
