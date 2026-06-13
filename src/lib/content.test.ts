@@ -98,3 +98,17 @@ describe("content helpers", () => {
     })
   })
 })
+
+describe("content - projet LOAR", () => {
+  it("getProjects inclut LOAR", () => {
+    const ids = getProjects().map((p) => p.id)
+    expect(ids).toContain("loar")
+  })
+
+  it("getProjectById('loar') renvoie le contenu avec la stack confidentialité", () => {
+    const loar = getProjectById("loar")
+    expect(loar).not.toBeNull()
+    expect(loar?.techStack).toContain("Presidio")
+    expect(loar?.content.length).toBeGreaterThan(0)
+  })
+})
