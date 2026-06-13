@@ -9,7 +9,7 @@ export interface ProjectData {
   githubUrl?: string
   screens?: string[]
   featured?: boolean
-  platform?: string
+  platform?: "mobile" | "web"
 }
 
 export const projects: ProjectData[] = [
