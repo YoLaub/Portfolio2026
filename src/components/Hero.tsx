@@ -19,11 +19,11 @@ export function Hero() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-text-secondary font-medium">
-            Développeur Full-Stack React &amp; Java
+            Développeur freelance — je code ce qui vous fait gagner du temps
           </p>
 
           <p className="text-lg text-text-secondary max-w-lg">
-            Du concept au produit. Vite, bien, et en clair.
+            Connecteurs, scripts, agents IA : j&apos;outille votre métier au plus près du terrain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-2">

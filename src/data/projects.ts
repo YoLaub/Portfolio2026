@@ -32,27 +32,24 @@ export const projects: ProjectData[] = [
     platform: "mobile",
   },
   {
-    id: "restobook",
-    title: "RestoBook",
+    id: "studio-uml",
+    title: "Studio UML",
     description:
-      "Application de réservation en ligne pour restaurants, avec gestion des créneaux et notifications.",
+      "Studio de conception UML avec serveur MCP intégré, pour concevoir vos diagrammes en binôme avec une IA.",
     longDescription:
-      "Plateforme complète permettant aux restaurateurs de gérer leurs réservations en temps réel. Interface client intuitive pour réserver en 3 clics, tableau de bord restaurateur avec vue planning, gestion des créneaux horaires et notifications automatiques par email. Système de confirmation et rappels intégrés.",
-    techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    image: "/images/projects/restobook.webp",
-    liveUrl: "https://restobook.example.com",
-    githubUrl: "https://github.com/yoann-laubert/restobook",
+      "Outil de modélisation UML (diagrammes de classes, cas d'usage, séquence, MCD) avec un serveur MCP qui expose chaque diagramme à un agent IA : lecture, proposition et modification en temps réel, comme un binôme de conception.",
+    techStack: ["Next.js", "TypeScript", "MCP SDK"],
+    image: "/images/projects/studio-uml.webp",
   },
   {
-    id: "fintrack",
-    title: "FinTrack",
+    id: "les-gants-melecien",
+    title: "Les Gants Melecien",
     description:
-      "Tableau de bord de suivi financier personnel avec visualisations interactives et catégorisation automatique.",
+      "Site vitrine avec backoffice et gestion des adhésions.",
     longDescription:
-      "Application web de gestion de finances personnelles. Import automatique des transactions bancaires, catégorisation intelligente des dépenses, graphiques interactifs d'évolution budgétaire et alertes de dépassement. API REST sécurisée avec authentification JWT.",
-    techStack: ["Java", "Spring Boot", "React", "TypeScript", "Chart.js"],
-    image: "/images/projects/fintrack.webp",
-    githubUrl: "https://github.com/yoann-laubert/fintrack",
+      "Site vitrine avec CMS et backoffice sur mesure : gestion des adhésions, des contenus et des membres depuis une interface d'administration dédiée.",
+    techStack: ["Next.js", "TypeScript", "PostgreSQL"],
+    image: "/images/projects/gants-melecien.webp",
   },
   {
     id: "mcp-agent",

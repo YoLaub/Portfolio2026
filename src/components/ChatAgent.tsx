@@ -141,14 +141,12 @@ export function ChatAgent() {
     skills: () => void
     services: () => void
     contact: () => void
-    cv: () => void
     showWelcome: () => void
   }>({
     projects: () => {},
     skills: () => {},
     services: () => {},
     contact: () => {},
-    cv: () => {},
     showWelcome: () => {},
   })
 
@@ -163,7 +161,6 @@ export function ChatAgent() {
       { label: "Mes Compétences", onClick: () => handlersRef.current.skills() },
       { label: "Mes Services", onClick: () => handlersRef.current.services() },
       { label: "Me Contacter", onClick: () => handlersRef.current.contact() },
-      { label: "Télécharger CV", onClick: () => handlersRef.current.cv() },
     ]
 
     setMessages([
@@ -393,31 +390,12 @@ export function ChatAgent() {
     )
   }
 
-  // P5 — CV download via lien dans le message au lieu de createElement
-  function handleCV() {
-    addUserAction("Télécharger CV")
-    addBotMessage(
-      <div>
-        <p className="mb-2">Téléchargez mon CV :</p>
-        <a
-          href="/cv.pdf"
-          download="cv.pdf"
-          className="text-accent hover:text-accent-hover underline font-medium"
-        >
-          Télécharger le CV (PDF)
-        </a>
-      </div>,
-      [backToMenuAction]
-    )
-  }
-
   // P3 — Mettre à jour les refs des handlers à chaque render
   handlersRef.current = {
     projects: handleProjects,
     skills: handleSkills,
     services: handleServices,
     contact: handleContact,
-    cv: handleCV,
     showWelcome,
   }
 

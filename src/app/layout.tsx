@@ -18,27 +18,28 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yoannlaubert.dev"),
-  title: "Yoann Laubert — Développeur Full-Stack React & Java | Vannes",
+  title: "Yoann Laubert — Développeur freelance | Vannes",
   description:
-    "Portfolio de Yoann Laubert, développeur full-stack React/Next.js & Java basé à Vannes. Du concept au produit. Vite, bien, et en clair.",
+    "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
   alternates: {
     canonical: "/",
   },
   keywords: [
-    "développeur full-stack",
+    "développeur freelance",
     "React",
     "Next.js",
     "Java",
     "Spring Boot",
     "TypeScript",
     "Vannes",
-    "freelance",
+    "MCP",
+    "agents IA",
     "portfolio",
   ],
   openGraph: {
-    title: "Yoann Laubert — Développeur Full-Stack React & Java | Vannes",
+    title: "Yoann Laubert — Développeur freelance | Vannes",
     description:
-      "Portfolio de Yoann Laubert, développeur full-stack React/Next.js & Java basé à Vannes. Du concept au produit. Vite, bien, et en clair.",
+      "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
     url: "/",
     siteName: "Yoann Laubert — Portfolio",
     type: "website",
@@ -48,14 +49,15 @@ export const metadata: Metadata = {
         url: "/images/hero.webp",
         width: 1200,
         height: 630,
-        alt: "Yoann Laubert — Développeur Full-Stack React & Java",
+        alt: "Yoann Laubert — Développeur freelance",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoann Laubert — Développeur Full-Stack React & Java | Vannes",
-    description: "Du concept au produit. Vite, bien, et en clair.",
+    title: "Yoann Laubert — Développeur freelance | Vannes",
+    description:
+      "Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
     images: ["/images/hero.webp"],
   },
 };
@@ -64,9 +66,10 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Yoann Laubert",
-  jobTitle: "Développeur Full-Stack React & Java",
+  jobTitle: "Développeur freelance — je code ce qui vous fait gagner du temps",
   url: "https://yoannlaubert.dev",
-  description: "Du concept au produit. Vite, bien, et en clair.",
+  description:
+    "Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Vannes",

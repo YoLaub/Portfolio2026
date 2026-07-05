@@ -29,6 +29,14 @@ vi.mock("@/components/Hero", () => ({
   ),
 }))
 
+vi.mock("@/components/ApproachSection", () => ({
+  ApproachSection: () => (
+    <section id="approche" aria-label="Approche">
+      <h2>Approche</h2>
+    </section>
+  ),
+}))
+
 vi.mock("@/components/ProjectsSection", () => ({
   ProjectsSection: () => (
     <section id="projets" aria-label="Projets">

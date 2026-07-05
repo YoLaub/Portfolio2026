@@ -53,7 +53,7 @@ describe("GET /api/mcp", () => {
     const data = await response.json()
 
     expect(data.name).toBe("Yoann Laubert")
-    expect(data.title).toBe("Développeur Full-Stack React & Java")
+    expect(data.title).toBe("Développeur freelance — je code ce qui vous fait gagner du temps")
     expect(data.location).toBe("Vannes, Bretagne")
     expect(data.contact).toEqual({
       email: "contact@yoannlaubert.dev",

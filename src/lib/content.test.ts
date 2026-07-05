@@ -75,11 +75,11 @@ describe("content helpers", () => {
 
   describe("getProjectById", () => {
     it("returns a ProjectContent for an existing project", () => {
-      const project: ProjectContent | null = getProjectById("restobook")
+      const project: ProjectContent | null = getProjectById("studio-uml")
 
       expect(project).not.toBeNull()
-      expect(project!.id).toBe("restobook")
-      expect(project!.title).toBe("RestoBook")
+      expect(project!.id).toBe("studio-uml")
+      expect(project!.title).toBe("Studio UML")
       expect(Array.isArray(project!.techStack)).toBe(true)
       expect(project!.content).toBeTypeOf("string")
       expect(project!.content.length).toBeGreaterThan(0)

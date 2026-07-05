@@ -47,10 +47,10 @@ export function MCPSection() {
                 <code className="text-text-secondary">
                   {`[
   {
-    "id": "restobook",
-    "title": "RestoBook",
-    "techStack": ["React", "Node.js", "MongoDB"],
-    "image": "/images/projects/restobook.webp"
+    "id": "studio-uml",
+    "title": "Studio UML",
+    "techStack": ["Next.js", "TypeScript", "MCP SDK"],
+    "image": "/images/projects/studio-uml.webp"
   },
   ...
 ]`}
@@ -86,7 +86,7 @@ export function MCPSection() {
               <pre className="font-mono text-sm">
                 <code className="text-text-secondary">
                   {`# Yoann Laubert
-## Développeur Full-Stack React & Java
+## Développeur freelance — je code ce qui vous fait gagner du temps
 Vannes, Bretagne
 ...`}
                 </code>
@@ -122,7 +122,7 @@ Vannes, Bretagne
                 <code className="text-text-secondary">
                   {`{
   "name": "Yoann Laubert",
-  "title": "Développeur Full-Stack React & Java",
+  "title": "Développeur freelance — je code ce qui vous fait gagner du temps",
   "location": "Vannes, Bretagne",
   "projects": [...],
   "services": [...],

@@ -45,6 +45,13 @@ export interface SkillData {
   category: string
 }
 
+export interface ApproachItem {
+  id: string
+  tag: string
+  title: string
+  body: string
+}
+
 export function getProfile(): Profile {
   const filePath = path.join(CONTENT_DIR, "profile.json")
   const raw = fs.readFileSync(filePath, "utf-8")
@@ -61,6 +68,12 @@ export function getSkills(): SkillData[] {
   const filePath = path.join(CONTENT_DIR, "skills.json")
   const raw = fs.readFileSync(filePath, "utf-8")
   return JSON.parse(raw) as SkillData[]
+}
+
+export function getApproach(): ApproachItem[] {
+  const filePath = path.join(CONTENT_DIR, "approach.json")
+  const raw = fs.readFileSync(filePath, "utf-8")
+  return JSON.parse(raw) as ApproachItem[]
 }
 
 function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {

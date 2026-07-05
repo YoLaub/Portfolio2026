@@ -94,21 +94,11 @@ describe("ContactSection", () => {
     expect(widget).toBeInTheDocument()
   })
 
-  it("renders CV download link with download attribute and correct href", () => {
-    render(<ContactSection />)
-    const cvLink = screen.getByRole("link", { name: /cv/i })
-    expect(cvLink).toBeInTheDocument()
-    expect(cvLink).toHaveAttribute("href", "/cv.pdf")
-    expect(cvLink).toHaveAttribute("download")
-  })
-
-  it("renders all 3 contact options", () => {
+  it("renders both contact options", () => {
     render(<ContactSection />)
     const widget = screen.getByTestId("calendly-widget")
-    const cvLink = screen.getByRole("link", { name: /cv/i })
     const form = screen.getByRole("form", { name: /formulaire de contact/i })
     expect(widget).toBeInTheDocument()
-    expect(cvLink).toBeInTheDocument()
     expect(form).toBeInTheDocument()
   })
 
@@ -131,13 +121,6 @@ describe("ContactSection", () => {
     const section = document.querySelector("section#contact")
     const html = section!.innerHTML
     expect(html).toContain("max-w-[600px]")
-  })
-
-  it("has accessible download icon in CV button", () => {
-    render(<ContactSection />)
-    const cvLink = screen.getByRole("link", { name: /cv/i })
-    const svg = cvLink.querySelector("svg")
-    expect(svg).toBeInTheDocument()
   })
 
   it("does not render Calendly widget when resolvedTheme is undefined", () => {

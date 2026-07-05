@@ -132,7 +132,7 @@ export function ContactSection() {
             Prenons contact
           </h2>
           <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-            Réservez un appel, téléchargez mon CV ou envoyez-moi un message.
+            Réservez un appel ou envoyez-moi un message.
           </p>
         </AnimatedSection>
 
@@ -162,36 +162,6 @@ export function ContactSection() {
         <AnimatedSection delay={0.2}>
           <div className="flex flex-col items-center gap-4 mt-10">
             <div className="flex items-center gap-4 text-text-secondary text-sm">
-              <span className="h-px w-12 bg-border" />
-              ou
-              <span className="h-px w-12 bg-border" />
-            </div>
-
-            <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 border border-accent/50 text-accent rounded-lg hover:bg-accent/10 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Télécharger mon CV
-            </a>
-
-            <div className="flex items-center gap-4 text-text-secondary text-sm mt-4">
               <span className="h-px w-12 bg-border" />
               ou
               <span className="h-px w-12 bg-border" />

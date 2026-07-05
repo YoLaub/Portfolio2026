@@ -1,5 +1,6 @@
 import { NavBar } from "@/components/NavBar"
 import { Hero } from "@/components/Hero"
+import { ApproachSection } from "@/components/ApproachSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
 import { SkillsSection } from "@/components/SkillsSection"
@@ -14,6 +15,8 @@ export default function Home() {
       <NavBar />
       <main id="main-content" className="pt-20">
         <Hero />
+
+        <ApproachSection />
 
         <ProjectsSection />
 

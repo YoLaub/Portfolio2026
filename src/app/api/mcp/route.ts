@@ -7,7 +7,7 @@ export async function GET() {
   return NextResponse.json(
     {
       name: "Yoann Laubert",
-      title: "Développeur Full-Stack React & Java",
+      title: "Développeur freelance — je code ce qui vous fait gagner du temps",
       location: "Vannes, Bretagne",
       contact: {
         email: "contact@yoannlaubert.dev",

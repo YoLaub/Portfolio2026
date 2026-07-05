@@ -85,14 +85,13 @@ describe("ChatAgent", () => {
   })
 
   // 5.3 — Message d'accueil avec boutons de navigation
-  it("shows welcome message with 5 navigation buttons", () => {
+  it("shows welcome message with 4 navigation buttons", () => {
     openChat()
     expect(screen.getByText(/Comment puis-je vous aider/)).toBeInTheDocument()
     expect(screen.getByText("Mes Projets")).toBeInTheDocument()
     expect(screen.getByText("Mes Compétences")).toBeInTheDocument()
     expect(screen.getByText("Mes Services")).toBeInTheDocument()
     expect(screen.getByText("Me Contacter")).toBeInTheDocument()
-    expect(screen.getByText("Télécharger CV")).toBeInTheDocument()
   })
 
   // 5.4 — Fetch projets et affichage liste
@@ -244,17 +243,6 @@ describe("ChatAgent", () => {
     })
 
     expect(global.fetch).toHaveBeenCalledWith("/api/portfolio/services", expect.objectContaining({ signal: expect.any(AbortSignal) }))
-  })
-
-  // P10 — Télécharger CV affiche un lien de téléchargement
-  it("displays CV download link when clicking Télécharger CV", () => {
-    openChat()
-    fireEvent.click(screen.getByText("Télécharger CV"))
-
-    const link = screen.getByText("Télécharger le CV (PDF)")
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute("href", "/cv.pdf")
-    expect(link).toHaveAttribute("download", "cv.pdf")
   })
 
   // P1 — Escape ferme le panneau

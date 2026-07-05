@@ -8,13 +8,13 @@
   {
     "id": "application",
     "title": "Applications sur mesure",
-    "description": "Votre idée transformée en application fonctionnelle. Du tableau de bord à la plateforme complète.",
+    "description": "Votre idée transformée en outil qui tourne : caisse, stock, dossiers, tableau de bord ou plateforme complète.",
     "icon": "code"
   },
   {
     "id": "api",
     "title": "Développement d'API",
-    "description": "Des interfaces techniques robustes pour connecter vos systèmes entre eux, en toute sécurité.",
+    "description": "Connecteurs, serveur MCP et API robustes pour relier vos systèmes et vos agents IA, en toute sécurité.",
     "icon": "server"
   },
   {

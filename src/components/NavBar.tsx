@@ -6,6 +6,7 @@ import { useScrollSpy } from "@/hooks/useScrollSpy"
 import { ThemeToggle } from "@/components/ThemeToggle"
 
 const NAV_LINKS = [
+  { label: "Approche", href: "#approche" },
   { label: "Projets", href: "#projets" },
   { label: "Services", href: "#services" },
   { label: "Compétences", href: "#competences" },
