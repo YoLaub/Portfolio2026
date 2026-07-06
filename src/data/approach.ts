@@ -9,19 +9,19 @@ export const approach: ApproachItem[] = [
   {
     id: "outillage",
     tag: "Service à la demande",
-    title: "Outils digitaux",
-    body: "D'une simple page web à vos propres connecteurs (MCP) qui exposent vos données (caisse, stock, base produits) à vos agents.",
+    title: "Des outils numériques sur mesure",
+    body: "D'un simple site vitrine à des outils qui font communiquer vos logiciels entre eux (caisse, stock, catalogue produits), pour vous faire gagner du temps au quotidien.",
   },
   {
     id: "skills-secteur",
     tag: "Connaissance métier",
-    title: "Identifier les compétences et routines d'un secteur",
-    body: "Réglementation, tâches répétitives, livrables types, charte graphique. Je capture la connaissance de votre secteur.",
+    title: "Je m'immerge dans votre métier avant de coder",
+    body: "Réglementation, habitudes de travail, documents types, image de marque : je prends le temps de comprendre votre quotidien pour livrer un outil qui correspond vraiment à vos besoins.",
   },
   {
     id: "terrain",
     tag: "Terrain & ateliers",
-    title: "Un développeur sur le terrain",
-    body: "Le mur entre le développeur et le client est rompu. On discute, on identifie les frictions et les besoins, un prototype sort en 48h, le produit suit.",
+    title: "Un développeur à votre écoute, sur le terrain",
+    body: "On échange directement, sans intermédiaire. On identifie ensemble ce qui vous fait perdre du temps, un premier aperçu concret sort en 48h, puis on affine ensemble jusqu'au produit final.",
   },
 ]

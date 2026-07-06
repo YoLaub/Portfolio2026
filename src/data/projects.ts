@@ -17,9 +17,9 @@ export const projects: ProjectData[] = [
     id: "loar",
     title: "LOAR",
     description:
-      "Compagnon IA mobile spécialisé en SMOP, avec onboarding guidé et traitement confidentiel des données.",
+      "Application mobile qui accompagne au quotidien les personnes atteintes du syndrome métabolique ovarien polyendocrinien (SMOP), avec une prise en main guidée et des données de santé traitées en toute confidentialité.",
     longDescription:
-      "Application mobile React Native : compagnon IA spécialisé en SMOP. Onboarding guidé, backend Python, stockage objet MinIO et anonymisation des données personnelles via Presidio pour garantir la confidentialité.",
+      "Application mobile : un compagnon IA qui accompagne au quotidien les personnes atteintes du syndrome métabolique ovarien polyendocrinien (SMOP). L'utilisatrice est guidée pas à pas dès la première utilisation, et toutes ses données de santé sont anonymisées pour garantir une confidentialité totale.",
     techStack: ["Python", "React Native", "MinIO", "Presidio"],
     image: "/images/projects/loar/cover.webp",
     screens: [
@@ -32,22 +32,12 @@ export const projects: ProjectData[] = [
     platform: "mobile",
   },
   {
-    id: "studio-uml",
-    title: "Studio UML",
-    description:
-      "Studio de conception UML avec serveur MCP intégré, pour concevoir vos diagrammes en binôme avec une IA.",
-    longDescription:
-      "Outil de modélisation UML (diagrammes de classes, cas d'usage, séquence, MCD) avec un serveur MCP qui expose chaque diagramme à un agent IA : lecture, proposition et modification en temps réel, comme un binôme de conception.",
-    techStack: ["Next.js", "TypeScript", "MCP SDK"],
-    image: "/images/projects/studio-uml.webp",
-  },
-  {
     id: "les-gants-melecien",
     title: "Les Gants Melecien",
     description:
       "Site vitrine avec backoffice et gestion des adhésions.",
     longDescription:
-      "Site vitrine avec CMS et backoffice sur mesure : gestion des adhésions, des contenus et des membres depuis une interface d'administration dédiée.",
+      "Site vitrine avec un espace d'administration sur mesure pour gérer les adhésions, le contenu du site et les membres, sans avoir besoin de toucher au code.",
     techStack: ["Next.js", "TypeScript", "PostgreSQL"],
     image: "/images/projects/gants-melecien.webp",
   },
@@ -55,9 +45,9 @@ export const projects: ProjectData[] = [
     id: "mcp-agent",
     title: "MCP Agent Portfolio",
     description:
-      "Connecteur MCP intégré au portfolio permettant aux agents IA d'interroger les données structurées.",
+      "Une passerelle qui permet à des agents IA d'interroger directement les informations de ce portfolio.",
     longDescription:
-      "Endpoint MCP exposant les données du portfolio en JSON structuré : profil, projets, compétences et contact. Conçu pour être consommé par des agents IA et des outils automatisés. Cache intelligent d'une heure, documentation intégrée avec exemple d'appel curl et réponse JSON.",
+      "Ce portfolio met à disposition ses propres informations (profil, projets, compétences, contact) dans un format que les agents IA peuvent lire et utiliser directement, avec une documentation claire et des exemples prêts à l'emploi.",
     techStack: ["Next.js", "TypeScript", "API Routes", "JSON", "MCP"],
     image: "/images/projects/mcp-agent.webp",
     liveUrl: "https://yoann-laubert.dev/api/mcp",

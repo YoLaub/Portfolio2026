@@ -21,7 +21,7 @@ describe("projects data - LOAR mobile entry", () => {
   })
 
   it("les projets existants n'ont pas de champ screens", () => {
-    const studioUml = projects.find((p) => p.id === "studio-uml")
-    expect(studioUml?.screens).toBeUndefined()
+    const mcpAgent = projects.find((p) => p.id === "mcp-agent")
+    expect(mcpAgent?.screens).toBeUndefined()
   })
 })

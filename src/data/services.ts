@@ -22,9 +22,9 @@ export const services: ServiceData[] = [
   },
   {
     id: "api",
-    title: "Développement d'API",
+    title: "Connexion de vos outils entre eux",
     description:
-      "Connecteurs, serveur MCP et API robustes pour relier vos systèmes et vos agents IA, en toute sécurité.",
+      "Je relie vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
     icon: "server",
   },
   {

@@ -13,8 +13,8 @@
   },
   {
     "id": "api",
-    "title": "Développement d'API",
-    "description": "Connecteurs, serveur MCP et API robustes pour relier vos systèmes et vos agents IA, en toute sécurité.",
+    "title": "Connexion de vos outils entre eux",
+    "description": "Je relie vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
     "icon": "server"
   },
   {

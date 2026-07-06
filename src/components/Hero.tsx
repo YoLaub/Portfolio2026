@@ -10,9 +10,6 @@ export function Hero() {
       <div className="mx-auto max-w-6xl w-full flex flex-col md:flex-row items-center gap-10 lg:gap-16">
         {/* Colonne gauche — Texte */}
         <div className="flex-1 md:w-3/5 lg:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-6">
-          <span className="inline-block bg-accent-soft text-accent font-mono text-sm px-3 py-1 rounded-full">
-            Disponible · Vannes
-          </span>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight">
             Yoann Laubert
@@ -23,7 +20,7 @@ export function Hero() {
           </p>
 
           <p className="text-lg text-text-secondary max-w-lg">
-            Connecteurs, scripts, agents IA : j&apos;outille votre métier au plus près du terrain.
+            Sites, applications, automatisations : je construis des outils numériques sur mesure, pensés pour votre métier.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-2">

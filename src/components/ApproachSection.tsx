@@ -6,7 +6,7 @@ import { AnimatedSection } from "@/components/AnimatedSection"
 export function ApproachSection() {
   return (
     <section id="approche" aria-label="Approche" className="py-20">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto ">
         <AnimatedSection>
           <h2 className="text-3xl font-bold text-text-primary text-center mb-12">
             Mon Approche

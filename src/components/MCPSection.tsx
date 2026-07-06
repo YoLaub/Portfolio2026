@@ -12,11 +12,16 @@ export function MCPSection() {
           <h2 className="text-3xl font-bold text-text-primary text-center mb-6">
             API & IA
           </h2>
-          <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-            Ce portfolio expose une API REST publique, des routes AI-friendly et
-            un connecteur MCP (Model Context Protocol). Explorez les données
-            structurées de mon profil — projets, compétences, services —
-            directement depuis votre terminal ou vos agents IA.
+          <p className="text-text-secondary text-center mb-4 max-w-2xl mx-auto text-lg leading-relaxed">
+            Ce que je construis pour mes clients, je l&apos;applique aussi à mon propre site : il peut être
+            consulté directement par des assistants IA (comme ceux utilisés par les recruteurs ou les
+            équipes techniques), sans passer par une page web classique.
+          </p>
+          <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto text-sm leading-relaxed">
+            Pour les curieux et les profils techniques : ce portfolio expose une API REST publique, des
+            routes pensées pour l&apos;IA et un connecteur MCP (Model Context Protocol). Explorez les
+            données structurées de mon profil — projets, compétences, services — directement depuis
+            votre terminal ou vos agents IA.
           </p>
         </AnimatedSection>
 

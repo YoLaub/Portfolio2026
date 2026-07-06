@@ -22,6 +22,13 @@ type Dot = {
   delay: number
 }
 
+// Arrondit les résultats de Math.cos/sin : leur dernier bit peut différer entre le V8
+// serveur (Node/SSR) et celui du navigateur, ce qui casse l'hydratation sur des coordonnées
+// SVG en pleine précision (ex. 110.89426920926509 vs ...508).
+function round(n: number): number {
+  return Math.round(n * 10000) / 10000
+}
+
 // PRNG déterministe pour éviter les mismatchs d'hydratation SSR/client
 function mulberry32(seed: number) {
   return function random() {
@@ -41,13 +48,13 @@ function buildDots(): Dot[] {
     for (let d = 0; d < DOTS_PER_RAY; d++) {
       const t = d / (DOTS_PER_RAY - 1)
       const radius = RING_INNER + t * (RING_OUTER - RING_INNER)
-      const targetX = CENTER + Math.cos(angle) * radius
-      const targetY = CENTER + Math.sin(angle) * radius
+      const targetX = round(CENTER + Math.cos(angle) * radius)
+      const targetY = round(CENTER + Math.sin(angle) * radius)
 
       const scatterAngle = random() * Math.PI * 2
       const scatterRadius = Math.min(RING_OUTER + 15, radius + (random() - 0.2) * 90)
-      const scatteredX = CENTER + Math.cos(scatterAngle) * scatterRadius
-      const scatteredY = CENTER + Math.sin(scatterAngle) * scatterRadius
+      const scatteredX = round(CENTER + Math.cos(scatterAngle) * scatterRadius)
+      const scatteredY = round(CENTER + Math.sin(scatterAngle) * scatterRadius)
 
       dots.push({
         id: `${ray}-${d}`,

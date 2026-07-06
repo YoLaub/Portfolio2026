@@ -7,13 +7,13 @@ afterEach(() => {
 })
 
 describe("ProjectsSection - ordre featured", () => {
-  it("affiche le titre de LOAR avant celui de Studio UML dans le DOM", () => {
+  it("affiche le titre de LOAR avant celui des Gants Melecien dans le DOM", () => {
     render(<ProjectsSection />)
     const headings = screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent)
     const loar = headings.findIndex((t) => t?.includes("LOAR"))
-    const studioUml = headings.findIndex((t) => t?.includes("Studio UML"))
+    const gantsMelecien = headings.findIndex((t) => t?.includes("Les Gants Melecien"))
     expect(loar).toBeGreaterThanOrEqual(0)
-    expect(studioUml).toBeGreaterThanOrEqual(0)
-    expect(loar).toBeLessThan(studioUml)
+    expect(gantsMelecien).toBeGreaterThanOrEqual(0)
+    expect(loar).toBeLessThan(gantsMelecien)
   })
 })
