@@ -126,18 +126,22 @@ export function NavBar() {
   }
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-bg-elevated/95 backdrop-blur-md border-b border-border">
-      <nav
-        aria-label="Navigation principale"
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
-      >
-        {/* Logo */}
-        <a
-          href="#"
-          className="text-lg font-bold text-text-primary hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    <header className="fixed top-0 w-full z-50">
+      {/* backdrop-blur isole ici plutot que sur <header> : un filter/backdrop-filter cree
+          un containing block pour les descendants en position fixed, ce qui casserait
+          le positionnement plein ecran de l'overlay mobile ci-dessous. */}
+      <div className="bg-bg-elevated/95 backdrop-blur-md border-b border-border">
+        <nav
+          aria-label="Navigation principale"
+          className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
         >
-          Y.L
-        </a>
+          {/* Logo */}
+          <a
+            href="#"
+            className="text-lg font-bold text-text-primary hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            Y.L
+          </a>
 
         {/* Desktop navigation links */}
         <ul className="hidden md:flex items-center gap-6">
@@ -215,7 +219,8 @@ export function NavBar() {
             )}
           </svg>
         </button>
-      </nav>
+        </nav>
+      </div>
 
       {/* Mobile overlay */}
       <AnimatePresence>

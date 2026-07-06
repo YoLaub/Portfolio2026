@@ -88,64 +88,59 @@ describe("ChatAgent", () => {
   it("shows welcome message with 4 navigation buttons", () => {
     openChat()
     expect(screen.getByText(/Comment puis-je vous aider/)).toBeInTheDocument()
-    expect(screen.getByText("Mes Projets")).toBeInTheDocument()
+    expect(screen.getByText("Discuter de mon projet")).toBeInTheDocument()
     expect(screen.getByText("Mes Compétences")).toBeInTheDocument()
     expect(screen.getByText("Mes Services")).toBeInTheDocument()
     expect(screen.getByText("Me Contacter")).toBeInTheDocument()
   })
 
-  // 5.4 — Fetch projets et affichage liste
-  it("fetches and displays projects list", async () => {
-    mockFetchSuccess([
-      { id: "restobook", title: "RestoBook", techStack: ["React", "Node.js"], image: "/img.png" },
-      { id: "fintrack", title: "FinTrack", techStack: ["Next.js"], image: "/img2.png" },
-    ])
-
+  // 5.4 — Parcours qualification projet : type -> stack proposée
+  it("walks through project type selection and shows a suggested stack", () => {
     openChat()
-    fireEvent.click(screen.getByText("Mes Projets"))
+    fireEvent.click(screen.getByText("Discuter de mon projet"))
 
-    await waitFor(() => {
-      expect(screen.getByText("RestoBook")).toBeInTheDocument()
-      expect(screen.getByText("FinTrack")).toBeInTheDocument()
-    })
+    expect(screen.getByText(/Quel type de projet avez-vous en tête/)).toBeInTheDocument()
+    fireEvent.click(screen.getByText("Site vitrine / landing page"))
 
-    expect(global.fetch).toHaveBeenCalledWith("/api/portfolio/projects", expect.objectContaining({ signal: expect.any(AbortSignal) }))
+    expect(screen.getByText("Next.js + Tailwind CSS, hébergé sur Vercel")).toBeInTheDocument()
+    expect(screen.getByText("Ça me convient, on avance")).toBeInTheDocument()
   })
 
-  // 5.5 — Fetch détail projet
-  it("fetches and displays project detail", async () => {
-    // Premier fetch — liste projets
-    mockFetchSuccess([
-      { id: "restobook", title: "RestoBook", techStack: ["React"], image: "/img.png", githubUrl: "https://github.com/test" },
-    ])
+  // 5.5 — Validation de la stack ouvre le formulaire de contact
+  it("opens the qualification form after validating the suggested stack", () => {
+    openChat()
+    fireEvent.click(screen.getByText("Discuter de mon projet"))
+    fireEvent.click(screen.getByText("Site vitrine / landing page"))
+    fireEvent.click(screen.getByText("Ça me convient, on avance"))
+
+    expect(screen.getByPlaceholderText("Votre nom")).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Votre email")).toBeInTheDocument()
+    expect((screen.getByPlaceholderText("Votre message") as HTMLTextAreaElement).value).toContain(
+      "Site vitrine / landing page"
+    )
+  })
+
+  // 5.5b — Soumission du formulaire envoie le message via /api/contact
+  it("submits the qualification form to /api/contact", async () => {
+    mockFetchSuccess({ success: true })
 
     openChat()
-    fireEvent.click(screen.getByText("Mes Projets"))
+    fireEvent.click(screen.getByText("Discuter de mon projet"))
+    fireEvent.click(screen.getByText("Site vitrine / landing page"))
+    fireEvent.click(screen.getByText("Ça me convient, on avance"))
+
+    fireEvent.change(screen.getByPlaceholderText("Votre nom"), { target: { value: "Alice" } })
+    fireEvent.change(screen.getByPlaceholderText("Votre email"), { target: { value: "alice@example.com" } })
+    fireEvent.click(screen.getByText("Envoyer"))
 
     await waitFor(() => {
-      expect(screen.getByText("RestoBook")).toBeInTheDocument()
+      expect(screen.getByText(/Message envoyé, merci/)).toBeInTheDocument()
     })
 
-    // Deuxième fetch — détail
-    mockFetchSuccess({
-      id: "restobook",
-      title: "RestoBook",
-      techStack: ["React", "Node.js"],
-      image: "/img.png",
-      content: "Application de réservation de restaurants",
-      githubUrl: "https://github.com/test",
-      liveUrl: "https://restobook.demo",
-    })
-
-    fireEvent.click(screen.getByText("En savoir plus : RestoBook"))
-
-    await waitFor(() => {
-      expect(screen.getByText("Application de réservation de restaurants")).toBeInTheDocument()
-      expect(screen.getByText("GitHub")).toBeInTheDocument()
-      expect(screen.getByText("Démo")).toBeInTheDocument()
-    })
-
-    expect(global.fetch).toHaveBeenCalledWith("/api/portfolio/projects/restobook", expect.objectContaining({ signal: expect.any(AbortSignal) }))
+    expect(global.fetch).toHaveBeenCalledWith(
+      "/api/contact",
+      expect.objectContaining({ method: "POST" })
+    )
   })
 
   // 5.6 — Fetch compétences groupées
@@ -189,7 +184,7 @@ describe("ChatAgent", () => {
     )
 
     openChat()
-    fireEvent.click(screen.getByText("Mes Projets"))
+    fireEvent.click(screen.getByText("Mes Compétences"))
 
     await waitFor(() => {
       expect(screen.getByText("Chargement...")).toBeInTheDocument()
@@ -207,7 +202,7 @@ describe("ChatAgent", () => {
     mockFetchError()
 
     openChat()
-    fireEvent.click(screen.getByText("Mes Projets"))
+    fireEvent.click(screen.getByText("Mes Compétences"))
 
     await waitFor(() => {
       expect(screen.getByText("Oups, une erreur s'est produite")).toBeInTheDocument()
@@ -215,14 +210,12 @@ describe("ChatAgent", () => {
     })
 
     // Test retry
-    mockFetchSuccess([
-      { id: "restobook", title: "RestoBook", techStack: ["React"], image: "/img.png" },
-    ])
+    mockFetchSuccess([{ id: "react", name: "React", category: "Frontend" }])
 
     fireEvent.click(screen.getByText("Réessayer"))
 
     await waitFor(() => {
-      expect(screen.getByText("RestoBook")).toBeInTheDocument()
+      expect(screen.getByText("Frontend")).toBeInTheDocument()
     })
   })
 

@@ -4,19 +4,6 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 
 // ─── Types locaux miroir des types API ───────────────────────────────
-interface ProjectMeta {
-  id: string
-  title: string
-  techStack: string[]
-  image: string
-  liveUrl?: string
-  githubUrl?: string
-}
-
-interface ProjectContent extends ProjectMeta {
-  content: string
-}
-
 interface SkillData {
   id: string
   name: string
@@ -43,6 +30,36 @@ interface ChatMessage {
   actions?: ChatAction[]
 }
 
+// ─── Arbre de qualification projet client ────────────────────────────
+type ProjectTypeKey = "vitrine" | "webapp" | "automation"
+
+interface ProjectTypeInfo {
+  label: string
+  stackTitle: string
+  stackDescription: string
+}
+
+const PROJECT_TYPES: Record<ProjectTypeKey, ProjectTypeInfo> = {
+  vitrine: {
+    label: "Site vitrine / landing page",
+    stackTitle: "Next.js + Tailwind CSS, hébergé sur Vercel",
+    stackDescription:
+      "Un site rapide et moderne, qui s'affiche parfaitement sur mobile comme sur ordinateur, avec un code propre et facile à faire évoluer plus tard.",
+  },
+  webapp: {
+    label: "Application web (SaaS, back-office, outil interne)",
+    stackTitle: "Next.js + API Node.js + base de données PostgreSQL",
+    stackDescription:
+      "Un espace avec des comptes utilisateurs, où vos données sont stockées en toute sécurité, conçu pour grandir avec vos besoins.",
+  },
+  automation: {
+    label: "Automatisation / Agent IA (MCP, workflow)",
+    stackTitle: "Node.js + IA (Claude) via le protocole MCP",
+    stackDescription:
+      "Un assistant ou un robot qui automatise des tâches répétitives à votre place, connecté directement à vos outils existants.",
+  },
+}
+
 // ─── Composant ChatAgent ─────────────────────────────────────────────
 export function ChatAgent() {
   const prefersReduced = useReducedMotion()
@@ -51,6 +68,15 @@ export function ChatAgent() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [lastFailedAction, setLastFailedAction] = useState<(() => void) | null>(null)
+
+  // Formulaire de qualification projet (étape finale du parcours "Discuter de mon projet")
+  const [projectForm, setProjectForm] = useState<ProjectTypeInfo | null>(null)
+  const [formName, setFormName] = useState("")
+  const [formEmail, setFormEmail] = useState("")
+  const [formMessage, setFormMessage] = useState("")
+  const [formSubmitting, setFormSubmitting] = useState(false)
+  const [formError, setFormError] = useState<string | null>(null)
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -137,13 +163,13 @@ export function ChatAgent() {
 
   // P3 — Utiliser des refs pour les handlers afin d'éviter les closures périmées
   const handlersRef = useRef<{
-    projects: () => void
+    discussProject: () => void
     skills: () => void
     services: () => void
     contact: () => void
     showWelcome: () => void
   }>({
-    projects: () => {},
+    discussProject: () => {},
     skills: () => {},
     services: () => {},
     contact: () => {},
@@ -154,10 +180,12 @@ export function ChatAgent() {
     setError(null)
     setIsLoading(false)
     abortRef.current?.abort()
+    setProjectForm(null)
+    setFormError(null)
     setMessages([])
 
     const welcomeActions: ChatAction[] = [
-      { label: "Mes Projets", onClick: () => handlersRef.current.projects() },
+      { label: "Discuter de mon projet", onClick: () => handlersRef.current.discussProject() },
       { label: "Mes Compétences", onClick: () => handlersRef.current.skills() },
       { label: "Mes Services", onClick: () => handlersRef.current.services() },
       { label: "Me Contacter", onClick: () => handlersRef.current.contact() },
@@ -212,86 +240,80 @@ export function ChatAgent() {
   }
 
   // ─── Handlers arbre de décision ─────────────────────────────────
-  function handleProjects() {
-    // P4 — Guard anti-double clic
-    if (isLoading) return
-    addUserAction("Mes Projets")
-    const action = async () => {
-      const projects = await fetchApi<ProjectMeta[]>("/api/portfolio/projects", action)
-      if (!projects) return
+  function handleDiscussProject() {
+    addUserAction("Discuter de mon projet")
+    setProjectForm(null)
+    const typeActions: ChatAction[] = (Object.keys(PROJECT_TYPES) as ProjectTypeKey[]).map((key) => ({
+      label: PROJECT_TYPES[key].label,
+      onClick: () => handleProjectType(key),
+    }))
+    typeActions.push(backToMenuAction)
 
-      // P7 — Feedback si liste vide
-      if (projects.length === 0) {
-        addBotMessage("Aucun projet trouvé pour le moment.", [backToMenuAction])
-        return
-      }
-
-      const projectActions: ChatAction[] = projects.map((p) => ({
-        label: `En savoir plus : ${p.title}`,
-        onClick: () => handleProjectDetail(p.id, p.title),
-      }))
-      projectActions.push(backToMenuAction)
-
-      addBotMessage(
-        <div>
-          <p className="font-semibold mb-2">Voici mes projets :</p>
-          <ul className="space-y-1">
-            {projects.map((p) => (
-              <li key={p.id} className="text-text-secondary">
-                <span className="text-text-primary font-medium">{p.title}</span>
-                {" — "}
-                {p.techStack.join(", ")}
-              </li>
-            ))}
-          </ul>
-        </div>,
-        projectActions
-      )
-    }
-    action()
+    addBotMessage(
+      "Avec plaisir ! Quel type de projet avez-vous en tête ?",
+      typeActions
+    )
   }
 
-  function handleProjectDetail(id: string, title: string) {
-    if (isLoading) return
-    addUserAction(`En savoir plus : ${title}`)
-    const action = async () => {
-      const project = await fetchApi<ProjectContent>(`/api/portfolio/projects/${id}`, action)
-      if (!project) return
+  function handleProjectType(key: ProjectTypeKey) {
+    const info = PROJECT_TYPES[key]
+    addUserAction(info.label)
 
+    addBotMessage(
+      <div>
+        <p className="mb-2">Pour ce type de projet, je partirais sur :</p>
+        <p className="font-semibold text-accent mb-1">{info.stackTitle}</p>
+        <p className="text-text-secondary text-sm">{info.stackDescription}</p>
+      </div>,
+      [
+        { label: "Ça me convient, on avance", onClick: () => openProjectForm(info) },
+        backToMenuAction,
+      ]
+    )
+  }
+
+  function openProjectForm(info: ProjectTypeInfo) {
+    addUserAction("Ça me convient, on avance")
+    setFormName("")
+    setFormEmail("")
+    setFormMessage(
+      `Type de projet : ${info.label}\nStack envisagée : ${info.stackTitle}\n\nQuelques mots sur mon projet : `
+    )
+    setFormError(null)
+    setProjectForm(info)
+    addBotMessage(
+      "Parfait ! Laissez-moi vos coordonnées et quelques mots sur votre projet ci-dessous, je reviens vers vous rapidement pour un premier retour."
+    )
+  }
+
+  async function handleFormSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (formSubmitting) return
+    setFormSubmitting(true)
+    setFormError(null)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: formName, email: formEmail, message: formMessage, website: "" }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      setFormSubmitting(false)
+      setProjectForm(null)
       addBotMessage(
-        <div>
-          <p className="font-semibold text-lg mb-1">{project.title}</p>
-          <p className="text-text-secondary mb-2">{project.content}</p>
-          <p className="text-sm mb-1">
-            <span className="font-medium">Stack :</span> {project.techStack.join(", ")}
-          </p>
-          <div className="flex gap-3 mt-2 flex-wrap">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent-hover underline text-sm"
-              >
-                GitHub
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent-hover underline text-sm"
-              >
-                Démo
-              </a>
-            )}
-          </div>
-        </div>,
+        "Message envoyé, merci ! Je reviens vers vous rapidement pour un premier retour.",
         [backToMenuAction]
       )
+    } catch {
+      setFormSubmitting(false)
+      setFormError("Oups, l'envoi a échoué. Vérifiez vos coordonnées et réessayez.")
     }
-    action()
+  }
+
+  function handleFormCancel() {
+    setProjectForm(null)
+    setFormError(null)
+    handlersRef.current.showWelcome()
   }
 
   function handleSkills() {
@@ -392,7 +414,7 @@ export function ChatAgent() {
 
   // P3 — Mettre à jour les refs des handlers à chaque render
   handlersRef.current = {
-    projects: handleProjects,
+    discussProject: handleDiscussProject,
     skills: handleSkills,
     services: handleServices,
     contact: handleContact,
@@ -516,6 +538,58 @@ export function ChatAgent() {
                     Réessayer
                   </button>
                 </div>
+              )}
+
+              {/* Formulaire de qualification projet */}
+              {projectForm && (
+                <form onSubmit={handleFormSubmit} className="bg-bg-secondary text-sm px-3 py-3 rounded-xl space-y-2">
+                  <input
+                    type="text"
+                    required
+                    minLength={2}
+                    maxLength={100}
+                    placeholder="Votre nom"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    className="w-full rounded-lg border border-border bg-bg-primary px-3 py-1.5 text-text-primary text-sm focus-visible:outline-2 focus-visible:outline-accent"
+                  />
+                  <input
+                    type="email"
+                    required
+                    maxLength={255}
+                    placeholder="Votre email"
+                    value={formEmail}
+                    onChange={(e) => setFormEmail(e.target.value)}
+                    className="w-full rounded-lg border border-border bg-bg-primary px-3 py-1.5 text-text-primary text-sm focus-visible:outline-2 focus-visible:outline-accent"
+                  />
+                  <textarea
+                    required
+                    minLength={10}
+                    maxLength={2000}
+                    rows={4}
+                    placeholder="Votre message"
+                    value={formMessage}
+                    onChange={(e) => setFormMessage(e.target.value)}
+                    className="w-full rounded-lg border border-border bg-bg-primary px-3 py-1.5 text-text-primary text-sm resize-none focus-visible:outline-2 focus-visible:outline-accent"
+                  />
+                  {formError && <p className="text-error text-xs">{formError}</p>}
+                  <div className="flex gap-2 pt-1">
+                    <button
+                      type="submit"
+                      disabled={formSubmitting}
+                      className="bg-accent text-bg-primary text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-accent-hover transition-colors cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {formSubmitting ? "Envoi..." : "Envoyer"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleFormCancel}
+                      className="text-text-secondary text-xs font-medium px-3 py-1.5 rounded-lg hover:text-text-primary transition-colors cursor-pointer"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </form>
               )}
 
               <div ref={messagesEndRef} />
