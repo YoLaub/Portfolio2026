@@ -126,7 +126,7 @@ export function NavBar() {
   }
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-bg-elevated/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 w-full z-50 bg-bg-elevated/95 backdrop-blur-md border-b border-border">
       <nav
         aria-label="Navigation principale"
         className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"

@@ -1,4 +1,4 @@
-import Image from "next/image"
+import { HeroHalo } from "./HeroHalo"
 
 export function Hero() {
   return (
@@ -45,19 +45,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Colonne droite — Photo */}
-        <div className="max-w-[200px] md:max-w-none md:w-2/5 lg:w-1/2 flex justify-center">
-          <div className="relative w-full max-w-[200px] aspect-square sm:max-w-[250px] md:max-w-[300px] lg:max-w-[400px]">
-            <Image
-              src="/images/hero.webp"
-              alt="Yoann Laubert, développeur full-stack React Java basé à Vannes"
-              width={400}
-              height={400}
-              priority
-              className="rounded-2xl object-cover w-full h-full"
-              sizes="(max-width: 768px) 200px, (max-width: 1024px) 300px, 400px"
-            />
-          </div>
+        {/* Colonne droite — Halo SVG */}
+        <div className="max-w-[220px] md:max-w-none md:w-2/5 lg:w-1/2 flex justify-center">
+          <HeroHalo />
         </div>
       </div>
     </section>
