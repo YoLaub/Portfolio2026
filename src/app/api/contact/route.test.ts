@@ -20,18 +20,26 @@ vi.mock("@/lib/brevo", () => ({
 
 import { POST } from "./route"
 
-function makeRequest(body: unknown): Request {
+// Chaque test utilise une IP distincte par défaut pour ne pas partager le
+// même compteur de rate limit (état module-level persistant entre tests).
+let ipCounter = 0
+function nextTestIp(): string {
+  ipCounter += 1
+  return `198.51.100.${ipCounter}`
+}
+
+function makeRequest(body: unknown, ip: string = nextTestIp()): Request {
   return new Request("http://localhost/api/contact", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-forwarded-for": ip },
     body: JSON.stringify(body),
   })
 }
 
-function makeInvalidJsonRequest(): Request {
+function makeInvalidJsonRequest(ip: string = nextTestIp()): Request {
   return new Request("http://localhost/api/contact", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-forwarded-for": ip },
     body: "not-json{{{",
   })
 }
@@ -126,6 +134,27 @@ describe("POST /api/contact", () => {
     expect(data.success).toBe(false)
     expect(data.error).toBe("Invalid request body")
     expect(mockSendContactEmail).not.toHaveBeenCalled()
+  })
+
+  it("dépasse la limite de requêtes pour une même IP → retourne 429", async () => {
+    mockSendContactEmail.mockResolvedValue(undefined)
+    const ip = "203.0.113.42"
+    const validBody = {
+      name: "Jean Dupont",
+      email: "jean@example.com",
+      message: "Bonjour, je voudrais discuter.",
+      website: "",
+    }
+
+    for (let i = 0; i < 5; i++) {
+      const ok = await POST(makeRequest(validBody, ip))
+      expect(ok.status).toBe(200)
+    }
+
+    const limited = await POST(makeRequest(validBody, ip))
+    const data = await limited.json()
+    expect(limited.status).toBe(429)
+    expect(data.success).toBe(false)
   })
 
   it("BREVO_API_KEY manquante → retourne 500 avec message explicite", async () => {

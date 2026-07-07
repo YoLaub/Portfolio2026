@@ -2,9 +2,17 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import { contactSchema } from "@/lib/schemas"
 import { sendContactEmail, ConfigurationError } from "@/lib/brevo"
+import { isRateLimited, getClientIp } from "@/lib/rateLimit"
 
 export async function POST(request: Request) {
   try {
+    if (isRateLimited(getClientIp(request))) {
+      return NextResponse.json(
+        { success: false, error: "Too many requests" },
+        { status: 429 }
+      )
+    }
+
     let body: unknown
     try {
       body = await request.json()

@@ -16,7 +16,7 @@ export function Hero() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-text-secondary font-medium">
-            Développeur freelance — je code ce qui vous fait gagner du temps
+            Développeur freelance - je code ce qui vous fait gagner du temps
           </p>
 
           <p className="text-lg text-text-secondary max-w-lg">

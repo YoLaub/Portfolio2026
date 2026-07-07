@@ -79,4 +79,20 @@ describe("contactSchema", () => {
     const result = contactSchema.safeParse({ ...validData, name: "   " })
     expect(result.success).toBe(false)
   })
+
+  it("rejects a name containing a line break (email header injection)", () => {
+    const result = contactSchema.safeParse({
+      ...validData,
+      name: "Jean\r\nBcc: attacker@evil.com",
+    })
+    expect(result.success).toBe(false)
+  })
+
+  it("rejects an email containing a line break", () => {
+    const result = contactSchema.safeParse({
+      ...validData,
+      email: "jean@example.com\r\nBcc:attacker@evil.com",
+    })
+    expect(result.success).toBe(false)
+  })
 })
