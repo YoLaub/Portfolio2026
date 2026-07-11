@@ -8,7 +8,7 @@ vi.mock("@/lib/content", () => ({
     location: "Test City",
     bio: "Bio test",
     email: "t@t.com",
-    links: { github: "gh", linkedin: "li", website: "ws", calendly: "ca" },
+    links: { github: "gh", linkedin: "li", website: "ws" },
   })),
 }))
 

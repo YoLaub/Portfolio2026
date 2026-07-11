@@ -196,12 +196,11 @@ const openApiSpec = {
           email: { type: "string", example: "contact@yoannlaubert.dev" },
           links: {
             type: "object",
-            required: ["github", "linkedin", "website", "calendly"],
+            required: ["github", "linkedin", "website"],
             properties: {
               github: { type: "string" },
               linkedin: { type: "string" },
               website: { type: "string" },
-              calendly: { type: "string" },
             },
           },
         },

@@ -84,6 +84,16 @@ describe("ChatAgent", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
   })
 
+  // 5.2b — L'événement open-chat (section contact) ouvre le panneau
+  it("opens chat panel when the open-chat window event is dispatched", () => {
+    render(<ChatAgent />)
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
+
+    fireEvent(window, new Event("open-chat"))
+
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
+  })
+
   // 5.3 — Message d'accueil avec boutons de navigation
   it("shows welcome message with 4 navigation buttons", () => {
     openChat()
@@ -168,9 +178,11 @@ describe("ChatAgent", () => {
     openChat()
     fireEvent.click(screen.getByText("Me Contacter"))
 
-    expect(screen.getByText("Prendre rendez-vous (Calendly)")).toBeInTheDocument()
-    expect(screen.getByText("Formulaire de contact")).toBeInTheDocument()
+    expect(screen.getByText("Réserver un créneau (30 min, visio)")).toBeInTheDocument()
     expect(screen.getByText("contact@yoann-laubert.dev")).toBeInTheDocument()
+    // Calendly et le formulaire classique n'existent plus
+    expect(screen.queryByText(/calendly/i)).not.toBeInTheDocument()
+    expect(screen.queryByText("Formulaire de contact")).not.toBeInTheDocument()
   })
 
   // 5.8 — État loading pendant fetch

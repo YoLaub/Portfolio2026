@@ -100,6 +100,14 @@ export function ChatAgent() {
     }
   }, [messages, isLoading, error])
 
+  // Ouverture depuis l'extérieur (bouton "Écrivez-moi via l'assistant" de la
+  // section contact) via un événement window, sans couplage de composants.
+  useEffect(() => {
+    const openChat = () => setIsOpen(true)
+    window.addEventListener("open-chat", openChat)
+    return () => window.removeEventListener("open-chat", openChat)
+  }, [])
+
   // P2 — Focus retour sur le bouton uniquement après fermeture (pas au mount)
   useEffect(() => {
     if (!isOpen && wasOpenRef.current) {
@@ -388,17 +396,11 @@ export function ChatAgent() {
         <ul className="space-y-2">
           <li>
             <a
-              href="https://calendly.com/yoann-laubert"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="text-accent hover:text-accent-hover underline"
+              onClick={() => setIsOpen(false)}
             >
-              Prendre rendez-vous (Calendly)
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="text-accent hover:text-accent-hover underline" onClick={() => setIsOpen(false)}>
-              Formulaire de contact
+              Réserver un créneau (30 min, visio)
             </a>
           </li>
           <li>

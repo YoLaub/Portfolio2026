@@ -35,7 +35,6 @@ function buildMarkdown(
   lines.push("")
   lines.push(`- [GitHub](${profile.links.github})`)
   lines.push(`- [LinkedIn](${profile.links.linkedin})`)
-  lines.push(`- [Calendly](${profile.links.calendly})`)
   lines.push("")
 
   // Compétences
@@ -70,7 +69,7 @@ function buildMarkdown(
   lines.push("## Contact")
   lines.push("")
   lines.push(`- Email : ${profile.email}`)
-  lines.push(`- Calendly : ${profile.links.calendly}`)
+  lines.push(`- Prise de rendez-vous (30 min, visio) : ${profile.links.website}/#contact`)
   lines.push(`- API REST : ${profile.links.website}/api/docs`)
 
   return lines.join("\n")

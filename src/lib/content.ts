@@ -15,7 +15,6 @@ export interface Profile {
     github: string
     linkedin: string
     website: string
-    calendly: string
   }
 }
 

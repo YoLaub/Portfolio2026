@@ -75,7 +75,7 @@ vi.mock("@/components/ContactSection", () => ({
   ContactSection: () => (
     <section id="contact" aria-label="Contact">
       <h2>Contact</h2>
-      <div data-testid="calendly-lazy">Calendly Widget (lazy-loaded)</div>
+      <div data-testid="booking-section">Prise de rendez-vous</div>
     </section>
   ),
 }))
@@ -188,10 +188,10 @@ describe("Home Page - Accessibility", () => {
       expect(heroImg!.getAttribute("src")).toContain(".webp")
     })
 
-    it("Calendly widget is present in contact section (lazy-loaded)", () => {
+    it("booking module is present in contact section", () => {
       const { container } = render(<Home />)
-      const calendly = container.querySelector("[data-testid='calendly-lazy']")
-      expect(calendly).toBeInTheDocument()
+      const booking = container.querySelector("[data-testid='booking-section']")
+      expect(booking).toBeInTheDocument()
     })
   })
 
