@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yoannlaubert.dev"),
-  title: "Yoann Laubert — Développeur freelance | Vannes",
+  title: "Yoann Laubert - Développeur freelance | Vannes",
   description:
     "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
   alternates: {
@@ -37,11 +37,11 @@ export const metadata: Metadata = {
     "portfolio",
   ],
   openGraph: {
-    title: "Yoann Laubert — Développeur freelance | Vannes",
+    title: "Yoann Laubert - Développeur freelance | Vannes",
     description:
       "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
     url: "/",
-    siteName: "Yoann Laubert — Portfolio",
+    siteName: "Yoann Laubert - Portfolio",
     type: "website",
     locale: "fr_FR",
     images: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
         url: "/images/hero.webp",
         width: 1200,
         height: 630,
-        alt: "Yoann Laubert — Développeur freelance",
+        alt: "Yoann Laubert - Développeur freelance",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoann Laubert — Développeur freelance | Vannes",
+    title: "Yoann Laubert - Développeur freelance | Vannes",
     description:
       "Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
     images: ["/images/hero.webp"],
@@ -66,7 +66,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Yoann Laubert",
-  jobTitle: "Développeur freelance — je code ce qui vous fait gagner du temps",
+  jobTitle: "Développeur freelance - coder pour gagner du temps",
   url: "https://yoannlaubert.dev",
   description:
     "Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 const openApiSpec = {
   openapi: "3.0.3",
   info: {
-    title: "Portfolio API — Yoann Laubert",
+    title: "Portfolio API - Yoann Laubert",
     version: "1.0.0",
     description: "API REST exposant les données du portfolio.",
   },
@@ -140,7 +140,7 @@ const openApiSpec = {
             content: {
               "text/markdown": {
                 schema: { type: "string" },
-                example: "# Yoann Laubert — Développeur Full-Stack\n\n## Compétences\n...",
+                example: "# Yoann Laubert - Développeur freelance\n\n## Compétences\n...",
               },
             },
           },

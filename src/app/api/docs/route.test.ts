@@ -48,7 +48,7 @@ describe("GET /api/docs", () => {
   it("contient info avec titre et version", async () => {
     const response = await GET()
     const data = await response.json()
-    expect(data.info.title).toBe("Portfolio API — Yoann Laubert")
+    expect(data.info.title).toBe("Portfolio API - Yoann Laubert")
     expect(data.info.version).toBe("1.0.0")
   })
 })

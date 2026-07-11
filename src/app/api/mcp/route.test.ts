@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { GET } from "./route"
-import { projects } from "@/data/projects"
+import { getProjects } from "@/lib/content"
 import { services } from "@/data/services"
 import { skills } from "@/data/skills"
 
@@ -27,11 +27,11 @@ describe("GET /api/mcp", () => {
     )
   })
 
-  it("retourne les projets depuis data/projects.ts", async () => {
+  it("retourne les projets depuis content/projects/*.md", async () => {
     const response = await GET()
     const data = await response.json()
 
-    expect(data.projects).toEqual(projects)
+    expect(data.projects).toEqual(getProjects())
   })
 
   it("retourne les services depuis data/services.ts", async () => {
@@ -53,7 +53,7 @@ describe("GET /api/mcp", () => {
     const data = await response.json()
 
     expect(data.name).toBe("Yoann Laubert")
-    expect(data.title).toBe("Développeur freelance — je code ce qui vous fait gagner du temps")
+    expect(data.title).toBe("Développeur freelance - coder pour gagner du temps")
     expect(data.location).toBe("Vannes, Bretagne")
     expect(data.contact).toEqual({
       email: "contact@yoannlaubert.dev",

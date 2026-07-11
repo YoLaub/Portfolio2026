@@ -2,15 +2,16 @@ import { describe, it, expect } from "vitest"
 import { z } from "zod"
 import { skills } from "@/data/skills"
 import { services } from "@/data/services"
-import { projects } from "@/data/projects"
+import { getProjects } from "@/lib/content"
 
 describe("Smoke tests", () => {
   it("skills data is non-empty and grouped by category", () => {
     expect(skills.length).toBeGreaterThan(0)
     const categories = [...new Set(skills.map((s) => s.category))]
-    expect(categories).toContain("Frontend")
-    expect(categories).toContain("Backend")
-    expect(categories).toContain("Outils")
+    expect(categories).toContain("Interfaces & expérience")
+    expect(categories).toContain("Automatisation & IA")
+    expect(categories).toContain("Le moteur & les données")
+    expect(categories).toContain("Mise en ligne & fiabilité")
   })
 
   it("services data is non-empty", () => {
@@ -22,6 +23,7 @@ describe("Smoke tests", () => {
   })
 
   it("projects data is non-empty", () => {
+    const projects = getProjects()
     expect(projects.length).toBeGreaterThan(0)
     projects.forEach((p) => {
       expect(p.id).toBeTruthy()

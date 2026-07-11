@@ -20,7 +20,7 @@ export function MCPSection() {
           <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto text-sm leading-relaxed">
             Pour les curieux et les profils techniques : ce portfolio expose une API REST publique, des
             routes pensées pour l&apos;IA et un connecteur MCP (Model Context Protocol). Explorez les
-            données structurées de mon profil — projets, compétences, services — directement depuis
+            données structurées de mon profil (projets, compétences, services) directement depuis
             votre terminal ou vos agents IA.
           </p>
         </AnimatedSection>
@@ -91,7 +91,7 @@ export function MCPSection() {
               <pre className="font-mono text-sm">
                 <code className="text-text-secondary">
                   {`# Yoann Laubert
-## Développeur freelance — je code ce qui vous fait gagner du temps
+## Développeur freelance - coder pour gagner du temps
 Vannes, Bretagne
 ...`}
                 </code>
@@ -127,7 +127,7 @@ Vannes, Bretagne
                 <code className="text-text-secondary">
                   {`{
   "name": "Yoann Laubert",
-  "title": "Développeur freelance — je code ce qui vous fait gagner du temps",
+  "title": "Développeur freelance - coder pour gagner du temps",
   "location": "Vannes, Bretagne",
   "projects": [...],
   "services": [...],

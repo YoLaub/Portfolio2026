@@ -1,44 +1,14 @@
+import servicesData from "../../content/services.json"
+
 export interface ServiceData {
   id: string
   title: string
   description: string
   icon: string
+  /** Indication tarifaire affichee sur la carte (forfait "A partir de ..." ou TJM). */
+  price?: string
 }
 
-export const services: ServiceData[] = [
-  {
-    id: "site-web",
-    title: "Création de sites web",
-    description:
-      "Un site moderne, rapide et optimisé pour Google. Pensé pour vos visiteurs, conçu pour convertir.",
-    icon: "globe",
-  },
-  {
-    id: "application",
-    title: "Applications sur mesure",
-    description:
-      "Votre idée transformée en outil qui tourne : caisse, stock, dossiers, tableau de bord ou plateforme complète.",
-    icon: "code",
-  },
-  {
-    id: "api",
-    title: "Connexion de vos outils entre eux",
-    description:
-      "Je relie vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
-    icon: "server",
-  },
-  {
-    id: "conseil",
-    title: "Conseil technique",
-    description:
-      "Un regard expert sur votre projet. Choix technologiques, architecture et bonnes pratiques.",
-    icon: "lightbulb",
-  },
-  {
-    id: "maintenance",
-    title: "Maintenance & évolution",
-    description:
-      "Votre site ou application reste performant et à jour. Corrections, améliorations et nouvelles fonctionnalités.",
-    icon: "wrench",
-  },
-]
+// Source de vérité unique : content/services.json (même fichier que celui servi
+// par l'API via lib/content.ts). Ce module ne fait que le typer et le ré-exporter.
+export const services: ServiceData[] = servicesData

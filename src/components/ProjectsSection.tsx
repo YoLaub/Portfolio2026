@@ -1,11 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { projects } from "@/data/projects"
+import type { ProjectData } from "@/data/projects"
 import { ProjectCard } from "@/components/ProjectCard"
 import { AnimatedSection } from "@/components/AnimatedSection"
 
-export function ProjectsSection() {
+interface ProjectsSectionProps {
+  projects: ProjectData[]
+}
+
+export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const [openId, setOpenId] = useState<string | null>(null)
 
   const orderedProjects = [...projects].sort(

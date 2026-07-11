@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server"
-import { projects } from "@/data/projects"
+import { getProjects } from "@/lib/content"
 import { services } from "@/data/services"
 import { skills } from "@/data/skills"
 
 export async function GET() {
+  const projects = getProjects()
+
   return NextResponse.json(
     {
       name: "Yoann Laubert",
-      title: "Développeur freelance — je code ce qui vous fait gagner du temps",
+      title: "Développeur freelance - coder pour gagner du temps",
       location: "Vannes, Bretagne",
       contact: {
         email: "contact@yoannlaubert.dev",

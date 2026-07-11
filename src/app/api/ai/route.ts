@@ -21,7 +21,7 @@ function buildMarkdown(
   const lines: string[] = []
 
   // Header
-  lines.push(`# ${profile.name} — ${profile.jobTitle}`)
+  lines.push(`# ${profile.name} - ${profile.jobTitle}`)
   lines.push("")
   lines.push(`> ${profile.bio}`)
   lines.push("")
@@ -62,7 +62,7 @@ function buildMarkdown(
   lines.push("## Services")
   lines.push("")
   for (const service of services) {
-    lines.push(`- **${service.title}** — ${service.description}`)
+    lines.push(`- **${service.title}** : ${service.description}`)
   }
   lines.push("")
 

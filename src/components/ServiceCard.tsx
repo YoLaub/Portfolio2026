@@ -36,6 +36,17 @@ function getServiceIcon(icon: string) {
           <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5" />
         </svg>
       )
+    case "bot":
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+          <path d="M12 8V4H8" />
+          <rect x="4" y="8" width="16" height="12" rx="2" />
+          <path d="M2 14h2" />
+          <path d="M20 14h2" />
+          <path d="M15 13v2" />
+          <path d="M9 13v2" />
+        </svg>
+      )
     case "wrench":
       return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -59,6 +70,14 @@ export function ServiceCard({ service }: { service: ServiceData }) {
       <p className="text-text-secondary leading-relaxed">
         {service.description}
       </p>
+      {service.price && (
+        <p
+          data-testid="service-price"
+          className="mt-4 pt-4 border-t border-border text-accent font-semibold"
+        >
+          {service.price}
+        </p>
+      )}
     </article>
   )
 }

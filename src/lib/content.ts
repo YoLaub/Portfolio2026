@@ -22,10 +22,17 @@ export interface Profile {
 export interface ProjectMeta {
   id: string
   title: string
+  description?: string
+  longDescription?: string
   techStack: string[]
   image: string
   liveUrl?: string
   githubUrl?: string
+  screens?: string[]
+  featured?: boolean
+  platform?: "mobile" | "web"
+  /** false = accessible via l'API / URL directe mais masqué de la grille d'accueil. */
+  listed?: boolean
 }
 
 export interface ProjectContent extends ProjectMeta {
@@ -37,6 +44,7 @@ export interface ServiceData {
   title: string
   description: string
   icon: string
+  price?: string
 }
 
 export interface SkillData {
@@ -83,8 +91,14 @@ function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {
     techStack: data.techStack as string[],
     image: data.image as string,
   }
+  if (data.description) meta.description = data.description as string
+  if (data.longDescription) meta.longDescription = data.longDescription as string
   if (data.liveUrl) meta.liveUrl = data.liveUrl as string
   if (data.githubUrl) meta.githubUrl = data.githubUrl as string
+  if (data.screens) meta.screens = data.screens as string[]
+  if (typeof data.featured === "boolean") meta.featured = data.featured
+  if (data.platform) meta.platform = data.platform as "mobile" | "web"
+  if (typeof data.listed === "boolean") meta.listed = data.listed
   return meta
 }
 
