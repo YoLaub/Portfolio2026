@@ -25,13 +25,10 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-2">
             <a
-              href="https://calendly.com/yoann-laubert"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="bg-accent text-bg-primary font-semibold rounded-lg px-6 py-3 text-center hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
             >
               Prendre RDV
-              <span className="sr-only"> (nouvelle fenêtre)</span>
             </a>
             <a
               href="#projets"

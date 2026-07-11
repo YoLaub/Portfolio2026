@@ -22,7 +22,8 @@ describe("content helpers", () => {
       expect(profile.links.github).toBeTypeOf("string")
       expect(profile.links.linkedin).toBeTypeOf("string")
       expect(profile.links.website).toBeTypeOf("string")
-      expect(profile.links.calendly).toBeTypeOf("string")
+      // La prise de RDV est intégrée au site : plus de lien Calendly
+      expect("calendly" in profile.links).toBe(false)
     })
   })
 

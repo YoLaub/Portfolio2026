@@ -7,8 +7,12 @@ class IntersectionObserverMock {
   disconnect() {}
 }
 
-Object.defineProperty(window, "IntersectionObserver", {
-  writable: true,
-  configurable: true,
-  value: IntersectionObserverMock,
-})
+// Les tests de services purs tournent en environnement node (// @vitest-environment node)
+// où window n'existe pas : ne polyfiller qu'en jsdom.
+if (typeof window !== "undefined") {
+  Object.defineProperty(window, "IntersectionObserver", {
+    writable: true,
+    configurable: true,
+    value: IntersectionObserverMock,
+  })
+}

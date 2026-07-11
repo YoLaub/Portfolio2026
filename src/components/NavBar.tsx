@@ -14,7 +14,8 @@ const NAV_LINKS = [
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(1))
 
-const CALENDLY_URL = "https://calendly.com/yoann-laubert"
+// Prise de rendez-vous maison : la CTA pointe vers la section contact du site.
+const BOOKING_ANCHOR = "#contact"
 
 const MOBILE_MENU_ID = "mobile-nav-menu"
 
@@ -140,7 +141,7 @@ export function NavBar() {
             href="#"
             className="text-lg font-bold text-text-primary hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            Y.L
+            YL - Solution
           </a>
 
         {/* Desktop navigation links */}
@@ -174,11 +175,9 @@ export function NavBar() {
 
           <ThemeToggle />
 
-          {/* CTA Calendly */}
+          {/* CTA prise de rendez-vous */}
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={BOOKING_ANCHOR}
             className="bg-accent text-bg-primary font-semibold rounded-lg px-4 py-2 text-sm hover:bg-accent-hover transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Prendre RDV
@@ -300,9 +299,8 @@ export function NavBar() {
             <div className="flex flex-col items-center gap-4 px-4 pb-8">
               <ThemeToggle />
               <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={BOOKING_ANCHOR}
+                onClick={() => setIsMenuOpen(false)}
                 className="bg-accent text-bg-primary font-semibold rounded-lg px-6 py-3 text-base hover:bg-accent-hover transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 Prendre RDV

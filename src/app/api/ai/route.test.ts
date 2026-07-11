@@ -11,7 +11,6 @@ vi.mock("@/lib/content", () => ({
       github: "https://gh",
       linkedin: "https://li",
       website: "https://w",
-      calendly: "https://cal",
     },
   })),
   getProjects: vi.fn(() => [
