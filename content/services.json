@@ -9,21 +9,21 @@
   {
     "id": "application",
     "title": "Applications sur mesure",
-    "description": "Votre idée transformée en outil qui tourne : caisse, stock, dossiers, tableau de bord ou plateforme complète.",
+    "description": "Votre idée transformée en outil : caisse, stock, dossiers, tableau de bord ou plateforme complète.",
     "icon": "code",
     "price": "À partir de 1 500 €"
   },
   {
     "id": "api",
     "title": "Connexion de vos outils entre eux",
-    "description": "Je relie vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
+    "description": "Relier vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
     "icon": "server",
     "price": "250 € / jour"
   },
   {
     "id": "automatisation",
     "title": "Automatisation & systèmes agentiques",
-    "description": "J'installe des systèmes agentiques : des agents IA qui prennent en charge vos tâches répétitives (relances, saisies, tri, rapports) et les exécutent à votre place. Vous gagnez des heures chaque semaine sur ce qui vous en fait perdre.",
+    "description": "Installer des systèmes agentiques : des agents IA qui prennent en charge vos tâches répétitives (relances, saisies, tri, rapports) et les exécutent à votre place. Libérer du temps pour vous focaliser sur des enjeux plus stratégiques",
     "icon": "bot",
     "price": "250 € / jour"
   },
