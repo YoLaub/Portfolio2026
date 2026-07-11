@@ -55,10 +55,11 @@ describe("GET /api/mcp", () => {
     expect(data.name).toBe("Yoann Laubert")
     expect(data.title).toBe("Développeur freelance - coder pour gagner du temps")
     expect(data.location).toBe("Vannes, Bretagne")
+    // Le contact vient de content/profile.json (source unique, plus de duplication)
     expect(data.contact).toEqual({
-      email: "contact@yoannlaubert.dev",
-      github: "https://github.com/yoannlaubert",
-      linkedin: "https://linkedin.com/in/yoannlaubert",
+      email: "contact@yl-solution.fr",
+      github: "https://github.com/yoann-laubert",
+      linkedin: "https://linkedin.com/in/yoann-laubert",
     })
   })
 })

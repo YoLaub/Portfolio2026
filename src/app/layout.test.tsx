@@ -17,7 +17,7 @@ afterEach(() => {
 })
 
 describe("RootLayout", () => {
-  describe("JSON-LD Schema.org Person", () => {
+  describe("JSON-LD Schema.org ProfessionalService", () => {
     let jsonLd: Record<string, unknown>
     let scriptElement: HTMLScriptElement | null
 
@@ -40,18 +40,45 @@ describe("RootLayout", () => {
       expect(scriptElement).toBeInTheDocument()
     })
 
-    it("contains valid JSON-LD with @type Person", () => {
+    it("contains valid JSON-LD with @type ProfessionalService", () => {
       expect(scriptElement).toBeInTheDocument()
       expect(jsonLd["@context"]).toBe("https://schema.org")
-      expect(jsonLd["@type"]).toBe("Person")
+      expect(jsonLd["@type"]).toBe("ProfessionalService")
     })
 
-    it("includes required Person fields: name, jobTitle, url, description", () => {
+    it("includes required fields: name, url, description, email, priceRange", () => {
       expect(scriptElement).toBeInTheDocument()
-      expect(jsonLd.name).toBe("Yoann Laubert")
-      expect(jsonLd.jobTitle).toBeDefined()
-      expect(jsonLd.url).toBe("https://yoannlaubert.dev")
+      expect(jsonLd.name).toBe("YL-solution")
+      expect(jsonLd.url).toBe("https://yl-solution.fr")
       expect(jsonLd.description).toBeDefined()
+      expect(jsonLd.email).toBe("contact@yl-solution.fr")
+      expect(jsonLd.priceRange).toBeDefined()
+    })
+
+    it("includes founder Person Yoann Laubert with jobTitle", () => {
+      expect(scriptElement).toBeInTheDocument()
+      const founder = jsonLd.founder as Record<string, unknown>
+      expect(founder["@type"]).toBe("Person")
+      expect(founder.name).toBe("Yoann Laubert")
+      expect(founder.jobTitle).toBeDefined()
+    })
+
+    it("includes areaServed for local SEO (Vannes, Bretagne)", () => {
+      expect(scriptElement).toBeInTheDocument()
+      const areaServed = jsonLd.areaServed as string[]
+      expect(areaServed).toBeInstanceOf(Array)
+      expect(areaServed).toContain("Vannes")
+    })
+
+    it("exposes the service catalog with price specifications", () => {
+      expect(scriptElement).toBeInTheDocument()
+      const catalog = jsonLd.hasOfferCatalog as Record<string, unknown>
+      expect(catalog["@type"]).toBe("OfferCatalog")
+      const items = catalog.itemListElement as Array<Record<string, unknown>>
+      expect(items.length).toBeGreaterThanOrEqual(6)
+      const first = items[0]
+      expect((first.itemOffered as Record<string, unknown>).name).toBeDefined()
+      expect(first.priceSpecification).toBeDefined()
     })
 
     it("includes address with PostalAddress type", () => {
@@ -71,9 +98,10 @@ describe("RootLayout", () => {
       expect(sameAs.some((u) => u.includes("github.com"))).toBe(true)
     })
 
-    it("includes knowsAbout array with skills", () => {
+    it("includes knowsAbout array with skills on the founder", () => {
       expect(scriptElement).toBeInTheDocument()
-      const knowsAbout = jsonLd.knowsAbout as string[]
+      const founder = jsonLd.founder as Record<string, unknown>
+      const knowsAbout = founder.knowsAbout as string[]
       expect(knowsAbout).toBeInstanceOf(Array)
       expect(knowsAbout.length).toBeGreaterThan(0)
     })
@@ -162,7 +190,7 @@ describe("RootLayout", () => {
       const { metadata } = await import("@/app/layout")
       expect(metadata.metadataBase).toBeDefined()
       expect(metadata.metadataBase?.toString()).toBe(
-        "https://yoannlaubert.dev/"
+        "https://yl-solution.fr/"
       )
     })
 

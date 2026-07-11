@@ -43,7 +43,7 @@ export async function sendBookingEmails(data: {
 
   // Confirmation au visiteur
   await client.transactionalEmails.sendTransacEmail({
-    sender: { email: "contact@yoannlaubert.dev", name: "Yoann Laubert" },
+    sender: { email: "contact@yl-solution.fr", name: "Yoann Laubert" },
     to: [{ email: data.email, name: data.name }],
     subject: `Rendez-vous confirmé : ${safeSlot}`,
     htmlContent: `<h2>Votre rendez-vous est confirmé</h2>
@@ -57,8 +57,8 @@ export async function sendBookingEmails(data: {
 
   // Notification interne
   await client.transactionalEmails.sendTransacEmail({
-    sender: { email: "contact@yoannlaubert.dev", name: "Portfolio Yoann Laubert" },
-    to: [{ email: "contact@yoannlaubert.dev", name: "Yoann Laubert" }],
+    sender: { email: "contact@yl-solution.fr", name: "Portfolio Yoann Laubert" },
+    to: [{ email: "contact@yl-solution.fr", name: "Yoann Laubert" }],
     replyTo: { email: data.email, name: data.name },
     subject: `[Portfolio] Nouveau RDV : ${safeName} le ${safeSlot}`,
     htmlContent: `<h2>Nouveau rendez-vous réservé</h2>
@@ -88,8 +88,8 @@ export async function sendContactEmail(data: {
   const safeMessage = escapeHtml(data.message)
 
   await client.transactionalEmails.sendTransacEmail({
-    sender: { email: "contact@yoannlaubert.dev", name: "Portfolio Yoann Laubert" },
-    to: [{ email: "contact@yoannlaubert.dev", name: "Yoann Laubert" }],
+    sender: { email: "contact@yl-solution.fr", name: "Portfolio Yoann Laubert" },
+    to: [{ email: "contact@yl-solution.fr", name: "Yoann Laubert" }],
     replyTo: { email: data.email, name: data.name },
     subject: `[Portfolio] Nouveau message de ${safeName}`,
     htmlContent: `<h2>Nouveau message depuis le portfolio</h2>

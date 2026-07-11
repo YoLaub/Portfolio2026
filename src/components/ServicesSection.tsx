@@ -20,7 +20,7 @@ export function ServicesSection() {
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <AnimatedSection key={service.id} delay={index * 0.08}>
+            <AnimatedSection key={service.id} delay={index * 0.08} className="h-full">
               <ServiceCard service={service} />
             </AnimatedSection>
           ))}

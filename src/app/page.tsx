@@ -4,7 +4,6 @@ import { ApproachSection } from "@/components/ApproachSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
 import { SkillsSection } from "@/components/SkillsSection"
-import { MCPSection } from "@/components/MCPSection"
 import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 import { ChatAgent } from "@/components/ChatAgent"
@@ -23,13 +22,11 @@ export default function Home() {
 
         <ApproachSection />
 
-        <ProjectsSection projects={projects} />
-
         <ServicesSection />
 
-        <SkillsSection />
+        <ProjectsSection projects={projects} />
 
-        <MCPSection />
+        <SkillsSection />
 
         <ContactSection />
       </main>

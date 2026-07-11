@@ -11,7 +11,7 @@ techStack:
   - MCP
 image: /images/projects/mcp-agent.webp
 platform: web
-liveUrl: https://yoann-laubert.dev/api/mcp
+liveUrl: https://yl-solution.fr/api/mcp
 githubUrl: https://github.com/yoann-laubert/portfolio
 ---
 

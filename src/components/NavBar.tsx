@@ -7,8 +7,8 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 
 const NAV_LINKS = [
   { label: "Approche", href: "#approche" },
-  { label: "Projets", href: "#projets" },
   { label: "Services", href: "#services" },
+  { label: "Projets", href: "#projets" },
   { label: "Compétences", href: "#competences" },
 ] as const
 
@@ -165,14 +165,6 @@ export function NavBar() {
 
         {/* Desktop right section */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Badge API */}
-          <a
-            href="#mcp"
-            className="font-mono text-sm text-accent bg-accent-soft rounded px-2 py-1 hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            API
-          </a>
-
           <ThemeToggle />
 
           {/* CTA prise de rendez-vous */}
@@ -283,16 +275,6 @@ export function NavBar() {
                 </li>
               ))}
 
-              {/* API badge in mobile */}
-              <li>
-                <a
-                  href="#mcp"
-                  onClick={closeMenu}
-                  className="font-mono text-lg text-accent bg-accent-soft rounded px-3 py-1.5 hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  API
-                </a>
-              </li>
             </ul>
 
             {/* Mobile bottom actions */}

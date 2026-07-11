@@ -1,6 +1,6 @@
 const GITHUB_URL = "https://github.com/yoann-laubert"
 const LINKEDIN_URL = "https://www.linkedin.com/in/yoann-laubert"
-const EMAIL = "mailto:contact@yoann-laubert.dev"
+const EMAIL = "mailto:contact@yl-solution.fr"
 
 export function Footer() {
   return (
@@ -67,13 +67,17 @@ export function Footer() {
             </a>
           </nav>
 
-          {/* Copyright + MCP badge */}
+          {/* Copyright + entrée technique discrète (API REST, MCP, docs OpenAPI) */}
           <div className="flex flex-col items-center gap-2 text-sm text-text-secondary sm:flex-row sm:gap-3">
             <span>&copy; {new Date().getFullYear()} Yoann Laubert</span>
             <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
-            <span className="rounded bg-accent-soft px-2 py-0.5 font-mono text-xs text-accent">
-              MCP-enabled
-            </span>
+            <a
+              href="/api/docs"
+              title="Pour les profils techniques : ce portfolio expose une API REST documentée et un connecteur MCP"
+              className="rounded bg-accent-soft px-2 py-0.5 font-mono text-xs text-accent hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              API &amp; MCP
+            </a>
           </div>
         </div>
       </div>

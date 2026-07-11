@@ -193,7 +193,7 @@ const openApiSpec = {
           jobTitle: { type: "string", example: "Développeur Full-Stack" },
           location: { type: "string", example: "France" },
           bio: { type: "string", example: "Développeur passionné par le web moderne." },
-          email: { type: "string", example: "contact@yoannlaubert.dev" },
+          email: { type: "string", example: "contact@yl-solution.fr" },
           links: {
             type: "object",
             required: ["github", "linkedin", "website"],
@@ -213,7 +213,7 @@ const openApiSpec = {
           title: { type: "string", example: "Portfolio v2" },
           techStack: { type: "array", items: { type: "string" }, example: ["Next.js", "TypeScript", "Tailwind CSS"] },
           image: { type: "string", example: "/images/projects/portfolio-v2.png" },
-          liveUrl: { type: "string", example: "https://yoannlaubert.dev" },
+          liveUrl: { type: "string", example: "https://yl-solution.fr" },
           githubUrl: { type: "string", example: "https://github.com/yoann/portfolio" },
         },
       },

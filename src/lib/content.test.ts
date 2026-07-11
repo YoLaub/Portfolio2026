@@ -48,6 +48,8 @@ describe("content helpers", () => {
       expect(byId("site-web")?.price).toBe("À partir de 500 €")
       expect(byId("application")?.price).toBe("À partir de 1 500 €")
       expect(byId("conseil")?.price).toBe("250 € / jour")
+      // La maintenance est un abonnement mensuel
+      expect(byId("maintenance")?.price).toBe("À partir de 20 € / mois")
     })
   })
 

@@ -5,7 +5,7 @@ describe("next-sitemap.config", () => {
   it("should define a valid absolute HTTPS siteUrl", () => {
     expect(config.siteUrl).toBeDefined();
     expect(config.siteUrl).toMatch(/^https:\/\/.+/);
-    expect(config.siteUrl).toBe("https://yoannlaubert.dev");
+    expect(config.siteUrl).toBe("https://yl-solution.fr");
   });
 
   it("should enable robots.txt generation", () => {

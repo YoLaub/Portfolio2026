@@ -1,20 +1,22 @@
 import { NextResponse } from "next/server"
-import { getProjects } from "@/lib/content"
+import { getProfile, getProjects } from "@/lib/content"
 import { services } from "@/data/services"
 import { skills } from "@/data/skills"
 
 export async function GET() {
+  // content/profile.json est la source unique du profil (plus de duplication).
+  const profile = getProfile()
   const projects = getProjects()
 
   return NextResponse.json(
     {
-      name: "Yoann Laubert",
-      title: "Développeur freelance - coder pour gagner du temps",
-      location: "Vannes, Bretagne",
+      name: profile.name,
+      title: profile.jobTitle,
+      location: profile.location,
       contact: {
-        email: "contact@yoannlaubert.dev",
-        github: "https://github.com/yoannlaubert",
-        linkedin: "https://linkedin.com/in/yoannlaubert",
+        email: profile.email,
+        github: profile.links.github,
+        linkedin: profile.links.linkedin,
       },
       projects,
       services,

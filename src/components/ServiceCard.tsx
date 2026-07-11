@@ -60,7 +60,7 @@ function getServiceIcon(icon: string) {
 
 export function ServiceCard({ service }: { service: ServiceData }) {
   return (
-    <article className="bg-bg-secondary border border-border rounded-xl p-6 hover:border-accent transition-colors duration-200">
+    <article className="h-full flex flex-col bg-bg-secondary border border-border rounded-xl p-6 hover:border-accent transition-colors duration-200">
       <div className="text-accent mb-4">
         {getServiceIcon(service.icon)}
       </div>
@@ -73,7 +73,7 @@ export function ServiceCard({ service }: { service: ServiceData }) {
       {service.price && (
         <p
           data-testid="service-price"
-          className="mt-4 pt-4 border-t border-border text-accent font-semibold"
+          className="mt-auto pt-4 border-t border-border text-accent font-semibold"
         >
           {service.price}
         </p>

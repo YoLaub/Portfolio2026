@@ -30,11 +30,11 @@ describe("sendContactEmail", () => {
     expect(mockSendTransacEmail).toHaveBeenCalledOnce()
     const call = mockSendTransacEmail.mock.calls[0][0]
     expect(call.sender).toEqual({
-      email: "contact@yoannlaubert.dev",
+      email: "contact@yl-solution.fr",
       name: "Portfolio Yoann Laubert",
     })
     expect(call.to).toEqual([
-      { email: "contact@yoannlaubert.dev", name: "Yoann Laubert" },
+      { email: "contact@yl-solution.fr", name: "Yoann Laubert" },
     ])
     expect(call.replyTo).toEqual({
       email: "jean@example.com",

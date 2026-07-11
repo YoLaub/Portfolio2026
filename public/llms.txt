@@ -1,22 +1,36 @@
-# Yoann Laubert — Portfolio Developpeur Full-Stack
+# YL-solution - Yoann Laubert, developpeur freelance (Vannes, Bretagne)
 
-> Du concept au produit. Vite, bien, et en clair.
+> Sites, applications et automatisations IA sur mesure pour PME, artisans et
+> commerces. Analyse du besoin gratuite, tarifs affiches, prise de rendez-vous
+> en ligne (30 min, visio) directement sur le site.
+
+## Services et tarifs
+
+- Creation de sites web : a partir de 500 EUR
+- Applications sur mesure : a partir de 1 500 EUR
+- Connexion d'outils entre eux (APIs) : 250 EUR / jour
+- Automatisation & systemes agentiques (agents IA, MCP) : 250 EUR / jour
+- Conseil technique : 250 EUR / jour
+- Maintenance & evolution : abonnement, a partir de 20 EUR / mois
 
 ## Links
 
-- Website: https://yoann-laubert.dev
-- AI-Friendly Profile: https://yoann-laubert.dev/ai.md
-- API Documentation: https://yoann-laubert.dev/api/docs
+- Website: https://yl-solution.fr
+- Prise de rendez-vous: https://yl-solution.fr/#contact
+- AI-Friendly Profile: https://yl-solution.fr/ai.md
+- API Documentation: https://yl-solution.fr/api/docs
 - GitHub: https://github.com/yoann-laubert
 - LinkedIn: https://linkedin.com/in/yoann-laubert
-- Contact: contact@yoann-laubert.dev
+- Contact: contact@yl-solution.fr
 
 ## API Endpoints
 
-- GET /api/portfolio/profile — Profil complet (JSON)
-- GET /api/portfolio/projects — Liste des projets (JSON)
-- GET /api/portfolio/projects/:id — Detail d'un projet (JSON)
-- GET /api/portfolio/skills — Competences (JSON)
-- GET /api/portfolio/services — Services (JSON)
-- GET /api/docs — Specification OpenAPI 3.0 (JSON)
-- GET /ai.md — Profil complet en Markdown brut
+- GET /api/portfolio/profile : Profil complet (JSON)
+- GET /api/portfolio/projects : Liste des projets (JSON)
+- GET /api/portfolio/projects/:id : Detail d'un projet (JSON)
+- GET /api/portfolio/skills : Competences (JSON)
+- GET /api/portfolio/services : Services et tarifs (JSON)
+- GET /api/booking/slots : Creneaux de rendez-vous disponibles (JSON)
+- GET /api/docs : Specification OpenAPI 3.0 (JSON)
+- GET /ai.md : Profil complet en Markdown brut
+- MCP (Model Context Protocol) : /api/mcp
