@@ -10,6 +10,11 @@ const NODE_R = 30
 const HUB_R = 44
 const ICON = 24 // boîte de dessin des icônes (0..24)
 
+// Onde de connexion au survol : un anneau part du hub et atteint les noeuds,
+// qui "poppent" à son arrivée. Cadence commune pour garder le tout synchronisé.
+const WAVE_CYCLE = 1.8 // durée d'un cycle complet (s)
+const WAVE_TRAVEL = 0.75 // temps pour que l'onde aille du hub aux noeuds (s)
+
 // Arrondit les coordonnées : le dernier bit de Math.cos/sin peut différer entre
 // le V8 serveur (SSR) et celui du navigateur, ce qui casse l'hydratation sur des
 // coordonnées SVG en pleine précision.
@@ -236,6 +241,25 @@ export function HeroHalo() {
               )
             })}
 
+          {/* Onde de connexion : un anneau part du hub vers l'exterieur au survol */}
+          {animate && isHovered && (
+            <motion.circle
+              cx={CENTER}
+              cy={CENTER}
+              className="stroke-accent"
+              fill="none"
+              strokeWidth={2}
+              initial={{ r: HUB_R, opacity: 0.45 }}
+              animate={{ r: RING_R + NODE_R, opacity: 0 }}
+              transition={{
+                duration: WAVE_TRAVEL,
+                repeat: Infinity,
+                repeatDelay: WAVE_CYCLE - WAVE_TRAVEL,
+                ease: "easeOut",
+              }}
+            />
+          )}
+
           {/* Noeud central : le hub */}
           <circle cx={CENTER} cy={CENTER} r={HUB_R} className="fill-accent" />
           <g
@@ -266,23 +290,47 @@ export function HeroHalo() {
                   : { duration: 0 }
               }
             >
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={NODE_R}
-                className="fill-accent-soft stroke-accent"
-                strokeWidth={1.5}
-              />
-              <g
-                className="stroke-accent"
-                fill="none"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                transform={iconTransform(node.x, node.y, (NODE_R * 1.15) / ICON)}
+              {/* Groupe interne : "pop" quand l'onde de connexion atteint le noeud */}
+              <motion.g
+                initial={false}
+                animate={
+                  animate && isHovered
+                    ? { scale: [1, 1, 1.18, 1] }
+                    : { scale: 1 }
+                }
+                transition={
+                  animate && isHovered
+                    ? {
+                        duration: WAVE_CYCLE,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        // Reste immobile jusqu'à l'arrivée de l'onde (~WAVE_TRAVEL),
+                        // puis "pop". Encodé dans les keyframes pour rester synchro
+                        // à chaque cycle (delay ne s'applique qu'au 1er).
+                        times: [0, WAVE_TRAVEL / WAVE_CYCLE, 0.55, 0.72],
+                      }
+                    : { duration: 0.3 }
+                }
+                style={{ transformBox: "fill-box", transformOrigin: "50% 50%" }}
               >
-                {ICONS[node.icon]}
-              </g>
+                <circle
+                  cx={node.x}
+                  cy={node.y}
+                  r={NODE_R}
+                  className="fill-accent-soft stroke-accent"
+                  strokeWidth={1.5}
+                />
+                <g
+                  className="stroke-accent"
+                  fill="none"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  transform={iconTransform(node.x, node.y, (NODE_R * 1.15) / ICON)}
+                >
+                  {ICONS[node.icon]}
+                </g>
+              </motion.g>
             </motion.g>
           ))}
         </motion.g>
