@@ -80,7 +80,7 @@ const jsonLd = {
   name: "YL-solution",
   url: SITE_URL,
   image: `${SITE_URL}/opengraph-image`,
-  email: "contact@yl-solution.fr",
+  email: "ylsolution.web@gmail.com",
   description:
     "Sites, applications et automatisations IA sur mesure pour PME, artisans et commerces. Connecteurs, scripts, agents IA : votre métier outillé au plus près du terrain.",
   priceRange: "€",

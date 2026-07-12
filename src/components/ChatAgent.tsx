@@ -404,8 +404,8 @@ export function ChatAgent() {
             </a>
           </li>
           <li>
-            <a href="mailto:contact@yl-solution.fr" className="text-accent hover:text-accent-hover underline">
-              contact@yl-solution.fr
+            <a href="mailto:ylsolution.web@gmail.com" className="text-accent hover:text-accent-hover underline">
+              ylsolution.web@gmail.com
             </a>
           </li>
         </ul>

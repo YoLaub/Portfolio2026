@@ -57,7 +57,7 @@ describe("GET /api/mcp", () => {
     expect(data.location).toBe("Vannes, Bretagne")
     // Le contact vient de content/profile.json (source unique, plus de duplication)
     expect(data.contact).toEqual({
-      email: "contact@yl-solution.fr",
+      email: "ylsolution.web@gmail.com",
       github: "https://github.com/yoann-laubert",
       linkedin: "https://linkedin.com/in/yoann-laubert",
     })

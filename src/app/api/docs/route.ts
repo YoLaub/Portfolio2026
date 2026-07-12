@@ -193,7 +193,7 @@ const openApiSpec = {
           jobTitle: { type: "string", example: "Développeur Full-Stack" },
           location: { type: "string", example: "France" },
           bio: { type: "string", example: "Développeur passionné par le web moderne." },
-          email: { type: "string", example: "contact@yl-solution.fr" },
+          email: { type: "string", example: "ylsolution.web@gmail.com" },
           links: {
             type: "object",
             required: ["github", "linkedin", "website"],

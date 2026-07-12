@@ -21,7 +21,7 @@
 - API Documentation: https://yl-solution.fr/api/docs
 - GitHub: https://github.com/yoann-laubert
 - LinkedIn: https://linkedin.com/in/yoann-laubert
-- Contact: contact@yl-solution.fr
+- Contact: ylsolution.web@gmail.com
 
 ## API Endpoints
 

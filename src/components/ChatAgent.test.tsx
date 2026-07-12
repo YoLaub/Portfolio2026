@@ -179,7 +179,7 @@ describe("ChatAgent", () => {
     fireEvent.click(screen.getByText("Me Contacter"))
 
     expect(screen.getByText("Réserver un créneau (30 min, visio)")).toBeInTheDocument()
-    expect(screen.getByText("contact@yl-solution.fr")).toBeInTheDocument()
+    expect(screen.getByText("ylsolution.web@gmail.com")).toBeInTheDocument()
     // Calendly et le formulaire classique n'existent plus
     expect(screen.queryByText(/calendly/i)).not.toBeInTheDocument()
     expect(screen.queryByText("Formulaire de contact")).not.toBeInTheDocument()

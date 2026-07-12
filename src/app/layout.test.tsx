@@ -51,7 +51,7 @@ describe("RootLayout", () => {
       expect(jsonLd.name).toBe("YL-solution")
       expect(jsonLd.url).toBe("https://yl-solution.fr")
       expect(jsonLd.description).toBeDefined()
-      expect(jsonLd.email).toBe("contact@yl-solution.fr")
+      expect(jsonLd.email).toBe("ylsolution.web@gmail.com")
       expect(jsonLd.priceRange).toBeDefined()
     })
 
