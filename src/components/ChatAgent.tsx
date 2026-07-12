@@ -35,28 +35,17 @@ type ProjectTypeKey = "vitrine" | "webapp" | "automation"
 
 interface ProjectTypeInfo {
   label: string
-  stackTitle: string
-  stackDescription: string
 }
 
 const PROJECT_TYPES: Record<ProjectTypeKey, ProjectTypeInfo> = {
   vitrine: {
     label: "Site vitrine / landing page",
-    stackTitle: "Next.js + Tailwind CSS, hébergé sur Vercel",
-    stackDescription:
-      "Un site rapide et moderne, qui s'affiche parfaitement sur mobile comme sur ordinateur, avec un code propre et facile à faire évoluer plus tard.",
   },
   webapp: {
     label: "Application web (SaaS, back-office, outil interne)",
-    stackTitle: "Next.js + API Node.js + base de données PostgreSQL",
-    stackDescription:
-      "Un espace avec des comptes utilisateurs, où vos données sont stockées en toute sécurité, conçu pour grandir avec vos besoins.",
   },
   automation: {
     label: "Automatisation / Agent IA (MCP, workflow)",
-    stackTitle: "Node.js + IA (Claude) via le protocole MCP",
-    stackDescription:
-      "Un assistant ou un robot qui automatise des tâches répétitives à votre place, connecté directement à vos outils existants.",
   },
 }
 
@@ -69,7 +58,7 @@ export function ChatAgent() {
   const [error, setError] = useState<string | null>(null)
   const [lastFailedAction, setLastFailedAction] = useState<(() => void) | null>(null)
 
-  // Formulaire de qualification projet (étape finale du parcours "Discuter de mon projet")
+  // Formulaire de qualification projet (étape finale du parcours "Discuter de votre projet")
   const [projectForm, setProjectForm] = useState<ProjectTypeInfo | null>(null)
   const [formName, setFormName] = useState("")
   const [formEmail, setFormEmail] = useState("")
@@ -193,7 +182,7 @@ export function ChatAgent() {
     setMessages([])
 
     const welcomeActions: ChatAction[] = [
-      { label: "Discuter de mon projet", onClick: () => handlersRef.current.discussProject() },
+      { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
       { label: "Mes Compétences", onClick: () => handlersRef.current.skills() },
       { label: "Mes Services", onClick: () => handlersRef.current.services() },
       { label: "Me Contacter", onClick: () => handlersRef.current.contact() },
@@ -249,7 +238,7 @@ export function ChatAgent() {
 
   // ─── Handlers arbre de décision ─────────────────────────────────
   function handleDiscussProject() {
-    addUserAction("Discuter de mon projet")
+    addUserAction("Discuter de votre projet")
     setProjectForm(null)
     const typeActions: ChatAction[] = (Object.keys(PROJECT_TYPES) as ProjectTypeKey[]).map((key) => ({
       label: PROJECT_TYPES[key].label,
@@ -266,31 +255,19 @@ export function ChatAgent() {
   function handleProjectType(key: ProjectTypeKey) {
     const info = PROJECT_TYPES[key]
     addUserAction(info.label)
-
-    addBotMessage(
-      <div>
-        <p className="mb-2">Pour ce type de projet, je partirais sur :</p>
-        <p className="font-semibold text-accent mb-1">{info.stackTitle}</p>
-        <p className="text-text-secondary text-sm">{info.stackDescription}</p>
-      </div>,
-      [
-        { label: "Ça me convient, on avance", onClick: () => openProjectForm(info) },
-        backToMenuAction,
-      ]
-    )
+    openContactForm(info)
   }
 
-  function openProjectForm(info: ProjectTypeInfo) {
-    addUserAction("Ça me convient, on avance")
+  // Ouvre le formulaire de contact. `info` non nul quand on vient d'un type de
+  // projet (on pré-remplit le message), nul pour un contact direct.
+  function openContactForm(info: ProjectTypeInfo | null) {
     setFormName("")
     setFormEmail("")
-    setFormMessage(
-      `Type de projet : ${info.label}\nStack envisagée : ${info.stackTitle}\n\nQuelques mots sur mon projet : `
-    )
+    setFormMessage(info ? `Type de projet : ${info.label}\n\n` : "")
     setFormError(null)
-    setProjectForm(info)
+    setProjectForm(info ?? { label: "" })
     addBotMessage(
-      "Parfait ! Laissez-moi vos coordonnées et quelques mots sur votre projet ci-dessous, je reviens vers vous rapidement pour un premier retour."
+      "Décrivez-moi en quelques lignes votre projet et laissez-moi vos coordonnées ci-dessous, je reviens vers vous rapidement pour un premier retour."
     )
   }
 
@@ -370,17 +347,25 @@ export function ChatAgent() {
         return
       }
 
+      // DA conversationnelle : on propose les services sous forme de cartes
+      // cliquables, le bot demande sur lequel en savoir plus.
       addBotMessage(
         <div>
-          <p className="font-semibold mb-2">Mes services :</p>
-          <ul className="space-y-2">
+          <p className="mb-3">
+            Voici ce sur quoi je peux vous accompagner. Sur quel service souhaitez-vous en savoir
+            plus ?
+          </p>
+          <div className="flex flex-col gap-2">
             {services.map((s) => (
-              <li key={s.id}>
-                <p className="font-medium text-text-primary">{s.title}</p>
-                <p className="text-text-secondary text-sm">{s.description}</p>
-              </li>
+              <button
+                key={s.id}
+                onClick={() => handleServiceDetail(s)}
+                className="text-left rounded-lg border border-border bg-bg-primary px-3 py-2 hover:border-accent transition-colors cursor-pointer"
+              >
+                <p className="font-medium text-text-primary text-sm">{s.title}</p>
+              </button>
             ))}
-          </ul>
+          </div>
         </div>,
         [backToMenuAction]
       )
@@ -388,30 +373,26 @@ export function ChatAgent() {
     action()
   }
 
-  function handleContact() {
-    addUserAction("Me Contacter")
+  // Détail d'un service choisi : explication, sans tarif (on reste dans une
+  // logique de conversation, pas de grille de prix).
+  function handleServiceDetail(s: ServiceData) {
+    addUserAction(s.title)
     addBotMessage(
       <div>
-        <p className="font-semibold mb-2">Comment me contacter :</p>
-        <ul className="space-y-2">
-          <li>
-            <a
-              href="#contact"
-              className="text-accent hover:text-accent-hover underline"
-              onClick={() => setIsOpen(false)}
-            >
-              Réserver un créneau (30 min, visio)
-            </a>
-          </li>
-          <li>
-            <a href="mailto:ylsolution.web@gmail.com" className="text-accent hover:text-accent-hover underline">
-              ylsolution.web@gmail.com
-            </a>
-          </li>
-        </ul>
+        <p className="font-semibold text-text-primary mb-1">{s.title}</p>
+        <p className="text-text-secondary text-sm">{s.description}</p>
       </div>,
-      [backToMenuAction]
+      [
+        { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
+        { label: "Voir un autre service", onClick: () => handlersRef.current.services() },
+        backToMenuAction,
+      ]
     )
+  }
+
+  function handleContact() {
+    addUserAction("Me Contacter")
+    openContactForm(null)
   }
 
   // P3 — Mettre à jour les refs des handlers à chaque render
@@ -569,7 +550,7 @@ export function ChatAgent() {
                     minLength={10}
                     maxLength={2000}
                     rows={4}
-                    placeholder="Votre message"
+                    placeholder="Votre projet en quelques lignes"
                     value={formMessage}
                     onChange={(e) => setFormMessage(e.target.value)}
                     className="w-full rounded-lg border border-border bg-bg-primary px-3 py-1.5 text-text-primary text-sm resize-none focus-visible:outline-2 focus-visible:outline-accent"

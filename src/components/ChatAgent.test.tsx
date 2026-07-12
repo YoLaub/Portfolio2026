@@ -98,36 +98,39 @@ describe("ChatAgent", () => {
   it("shows welcome message with 4 navigation buttons", () => {
     openChat()
     expect(screen.getByText(/Comment puis-je vous aider/)).toBeInTheDocument()
-    expect(screen.getByText("Discuter de mon projet")).toBeInTheDocument()
+    expect(screen.getByText("Discuter de votre projet")).toBeInTheDocument()
     expect(screen.getByText("Mes Compétences")).toBeInTheDocument()
     expect(screen.getByText("Mes Services")).toBeInTheDocument()
     expect(screen.getByText("Me Contacter")).toBeInTheDocument()
   })
 
-  // 5.4 — Parcours qualification projet : type -> stack proposée
-  it("walks through project type selection and shows a suggested stack", () => {
+  // 5.4 — Sélection du type de projet : ouvre directement le formulaire, sans exposer la stack
+  it("opens the project form directly after selecting a type, without exposing the tech stack", () => {
     openChat()
-    fireEvent.click(screen.getByText("Discuter de mon projet"))
+    fireEvent.click(screen.getByText("Discuter de votre projet"))
 
     expect(screen.getByText(/Quel type de projet avez-vous en tête/)).toBeInTheDocument()
     fireEvent.click(screen.getByText("Site vitrine / landing page"))
 
-    expect(screen.getByText("Next.js + Tailwind CSS, hébergé sur Vercel")).toBeInTheDocument()
-    expect(screen.getByText("Ça me convient, on avance")).toBeInTheDocument()
+    // La stack technique n'est plus exposée au client
+    expect(screen.queryByText(/Next\.js/)).not.toBeInTheDocument()
+    expect(screen.queryByText("Ça me convient, on avance")).not.toBeInTheDocument()
+    // Le bot invite à décrire le projet et le formulaire s'affiche
+    expect(screen.getByText(/Décrivez-moi en quelques lignes votre projet/)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Votre nom")).toBeInTheDocument()
   })
 
-  // 5.5 — Validation de la stack ouvre le formulaire de contact
-  it("opens the qualification form after validating the suggested stack", () => {
+  // 5.5 — Le formulaire est pré-rempli avec le type de projet sélectionné
+  it("prefills the form message with the selected project type", () => {
     openChat()
-    fireEvent.click(screen.getByText("Discuter de mon projet"))
+    fireEvent.click(screen.getByText("Discuter de votre projet"))
     fireEvent.click(screen.getByText("Site vitrine / landing page"))
-    fireEvent.click(screen.getByText("Ça me convient, on avance"))
 
     expect(screen.getByPlaceholderText("Votre nom")).toBeInTheDocument()
     expect(screen.getByPlaceholderText("Votre email")).toBeInTheDocument()
-    expect((screen.getByPlaceholderText("Votre message") as HTMLTextAreaElement).value).toContain(
-      "Site vitrine / landing page"
-    )
+    expect(
+      (screen.getByPlaceholderText("Votre projet en quelques lignes") as HTMLTextAreaElement).value
+    ).toContain("Site vitrine / landing page")
   })
 
   // 5.5b — Soumission du formulaire envoie le message via /api/contact
@@ -135,9 +138,8 @@ describe("ChatAgent", () => {
     mockFetchSuccess({ success: true })
 
     openChat()
-    fireEvent.click(screen.getByText("Discuter de mon projet"))
+    fireEvent.click(screen.getByText("Discuter de votre projet"))
     fireEvent.click(screen.getByText("Site vitrine / landing page"))
-    fireEvent.click(screen.getByText("Ça me convient, on avance"))
 
     fireEvent.change(screen.getByPlaceholderText("Votre nom"), { target: { value: "Alice" } })
     fireEvent.change(screen.getByPlaceholderText("Votre email"), { target: { value: "alice@example.com" } })
@@ -173,16 +175,15 @@ describe("ChatAgent", () => {
     expect(global.fetch).toHaveBeenCalledWith("/api/portfolio/skills", expect.objectContaining({ signal: expect.any(AbortSignal) }))
   })
 
-  // 5.7 — Options contact affichées
-  it("displays contact options", () => {
+  // 5.7 — "Me Contacter" ouvre directement le formulaire de contact
+  it("opens the contact form directly from Me Contacter", () => {
     openChat()
     fireEvent.click(screen.getByText("Me Contacter"))
 
-    expect(screen.getByText("Réserver un créneau (30 min, visio)")).toBeInTheDocument()
-    expect(screen.getByText("ylsolution.web@gmail.com")).toBeInTheDocument()
-    // Calendly et le formulaire classique n'existent plus
-    expect(screen.queryByText(/calendly/i)).not.toBeInTheDocument()
-    expect(screen.queryByText("Formulaire de contact")).not.toBeInTheDocument()
+    expect(screen.getByText(/Décrivez-moi en quelques lignes votre projet/)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Votre nom")).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Votre email")).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Votre projet en quelques lignes")).toBeInTheDocument()
   })
 
   // 5.8 — État loading pendant fetch
@@ -231,8 +232,8 @@ describe("ChatAgent", () => {
     })
   })
 
-  // P9 — Fetch services et affichage liste
-  it("fetches and displays services list", async () => {
+  // P9 — "Mes Services" propose des cartes cliquables, sans description ni tarif
+  it("fetches and displays services as clickable cards", async () => {
     mockFetchSuccess([
       { id: "web", title: "Sites web", description: "Création de sites vitrines", icon: "globe" },
       { id: "api", title: "API", description: "Développement d'APIs REST", icon: "server" },
@@ -242,12 +243,40 @@ describe("ChatAgent", () => {
     fireEvent.click(screen.getByText("Mes Services"))
 
     await waitFor(() => {
-      expect(screen.getByText("Sites web")).toBeInTheDocument()
-      expect(screen.getByText("API")).toBeInTheDocument()
-      expect(screen.getByText("Création de sites vitrines")).toBeInTheDocument()
+      expect(screen.getByText(/Sur quel service souhaitez-vous en savoir plus/i)).toBeInTheDocument()
     })
 
+    // Les titres sont proposés comme cartes cliquables
+    expect(screen.getByText("Sites web")).toBeInTheDocument()
+    expect(screen.getByText("API")).toBeInTheDocument()
+    // La description n'apparaît pas encore dans la liste, ni de tarif
+    expect(screen.queryByText("Création de sites vitrines")).not.toBeInTheDocument()
+    expect(screen.queryByText(/€/)).not.toBeInTheDocument()
+
     expect(global.fetch).toHaveBeenCalledWith("/api/portfolio/services", expect.objectContaining({ signal: expect.any(AbortSignal) }))
+  })
+
+  // 5.10 — Cliquer une carte de service affiche son explication détaillée
+  it("shows a service's detailed explanation when its card is clicked", async () => {
+    mockFetchSuccess([
+      { id: "web", title: "Sites web", description: "Création de sites vitrines modernes.", icon: "globe" },
+      { id: "api", title: "API", description: "Développement d'APIs REST.", icon: "server" },
+    ])
+
+    openChat()
+    fireEvent.click(screen.getByText("Mes Services"))
+
+    await waitFor(() => {
+      expect(screen.getByText("Sites web")).toBeInTheDocument()
+    })
+
+    fireEvent.click(screen.getByText("Sites web"))
+
+    // L'explication détaillée s'affiche, avec un raccourci pour discuter du projet
+    await waitFor(() => {
+      expect(screen.getByText("Création de sites vitrines modernes.")).toBeInTheDocument()
+    })
+    expect(screen.getByText("Voir un autre service")).toBeInTheDocument()
   })
 
   // P1 — Escape ferme le panneau
