@@ -29,7 +29,10 @@ const SCOPES = [
 
 function loadEnvLocal() {
   if (!existsSync(".env.local")) return
-  for (const line of readFileSync(".env.local", "utf-8").split("\n")) {
+  // split sur \r?\n : sur Windows le fichier est en CRLF, et un \r résiduel
+  // ferait échouer le match (en JS, `.` ne matche pas \r et `$` ne matche pas
+  // avant un \r) -> aucune variable ne serait lue.
+  for (const line of readFileSync(".env.local", "utf-8").split(/\r?\n/)) {
     const match = line.match(/^([A-Z_]+)=(.*)$/)
     if (match && !process.env[match[1]]) {
       process.env[match[1]] = match[2].trim()
