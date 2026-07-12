@@ -171,9 +171,19 @@ describe("RootLayout", () => {
       expect(og.description).toBeDefined()
       expect(og.siteName).toBeDefined()
       expect(og.url).toBeDefined()
-      expect(og.images).toBeDefined()
       expect(og.locale).toBe("fr_FR")
       expect(og.type).toBe("website")
+    })
+
+    // og:image / twitter:image sont fournis par la convention de fichier Next
+    // (src/app/opengraph-image.tsx + twitter-image.tsx), pas par les metadata
+    // manuelles : on ne doit donc plus pointer vers un fichier statique ici.
+    it("does not hardcode a static openGraph/twitter image path", async () => {
+      const { metadata } = await import("@/app/layout")
+      const og = metadata.openGraph as Record<string, unknown>
+      const twitter = metadata.twitter as Record<string, unknown>
+      expect(og.images).toBeUndefined()
+      expect(twitter.images).toBeUndefined()
     })
 
     it("exports metadata with twitter card configuration", async () => {
@@ -183,7 +193,13 @@ describe("RootLayout", () => {
       expect(twitter.card).toBe("summary_large_image")
       expect(twitter.title).toBeDefined()
       expect(twitter.description).toBeDefined()
-      expect(twitter.images).toBeDefined()
+    })
+
+    it("positions the site as a pro offer, not a portfolio", async () => {
+      const { metadata } = await import("@/app/layout")
+      expect(metadata.title).not.toMatch(/portfolio/i)
+      expect(metadata.description).not.toMatch(/portfolio/i)
+      expect(metadata.title).toMatch(/application/i)
     })
 
     it("exports metadata with metadataBase for absolute URL resolution", async () => {
@@ -202,15 +218,11 @@ describe("RootLayout", () => {
       ).toBeDefined()
     })
 
-    it("openGraph images include width and height dimensions", async () => {
-      const { metadata } = await import("@/app/layout")
-      const og = metadata.openGraph as Record<string, unknown>
-      const images = og.images as Array<Record<string, unknown>>
-      expect(images).toBeInstanceOf(Array)
-      expect(images.length).toBeGreaterThan(0)
-      expect(images[0].width).toBe(1200)
-      expect(images[0].height).toBe(630)
-      expect(images[0].alt).toBeDefined()
+    it("uses a generated 1200x630 share image via file convention", async () => {
+      const og = await import("@/app/opengraph-image")
+      expect(og.size).toEqual({ width: 1200, height: 630 })
+      expect(og.contentType).toBe("image/png")
+      expect(og.alt).toBeDefined()
     })
   })
 })

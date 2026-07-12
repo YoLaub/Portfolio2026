@@ -21,14 +21,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Yoann Laubert - Développeur freelance | Vannes",
+  title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
   description:
-    "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
+    "Développeur freelance à Vannes. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "développeur freelance",
+    "concepteur d'applications",
+    "application sur mesure",
     "React",
     "Next.js",
     "Java",
@@ -37,31 +39,23 @@ export const metadata: Metadata = {
     "Vannes",
     "MCP",
     "agents IA",
-    "portfolio",
   ],
   openGraph: {
-    title: "Yoann Laubert - Développeur freelance | Vannes",
+    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
     description:
-      "Portfolio de Yoann Laubert, développeur freelance basé à Vannes. Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
+      "Développeur freelance à Vannes. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
     url: "/",
-    siteName: "Yoann Laubert - Portfolio",
+    siteName: "YL-solution",
     type: "website",
     locale: "fr_FR",
-    images: [
-      {
-        url: "/images/hero.webp",
-        width: 1200,
-        height: 630,
-        alt: "Yoann Laubert - Développeur freelance",
-      },
-    ],
+    // og:image fourni automatiquement par src/app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoann Laubert - Développeur freelance | Vannes",
+    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
     description:
-      "Connecteurs, scripts, agents IA : j'outille votre métier au plus près du terrain.",
-    images: ["/images/hero.webp"],
+      "Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+    // twitter:image fourni automatiquement par src/app/twitter-image.tsx
   },
 };
 
@@ -85,7 +79,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "YL-solution",
   url: SITE_URL,
-  image: `${SITE_URL}/images/hero.webp`,
+  image: `${SITE_URL}/opengraph-image`,
   email: "contact@yl-solution.fr",
   description:
     "Sites, applications et automatisations IA sur mesure pour PME, artisans et commerces. Connecteurs, scripts, agents IA : votre métier outillé au plus près du terrain.",
@@ -100,7 +94,7 @@ const jsonLd = {
   founder: {
     "@type": "Person",
     name: "Yoann Laubert",
-    jobTitle: "Développeur freelance - coder pour gagner du temps",
+    jobTitle: "Concepteur d'applications et agents IA, développeur freelance",
     knowsAbout: [
       "React",
       "Next.js",
