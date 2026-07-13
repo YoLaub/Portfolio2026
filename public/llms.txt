@@ -19,7 +19,7 @@
 - Prise de rendez-vous: https://yl-solution.fr/#contact
 - AI-Friendly Profile: https://yl-solution.fr/ai.md
 - API Documentation: https://yl-solution.fr/api/docs
-- GitHub: https://github.com/yoann-laubert
+- GitHub: https://github.com/YoLaub
 - LinkedIn: https://linkedin.com/in/yoann-laubert
 - Contact: ylsolution.web@gmail.com
 

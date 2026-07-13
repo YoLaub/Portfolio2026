@@ -1,4 +1,4 @@
-const GITHUB_URL = "https://github.com/yoann-laubert"
+const GITHUB_URL = "https://github.com/YoLaub"
 const LINKEDIN_URL = "https://www.linkedin.com/in/yoann-laubert"
 const EMAIL = "mailto:ylsolution.web@gmail.com"
 

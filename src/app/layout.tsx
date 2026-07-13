@@ -110,7 +110,7 @@ const jsonLd = {
   },
   sameAs: [
     "https://www.linkedin.com/in/yoann-laubert",
-    "https://github.com/yoann-laubert",
+    "https://github.com/YoLaub",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
