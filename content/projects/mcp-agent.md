@@ -12,7 +12,7 @@ techStack:
 image: /images/projects/mcp-agent.webp
 platform: web
 liveUrl: https://yl-solution.fr/api/mcp
-githubUrl: https://github.com/YoLaub/portfolio
+githubUrl: https://github.com/YoLaub/Portfolio2026
 ---
 
 Endpoint MCP exposant les données du portfolio en JSON structuré : profil, projets, compétences et contact. Conçu pour être consommé par des agents IA et des outils automatisés. Cache intelligent d'une heure, documentation intégrée avec exemple d'appel curl et réponse JSON.
