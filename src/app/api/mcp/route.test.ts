@@ -1,65 +1,20 @@
-import { describe, it, expect } from "vitest"
-import { GET } from "./route"
-import { getProjects } from "@/lib/content"
-import { services } from "@/data/services"
-import { skills } from "@/data/skills"
+import { describe, it, expect, vi } from "vitest"
 
-describe("GET /api/mcp", () => {
-  it("retourne 200 avec JSON structuré", async () => {
-    const response = await GET()
-    const data = await response.json()
+// Le module enregistre le serveur MCP au chargement ; ce mock évite toute
+// dépendance à la config email au moment de l'import.
+vi.mock("@/lib/brevo", () => ({
+  sendContactEmail: vi.fn(),
+  ConfigurationError: class extends Error {},
+}))
 
-    expect(response.status).toBe(200)
-    expect(data).toHaveProperty("name")
-    expect(data).toHaveProperty("title")
-    expect(data).toHaveProperty("location")
-    expect(data).toHaveProperty("contact")
-    expect(data).toHaveProperty("projects")
-    expect(data).toHaveProperty("services")
-    expect(data).toHaveProperty("skills")
-  })
+import * as route from "./route"
 
-  it("contient les headers Cache-Control corrects", async () => {
-    const response = await GET()
-
-    expect(response.headers.get("Cache-Control")).toBe(
-      "public, s-maxage=3600, stale-while-revalidate=86400"
-    )
-  })
-
-  it("retourne les projets depuis content/projects/*.md", async () => {
-    const response = await GET()
-    const data = await response.json()
-
-    expect(data.projects).toEqual(getProjects())
-  })
-
-  it("retourne les services depuis data/services.ts", async () => {
-    const response = await GET()
-    const data = await response.json()
-
-    expect(data.services).toEqual(services)
-  })
-
-  it("retourne les skills depuis data/skills.ts", async () => {
-    const response = await GET()
-    const data = await response.json()
-
-    expect(data.skills).toEqual(skills)
-  })
-
-  it("contient le profil avec les champs attendus", async () => {
-    const response = await GET()
-    const data = await response.json()
-
-    expect(data.name).toBe("Yoann Laubert")
-    expect(data.title).toBe("Développeur freelance - coder pour gagner du temps")
-    expect(data.location).toBe("Vannes, Bretagne")
-    // Le contact vient de content/profile.json (source unique, plus de duplication)
-    expect(data.contact).toEqual({
-      email: "ylsolution.web@gmail.com",
-      github: "https://github.com/yoann-laubert",
-      linkedin: "https://linkedin.com/in/yoann-laubert",
-    })
+// Smoke test : la logique protocolaire est couverte par src/lib/mcp/*.test.ts
+// (transport in-memory du SDK). Ici on vérifie seulement le câblage de la route.
+describe("route /api/mcp", () => {
+  it("expose les handlers HTTP GET, POST et DELETE", () => {
+    expect(typeof route.GET).toBe("function")
+    expect(typeof route.POST).toBe("function")
+    expect(typeof route.DELETE).toBe("function")
   })
 })

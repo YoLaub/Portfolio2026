@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "fr.yl-solution/portfolio",
+  "title": "YL-solution - Yoann Laubert",
+  "description": "Profil, competences et services de Yoann Laubert (dev freelance), avec outil de prise de contact.",
+  "version": "1.0.0",
+  "websiteUrl": "https://yl-solution.fr",
+  "repository": {
+    "url": "https://github.com/YoLaub/Portfolio2026",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://yl-solution.fr/api/mcp"
+    }
+  ]
+}
