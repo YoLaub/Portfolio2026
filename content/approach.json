@@ -16,5 +16,11 @@
     "tag": "Terrain & ateliers",
     "title": "Un développeur à votre écoute, sur le terrain",
     "body": "Echange direct, sans intermédiaire. Identifions ensemble ce qui peut vous faire gagner du temps, un aperçu concret en 24/48h, une collaboration étroite jusqu'au produit final."
+  },
+  {
+    "id": "autonomie-ia",
+    "tag": "Formation & autonomie",
+    "title": "Vous rendre autonome, pas juste vous vendre un outil",
+    "body": "L'IA ne se résume pas à un chat : je forme vos équipes à des outils existants (Claude, Claude Cowork...) pour que vous en compreniez tout le potentiel et gardiez la main dessus au quotidien."
   }
 ]

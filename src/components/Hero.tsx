@@ -20,7 +20,7 @@ export function Hero() {
           </p>
 
           <p className="text-lg text-text-secondary max-w-lg">
-            Sites, applications, automatisations : construire des outils numériques sur mesure, pensés et adaptés à votre métier.
+            Sites, applications, automatisations, formation à l&apos;IA : construire et transmettre des outils numériques sur mesure, pensés et adaptés à votre métier.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-2">

@@ -1,5 +1,12 @@
 [
   {
+    "id": "formation",
+    "title": "Formation & prise en main d'outils IA",
+    "description": "Installation et prise en main d'outils IA déjà existants (Claude, Claude Cowork...) pour votre équipe : comprendre qu'il y a bien plus qu'un simple chat, et exploiter tout leur potentiel au quotidien.",
+    "icon": "graduation-cap",
+    "price": "350 € / demi-journée"
+  },
+  {
     "id": "site-web",
     "title": "Création de sites web",
     "description": "Un site moderne, rapide et optimisé pour Google. Pensé pour vos visiteurs, conçu pour convertir.",
@@ -40,12 +47,5 @@
     "description": "Votre site ou application reste performant et à jour. Corrections, améliorations et nouvelles fonctionnalités, en abonnement mensuel.",
     "icon": "wrench",
     "price": "À partir de 20 € / mois"
-  },
-  {
-    "id": "formation",
-    "title": "Formation & prise en main d'outils IA",
-    "description": "Installation et prise en main d'outils IA déjà existants (Claude, Claude Cowork...) pour votre équipe : comprendre qu'il y a bien plus qu'un simple chat, et exploiter tout leur potentiel au quotidien.",
-    "icon": "graduation-cap",
-    "price": "350 € / demi-journée"
   }
 ]

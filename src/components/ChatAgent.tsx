@@ -31,7 +31,7 @@ interface ChatMessage {
 }
 
 // ─── Arbre de qualification projet client ────────────────────────────
-type ProjectTypeKey = "vitrine" | "webapp" | "automation"
+type ProjectTypeKey = "vitrine" | "webapp" | "automation" | "formation"
 
 interface ProjectTypeInfo {
   label: string
@@ -46,6 +46,9 @@ const PROJECT_TYPES: Record<ProjectTypeKey, ProjectTypeInfo> = {
   },
   automation: {
     label: "Automatisation / Agent IA (MCP, workflow)",
+  },
+  formation: {
+    label: "Formation à l'IA (aller au-delà du chat)",
   },
 }
 
@@ -192,7 +195,8 @@ export function ChatAgent() {
       {
         id: nextId(),
         type: "bot",
-        content: "Bonjour ! Je suis l'assistant de Yoann. Comment puis-je vous aider ?",
+        content:
+          "Bonjour ! Je suis l'assistant de Yoann — un petit aperçu de ce qu'un agent IA peut faire, bien au-delà d'un simple chat. Comment puis-je vous aider ?",
         actions: welcomeActions,
       },
     ])
