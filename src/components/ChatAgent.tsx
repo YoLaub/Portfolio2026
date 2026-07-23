@@ -196,7 +196,7 @@ export function ChatAgent() {
         id: nextId(),
         type: "bot",
         content:
-          "Bonjour ! Je suis l'assistant de Yoann — un petit aperçu de ce qu'un agent IA peut faire, bien au-delà d'un simple chat. Comment puis-je vous aider ?",
+          "Bonjour ! Je suis l'assistant de Yoann, un petit aperçu de ce qu'un agent IA peut faire, bien au-delà d'un simple chat. Comment puis-je vous aider ?",
         actions: welcomeActions,
       },
     ])
