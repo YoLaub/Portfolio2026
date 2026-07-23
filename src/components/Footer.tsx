@@ -1,8 +1,15 @@
+"use client"
+
+import { useState } from "react"
+import { LegalNoticeModal } from "@/components/LegalNoticeModal"
+
 const GITHUB_URL = "https://github.com/YoLaub"
 const LINKEDIN_URL = "https://www.linkedin.com/in/yoann-laubert"
 const EMAIL = "mailto:ylsolution.web@gmail.com"
 
 export function Footer() {
+  const [isLegalOpen, setIsLegalOpen] = useState(false)
+
   return (
     <footer className="border-t border-border bg-bg-primary">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -71,6 +78,14 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 text-sm text-text-secondary sm:flex-row sm:gap-3">
             <span>&copy; {new Date().getFullYear()} Yoann Laubert</span>
             <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
+            <button
+              type="button"
+              onClick={() => setIsLegalOpen(true)}
+              className="hover:text-text-primary transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              Mentions légales
+            </button>
+            <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
             <a
               href="/api/docs"
               title="Pour les profils techniques : ce portfolio expose une API REST documentée et un connecteur MCP"
@@ -81,6 +96,8 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      <LegalNoticeModal isOpen={isLegalOpen} onClose={() => setIsLegalOpen(false)} />
     </footer>
   )
 }
