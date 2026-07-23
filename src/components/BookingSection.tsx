@@ -237,7 +237,7 @@ export function BookingSection() {
         <div className="flex items-center justify-between gap-4 rounded-lg border border-accent bg-accent-soft/40 px-4 py-3">
           <p className="text-text-primary text-sm font-medium">
             {dayLabelFormat.format(new Date(selectedSlot.start))} ·{" "}
-            {timeFormat.format(new Date(selectedSlot.start))} (30 min, visio)
+            {timeFormat.format(new Date(selectedSlot.start))} (Visio)
           </p>
           <button
             type="button"

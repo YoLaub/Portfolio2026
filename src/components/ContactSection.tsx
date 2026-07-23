@@ -12,8 +12,8 @@ export function ContactSection() {
             Prenons contact
           </h2>
           <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-            Réservez directement un créneau de 30 minutes en visio : c&apos;est
-            l&apos;analyse du besoin gratuite, sans engagement.
+            Réservez directement un créneau en visio : c&apos;est
+            l&apos;analyse gratuite du besoin, sans engagement.
           </p>
         </AnimatedSection>
 
