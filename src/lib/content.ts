@@ -32,6 +32,8 @@ export interface ProjectMeta {
   platform?: "mobile" | "web"
   /** false = accessible via l'API / URL directe mais masqué de la grille d'accueil. */
   listed?: boolean
+  /** Rang d'affichage manuel parmi les projets non "featured" (croissant, défaut = ordre alphabétique du fichier). */
+  order?: number
 }
 
 export interface ProjectContent extends ProjectMeta {
@@ -98,6 +100,7 @@ function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {
   if (typeof data.featured === "boolean") meta.featured = data.featured
   if (data.platform) meta.platform = data.platform as "mobile" | "web"
   if (typeof data.listed === "boolean") meta.listed = data.listed
+  if (typeof data.order === "number") meta.order = data.order
   return meta
 }
 

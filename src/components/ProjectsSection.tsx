@@ -12,9 +12,11 @@ interface ProjectsSectionProps {
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const [openId, setOpenId] = useState<string | null>(null)
 
-  const orderedProjects = [...projects].sort(
-    (a, b) => Number(b.featured ?? false) - Number(a.featured ?? false)
-  )
+  const orderedProjects = [...projects].sort((a, b) => {
+    const featuredDiff = Number(b.featured ?? false) - Number(a.featured ?? false)
+    if (featuredDiff !== 0) return featuredDiff
+    return (a.order ?? Infinity) - (b.order ?? Infinity)
+  })
 
   const handleToggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id))
