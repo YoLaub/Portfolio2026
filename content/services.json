@@ -25,7 +25,7 @@
     "title": "Automatisation & systèmes agentiques",
     "description": "Installer des systèmes agentiques : des agents IA qui prennent en charge vos tâches répétitives (relances, saisies, tri, rapports) et les exécutent à votre place. Libérer du temps pour vous focaliser sur des enjeux plus stratégiques.",
     "icon": "bot",
-    "price": "250 € / jour"
+    "price": "400 € / jour"
   },
   {
     "id": "conseil",
@@ -40,5 +40,12 @@
     "description": "Votre site ou application reste performant et à jour. Corrections, améliorations et nouvelles fonctionnalités, en abonnement mensuel.",
     "icon": "wrench",
     "price": "À partir de 20 € / mois"
+  },
+  {
+    "id": "formation",
+    "title": "Formation & prise en main d'outils IA",
+    "description": "Installation et prise en main d'outils IA déjà existants (Claude, Claude Cowork...) pour votre équipe : comprendre qu'il y a bien plus qu'un simple chat, et exploiter tout leur potentiel au quotidien.",
+    "icon": "graduation-cap",
+    "price": "350 € / demi-journée"
   }
 ]

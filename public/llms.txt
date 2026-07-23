@@ -9,9 +9,10 @@
 - Creation de sites web : a partir de 500 EUR
 - Applications sur mesure : a partir de 1 500 EUR
 - Connexion d'outils entre eux (APIs) : 250 EUR / jour
-- Automatisation & systemes agentiques (agents IA, MCP) : 250 EUR / jour
+- Automatisation & systemes agentiques (agents IA, MCP) : 400 EUR / jour
 - Conseil technique : 250 EUR / jour
 - Maintenance & evolution : abonnement, a partir de 20 EUR / mois
+- Formation & prise en main d'outils IA (Claude, Claude Cowork...) : 350 EUR / demi-journee
 
 ## Links
 

@@ -19,11 +19,18 @@ export function ServicesSection() {
           </p>
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <AnimatedSection key={service.id} delay={index * 0.08} className="h-full">
-              <ServiceCard service={service} />
-            </AnimatedSection>
-          ))}
+          {services.map((service, index) => {
+            const isOrphan = index === services.length - 1 && services.length % 3 === 1
+            return (
+              <AnimatedSection
+                key={service.id}
+                delay={index * 0.08}
+                className={`h-full ${isOrphan ? "lg:col-start-2" : ""}`}
+              >
+                <ServiceCard service={service} />
+              </AnimatedSection>
+            )
+          })}
         </div>
       </div>
     </section>
