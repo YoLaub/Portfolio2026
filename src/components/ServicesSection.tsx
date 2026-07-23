@@ -14,7 +14,7 @@ export function ServicesSection() {
           </h2>
           <p className="text-text-secondary text-center mb-12">
             Chaque projet démarre par une{" "}
-            <span className="text-accent font-semibold">analyse du besoin gratuite</span>,
+            <span className="text-accent font-semibold">analyse gratuite du besoin</span>,
             avant tout devis.
           </p>
         </AnimatedSection>

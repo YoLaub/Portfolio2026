@@ -15,26 +15,22 @@
 
 ## Links
 
-- Website: https://yl-solution.fr
-- Prise de rendez-vous: https://yl-solution.fr/#contact
-- AI-Friendly Profile: https://yl-solution.fr/ai.md
-- API Documentation: https://yl-solution.fr/api/docs
-- GitHub: https://github.com/YoLaub
-- LinkedIn: https://linkedin.com/in/yoann-laubert
-- Contact: ylsolution.web@gmail.com
+- [Website](https://yl-solution.fr): Site principal
+- [Prise de rendez-vous](https://yl-solution.fr/#contact): Reservation d'un creneau visio de 30 min
+- [AI-Friendly Profile](https://yl-solution.fr/ai.md): Profil complet en Markdown brut
+- [API Documentation](https://yl-solution.fr/api/docs): Specification OpenAPI 3.0 (JSON)
+- [GitHub](https://github.com/YoLaub): Projets et code source
+- [LinkedIn](https://linkedin.com/in/yoann-laubert): Profil professionnel
+- [Contact](mailto:ylsolution.web@gmail.com): Adresse e-mail de contact
 
 ## API Endpoints
 
-- GET /api/portfolio/profile : Profil complet (JSON)
-- GET /api/portfolio/projects : Liste des projets (JSON)
-- GET /api/portfolio/projects/:id : Detail d'un projet (JSON)
-- GET /api/portfolio/skills : Competences (JSON)
-- GET /api/portfolio/services : Services et tarifs (JSON)
-- GET /api/booking/slots : Creneaux de rendez-vous disponibles (JSON)
-- GET /api/docs : Specification OpenAPI 3.0 (JSON)
-- GET /ai.md : Profil complet en Markdown brut
-- MCP (Model Context Protocol) : https://yl-solution.fr/api/mcp
-  - Serveur MCP officiel, transport Streamable HTTP (POST JSON-RPC 2.0)
-  - Resources : profil, services, competences, projets
-  - Tool `contact_yoann` : permet a un agent de transmettre une demande de
-    mise en relation apres avoir evalue les competences (analyse gratuite)
+- [Profil complet](https://yl-solution.fr/api/portfolio/profile): GET, reponse JSON
+- [Liste des projets](https://yl-solution.fr/api/portfolio/projects): GET, reponse JSON
+- [Detail d'un projet](https://yl-solution.fr/api/portfolio/projects/:id): GET, reponse JSON
+- [Competences](https://yl-solution.fr/api/portfolio/skills): GET, reponse JSON
+- [Services et tarifs](https://yl-solution.fr/api/portfolio/services): GET, reponse JSON
+- [Creneaux de rendez-vous disponibles](https://yl-solution.fr/api/booking/slots): GET, reponse JSON
+- [Specification OpenAPI 3.0](https://yl-solution.fr/api/docs): GET, reponse JSON
+- [Profil complet en Markdown brut](https://yl-solution.fr/ai.md): GET
+- [Serveur MCP officiel](https://yl-solution.fr/api/mcp): Transport Streamable HTTP (POST JSON-RPC 2.0). Resources : profil, services, competences, projets. Tool `contact_yoann` : permet a un agent de transmettre une demande de mise en relation apres avoir evalue les competences (analyse gratuite)
