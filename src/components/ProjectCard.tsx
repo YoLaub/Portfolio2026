@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import type { ProjectData } from "@/data/projects"
 import { PhoneMockup } from "@/components/PhoneMockup"
+import { BrowserMockup } from "@/components/BrowserMockup"
 
 interface ProjectCardProps {
   project: ProjectData
@@ -108,11 +110,27 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
 function ProjectCardContent({ project }: { project: ProjectData }) {
   return (
     <>
-      {project.screens && project.screens.length > 0 && (
+      {project.screens && project.screens.length > 0 ? (
         <div className="mb-6 flex justify-center">
-          <PhoneMockup screens={project.screens} appName={project.title} />
+          {project.platform === "mobile" ? (
+            <PhoneMockup screens={project.screens} appName={project.title} />
+          ) : (
+            <BrowserMockup screens={project.screens} appName={project.title} />
+          )}
         </div>
-      )}
+      ) : project.image ? (
+        <div className="mb-6 flex justify-center">
+          <div className="relative w-full max-w-md aspect-16/10 rounded-xl border border-border overflow-hidden shadow-lg">
+            <Image
+              src={project.image}
+              alt={`Aperçu de ${project.title}`}
+              fill
+              sizes="400px"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      ) : null}
       <p className="text-text-secondary mb-4">{project.longDescription}</p>
       <div className="flex flex-wrap gap-3">
         {project.liveUrl && (

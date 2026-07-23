@@ -7,8 +7,14 @@ techStack:
   - Next.js
   - TypeScript
   - PostgreSQL
-image: /images/projects/gants-melecien.webp
+image: /images/projects/les-gants-melecien/cover.webp
 platform: web
+liveUrl: https://les-gants-meleciens.fr/
+screens:
+  - /images/projects/les-gants-melecien/screen-1.webp
+  - /images/projects/les-gants-melecien/screen-2.webp
+  - /images/projects/les-gants-melecien/screen-3.webp
+  - /images/projects/les-gants-melecien/screen-4.webp
 ---
 
 Site vitrine avec CMS et backoffice sur mesure : gestion des adhésions, des contenus et des membres depuis une interface d'administration dédiée.
