@@ -382,6 +382,15 @@ export function ChatAgent() {
   // logique de conversation, pas de grille de prix).
   function handleServiceDetail(s: ServiceData) {
     addUserAction(s.title)
+    const actions: ChatAction[] = []
+    if (s.id === "automatisation") {
+      actions.push({ label: "Conformité RGPD / EU AI Act", onClick: () => handleComplianceInfo() })
+    }
+    actions.push(
+      { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
+      { label: "Voir un autre service", onClick: () => handlersRef.current.services() },
+      backToMenuAction
+    )
     addBotMessage(
       <div>
         <p className="font-semibold text-text-primary mb-1">{s.title}</p>
@@ -392,9 +401,39 @@ export function ChatAgent() {
           </p>
         )}
       </div>,
+      actions
+    )
+  }
+
+  // Détail dédié conformité RGPD / EU AI Act, accessible depuis le service
+  // Automatisation & systèmes agentiques.
+  function handleComplianceInfo() {
+    addUserAction("Conformité RGPD / EU AI Act")
+    addBotMessage(
+      <div>
+        <p className="font-semibold text-text-primary mb-1">Conformité RGPD & EU AI Act</p>
+        <p className="text-text-secondary text-sm mb-2">
+          La confidentialité et la conformité se pensent dès la conception du workflow, pas
+          après coup :
+        </p>
+        <ul className="text-text-secondary text-sm list-disc pl-4 space-y-1 mb-2">
+          <li>
+            RGPD : minimisation des données transmises au modèle, hébergement en Europe ou
+            on-premise si nécessaire, droit à l&apos;effacement respecté.
+          </li>
+          <li>
+            EU AI Act : classification du risque de votre cas d&apos;usage, traçabilité des
+            décisions prises par l&apos;agent, supervision humaine sur les étapes sensibles.
+          </li>
+        </ul>
+        <p className="text-text-secondary text-sm">
+          Concrètement : je peux prototyper rapidement sur Claude, puis basculer le même
+          workflow sur un modèle open source souverain hébergé en Europe ou on-premise si vos
+          contraintes réglementaires l&apos;exigent, sans réécrire la logique métier.
+        </p>
+      </div>,
       [
         { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
-        { label: "Voir un autre service", onClick: () => handlersRef.current.services() },
         backToMenuAction,
       ]
     )
