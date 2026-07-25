@@ -7,6 +7,8 @@ export interface ServiceData {
   icon: string
   /** Indication tarifaire affichee sur la carte (forfait "A partir de ..." ou TJM). */
   price?: string
+  /** Approfondissement technique optionnel, affiche sous la description sur la carte. */
+  detail?: string
 }
 
 // Source de vérité unique : content/services.json (même fichier que celui servi

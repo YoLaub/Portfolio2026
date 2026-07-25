@@ -78,6 +78,11 @@ export function ServiceCard({ service }: { service: ServiceData }) {
       <p className="text-text-secondary leading-relaxed">
         {service.description}
       </p>
+      {service.detail && (
+        <p className="text-text-secondary text-sm leading-relaxed mt-3 pt-3 border-t border-border">
+          {service.detail}
+        </p>
+      )}
       {service.price && (
         <p
           data-testid="service-price"
