@@ -15,6 +15,7 @@ interface ServiceData {
   title: string
   description: string
   icon: string
+  detail?: string
 }
 
 // ─── Chat types ──────────────────────────────────────────────────────
@@ -385,6 +386,11 @@ export function ChatAgent() {
       <div>
         <p className="font-semibold text-text-primary mb-1">{s.title}</p>
         <p className="text-text-secondary text-sm">{s.description}</p>
+        {s.detail && (
+          <p className="text-text-secondary text-xs mt-2 pt-2 border-t border-border">
+            {s.detail}
+          </p>
+        )}
       </div>,
       [
         { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },

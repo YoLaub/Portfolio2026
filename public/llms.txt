@@ -10,7 +10,11 @@
 - Creation de sites web : a partir de 500 EUR
 - Applications sur mesure : a partir de 1 500 EUR
 - Connexion d'outils entre eux (APIs) : 250 EUR / jour
-- Automatisation & systemes agentiques (agents IA, MCP) : 400 EUR / jour
+- Automatisation & systemes agentiques (agents IA, MCP) : 400 EUR / jour. Workflows
+  agentiques fiables, gouvernables et portables : deployables sur Claude (prototypage
+  rapide, forte capacite) ou sur un modele open source souverain on-premise quand la
+  conformite RGPD / EU AI Act l'exige. La fiabilite (supervision humaine, garde-fous
+  anti-hallucination, auditabilite) est le produit ; le modele n'est qu'un parametre.
 - Conseil technique : 250 EUR / jour
 - Maintenance & evolution : abonnement, a partir de 20 EUR / mois
 

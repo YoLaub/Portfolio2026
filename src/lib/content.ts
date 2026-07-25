@@ -46,6 +46,8 @@ export interface ServiceData {
   description: string
   icon: string
   price?: string
+  /** Approfondissement technique optionnel, affiché à la demande (ex: détail du service dans le chat). */
+  detail?: string
 }
 
 export interface SkillData {
