@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
+import { RoiSimulator } from "@/components/RoiSimulator"
 
 // ─── Types locaux miroir des types API ───────────────────────────────
 interface SkillData {
@@ -384,7 +385,10 @@ export function ChatAgent() {
     addUserAction(s.title)
     const actions: ChatAction[] = []
     if (s.id === "automatisation") {
-      actions.push({ label: "Conformité RGPD / EU AI Act", onClick: () => handleComplianceInfo() })
+      actions.push(
+        { label: "Combien ça rapporte ?", onClick: () => handleRoiSimulator() },
+        { label: "Conformité RGPD / EU AI Act", onClick: () => handleComplianceInfo() }
+      )
     }
     actions.push(
       { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
@@ -402,6 +406,25 @@ export function ChatAgent() {
         )}
       </div>,
       actions
+    )
+  }
+
+  // Simulateur d'impact, accessible depuis le service Automatisation & systèmes
+  // agentiques : reutilise le meme composant que la section Services, en
+  // version compacte pour la largeur du panneau de chat.
+  function handleRoiSimulator() {
+    addUserAction("Combien ça rapporte ?")
+    addBotMessage(
+      <div>
+        <p className="font-semibold text-text-primary mb-3">
+          Simulez l&apos;impact d&apos;une automatisation
+        </p>
+        <RoiSimulator compact />
+      </div>,
+      [
+        { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
+        backToMenuAction,
+      ]
     )
   }
 
