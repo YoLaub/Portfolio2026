@@ -1,8 +1,9 @@
-# YL-solution - Yoann Laubert, developpeur freelance (Vannes, Bretagne)
+# YL-solution - Yoann Laubert, developpeur freelance (base a Vannes, Bretagne - interventions a distance dans toute la France)
 
 > Sites, applications et automatisations IA sur mesure pour PME, artisans et
-> commerces. Analyse du besoin gratuite, tarifs affiches, prise de rendez-vous
-> en ligne (30 min, visio) directement sur le site.
+> commerces, livres a distance partout en France. Analyse du besoin gratuite,
+> tarifs affiches, prise de rendez-vous en ligne (30 min, visio) directement
+> sur le site.
 
 ## Services et tarifs
 

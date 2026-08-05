@@ -21,14 +21,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
+  title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
   description:
-    "Développeur freelance à Vannes. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+    "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "développeur freelance",
+    "développeur freelance à distance",
+    "développeur freelance France",
     "concepteur d'applications",
     "application sur mesure",
     "React",
@@ -41,9 +43,9 @@ export const metadata: Metadata = {
     "agents IA",
   ],
   openGraph: {
-    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
+    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
     description:
-      "Développeur freelance à Vannes. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+      "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
     url: "/",
     siteName: "YL-solution",
     type: "website",
@@ -52,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes",
+    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
     description:
-      "Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+      "Développeur freelance basé à Vannes, interventions à distance dans toute la France : applications sur mesure, agents IA et MCP.",
     // twitter:image fourni automatiquement par src/app/twitter-image.tsx
   },
 };
@@ -67,13 +69,16 @@ const servicePriceSpecs: Record<
   "site-web": { minPrice: 500 },
   application: { minPrice: 1500 },
   api: { price: 250, unitText: "jour" },
-  automatisation: { price: 250, unitText: "jour" },
+  automatisation: { price: 400, unitText: "jour" },
   conseil: { price: 250, unitText: "jour" },
   maintenance: { minPrice: 20, unitText: "mois" },
+  formation: { price: 350, unitText: "demi-journée" },
 };
 
 // ProfessionalService plutot que Person : meilleur signal pour la recherche
 // locale ("developpeur freelance Vannes") avec adresse, zone et tarifs.
+// areaServed couvre la France entiere : prestations livrees a distance,
+// Vannes/Morbihan/Bretagne restant la base pour le present et la recherche locale.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -82,7 +87,7 @@ const jsonLd = {
   image: `${SITE_URL}/opengraph-image`,
   email: "ylsolution.web@gmail.com",
   description:
-    "Sites, applications et automatisations IA sur mesure pour PME, artisans et commerces. Connecteurs, scripts, agents IA : votre métier outillé au plus près du terrain.",
+    "Sites, applications et automatisations IA sur mesure pour PME, artisans et commerces, livrés à distance dans toute la France. Connecteurs, scripts, agents IA : votre métier outillé au plus près du terrain.",
   priceRange: "€",
   address: {
     "@type": "PostalAddress",
@@ -90,7 +95,7 @@ const jsonLd = {
     addressRegion: "Bretagne",
     addressCountry: "FR",
   },
-  areaServed: ["Vannes", "Morbihan", "Bretagne", "France"],
+  areaServed: ["France", "Vannes", "Morbihan", "Bretagne"],
   founder: {
     "@type": "Person",
     name: "Yoann Laubert",
