@@ -29,15 +29,32 @@ export function ProjectCard({ project }: ProjectCardProps) {
           type="button"
           onClick={() => setIsOpen(true)}
           aria-haspopup="dialog"
-          className="relative block w-full aspect-16/10 overflow-hidden cursor-pointer"
+          className="relative block w-full aspect-16/10 overflow-hidden cursor-pointer bg-bg-primary"
         >
-          <Image
-            src={project.image}
-            alt={`Aperçu de ${project.title}`}
-            fill
-            sizes={project.featured ? "(min-width: 640px) 800px, 400px" : "400px"}
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+          {project.platform === "mobile" ? (
+            // Capture d'app mobile = portrait : un cover en object-cover large
+            // l'ecraserait (cf docs/bugs&correction). On garde l'effet "telephone
+            // qu'on consulte" avec un cadre a son propre ratio, centre dans la carte.
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative h-[92%] aspect-9/19 rounded-2xl border border-border overflow-hidden shadow-lg">
+                <Image
+                  src={project.image}
+                  alt={`Aperçu de ${project.title}`}
+                  fill
+                  sizes="220px"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            </div>
+          ) : (
+            <Image
+              src={project.image}
+              alt={`Aperçu de ${project.title}`}
+              fill
+              sizes={project.featured ? "(min-width: 640px) 800px, 400px" : "400px"}
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          )}
           {project.platform === "mobile" && (
             <span className="absolute top-3 left-3 bg-bg-primary/80 backdrop-blur-sm text-accent font-mono text-xs px-2 py-1 rounded">
               Mobile · React Native
