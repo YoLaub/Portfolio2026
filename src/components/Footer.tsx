@@ -88,7 +88,7 @@ export function Footer() {
             <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
             <a
               href="/api/docs"
-              title="Pour les profils techniques : ce portfolio expose une API REST documentée et un connecteur MCP"
+              title="Pour les profils techniques : ce site expose une API REST documentée et un connecteur MCP"
               className="rounded bg-accent-soft px-2 py-0.5 font-mono text-xs text-accent hover:bg-accent/20 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               API &amp; MCP

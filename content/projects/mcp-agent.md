@@ -1,8 +1,8 @@
 ---
 id: mcp-agent
-title: MCP Agent Portfolio
-description: Une passerelle qui permet à des agents IA d'interroger directement les informations de ce portfolio.
-longDescription: Ce portfolio met à disposition ses propres informations (profil, projets, compétences, contact) dans un format que les agents IA peuvent lire et utiliser directement, avec une documentation claire et des exemples prêts à l'emploi.
+title: MCP Agent Freelance
+description: Une passerelle qui permet à des agents IA d'interroger directement les informations de ce site.
+longDescription: Ce site met à disposition ses propres informations (profil, projets, compétences, contact) dans un format que les agents IA peuvent lire et utiliser directement, avec une documentation claire et des exemples prêts à l'emploi.
 techStack:
   - Next.js
   - TypeScript
@@ -15,4 +15,4 @@ liveUrl: https://yl-solution.fr/api/mcp
 githubUrl: https://github.com/YoLaub/Portfolio2026
 ---
 
-Endpoint MCP exposant les données du portfolio en JSON structuré : profil, projets, compétences et contact. Conçu pour être consommé par des agents IA et des outils automatisés. Cache intelligent d'une heure, documentation intégrée avec exemple d'appel curl et réponse JSON.
+Endpoint MCP exposant les données du site en JSON structuré : profil, projets, compétences et contact. Conçu pour être consommé par des agents IA et des outils automatisés. Cache intelligent d'une heure, documentation intégrée avec exemple d'appel curl et réponse JSON.

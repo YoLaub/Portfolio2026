@@ -39,7 +39,7 @@ function MarqueeGroup() {
 
 export function Hero() {
   return (
-    <section id="hero" aria-label="Accueil" className="px-4 pt-6 sm:pt-8 lg:pt-10">
+    <section id="hero" aria-label="Accueil" className="px-4 pt-3 sm:pt-4 lg:pt-6">
       <div className="mx-auto max-w-[1440px]">
         <div
           className="relative overflow-hidden rounded-[28px] border border-hero-border bg-hero-bg text-hero-text"
@@ -64,7 +64,7 @@ export function Hero() {
             }}
           />
 
-          <div className="relative grid grid-cols-1 gap-12 px-6 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 lg:px-11 lg:py-[84px]">
+          <div className="relative grid grid-cols-1 gap-12 px-6 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-11 lg:py-[84px]">
             {/* Colonne texte */}
             <div className="flex flex-col items-start gap-7 motion-safe:animate-[hero-rise-in_.7s_cubic-bezier(.2,.8,.2,1)_both] motion-reduce:animate-none">
               {AVAILABILITY && (
@@ -144,12 +144,15 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Colonne graphique */}
-            <HeroOrbit />
+            {/* Colonne graphique : se centre dans la ligne de la grille sans
+                forcer la colonne texte (plus courte) a s'etirer avec elle. */}
+            <div className="lg:self-center">
+              <HeroOrbit />
+            </div>
           </div>
 
           {/* Bandeau defilant */}
-          <div className="relative mt-8 overflow-hidden border-t border-hero-border py-[18px] sm:mt-14">
+          <div className="relative mt-8 overflow-hidden border-t border-hero-border py-[18px]">
             <div className="flex w-max motion-safe:animate-[hero-marquee_26s_linear_infinite] motion-reduce:animate-none">
               <MarqueeGroup />
               <MarqueeGroup />

@@ -3,9 +3,9 @@ import { NextResponse } from "next/server"
 const openApiSpec = {
   openapi: "3.0.3",
   info: {
-    title: "Portfolio API - Yoann Laubert",
+    title: "API Freelance - Yoann Laubert",
     version: "1.0.0",
-    description: "API REST exposant les données du portfolio.",
+    description: "API REST exposant les données du site professionnel.",
   },
   servers: [{ url: "/api" }],
   paths: {
@@ -236,12 +236,12 @@ const openApiSpec = {
         type: "object",
         required: ["id", "title", "techStack", "image"],
         properties: {
-          id: { type: "string", example: "portfolio-v2" },
-          title: { type: "string", example: "Portfolio v2" },
+          id: { type: "string", example: "mcp-agent" },
+          title: { type: "string", example: "MCP Agent Freelance" },
           techStack: { type: "array", items: { type: "string" }, example: ["Next.js", "TypeScript", "Tailwind CSS"] },
-          image: { type: "string", example: "/images/projects/portfolio-v2.png" },
+          image: { type: "string", example: "/images/projects/mcp-agent.webp" },
           liveUrl: { type: "string", example: "https://yl-solution.fr" },
-          githubUrl: { type: "string", example: "https://github.com/yoann/portfolio" },
+          githubUrl: { type: "string", example: "https://github.com/YoLaub/Portfolio2026" },
         },
       },
       ProjectContent: {
@@ -251,7 +251,7 @@ const openApiSpec = {
             type: "object",
             required: ["content"],
             properties: {
-              content: { type: "string", description: "Contenu Markdown du projet", example: "# Portfolio v2\n\nRefonte complète du portfolio..." },
+              content: { type: "string", description: "Contenu Markdown du projet", example: "# MCP Agent Freelance\n\nEndpoint MCP exposant les données du site..." },
             },
           },
         ],
