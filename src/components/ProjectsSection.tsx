@@ -25,11 +25,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {orderedProjects.map((project, index) => (
-            <AnimatedSection
-              key={project.id}
-              delay={index * 0.08}
-              className={`h-full ${project.featured ? "sm:col-span-2" : ""}`}
-            >
+            <AnimatedSection key={project.id} delay={index * 0.08} className="h-full">
               <ProjectCard project={project} />
             </AnimatedSection>
           ))}

@@ -20,11 +20,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <>
-      <article
-        className={`group h-full flex flex-col overflow-hidden rounded-xl border border-border bg-bg-elevated transition-all duration-200 hover:border-accent hover:-translate-y-1 hover:shadow-lg ${
-          project.featured ? "sm:col-span-2" : ""
-        }`}
-      >
+      <article className="group h-full flex flex-col overflow-hidden rounded-xl border border-border bg-bg-elevated transition-all duration-200 hover:border-accent hover:-translate-y-1 hover:shadow-lg">
+
         <button
           type="button"
           onClick={() => setIsOpen(true)}
@@ -37,7 +34,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={`Aperçu de ${project.title}`}
             fill
-            sizes={project.featured ? "(min-width: 640px) 800px, 400px" : "400px"}
+            sizes="400px"
             className={
               project.platform === "mobile"
                 ? // Logo/illustration de marque (pas une capture d'ecran) : on
