@@ -1,0 +1,33 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://yl-solution.fr/",
+      "service-desc": [
+        {
+          "href": "https://yl-solution.fr/api/docs",
+          "type": "application/json",
+          "title": "OpenAPI - API REST du site (profil, projets, competences, formation, services)"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://yl-solution.fr/ai.md",
+          "type": "text/markdown",
+          "title": "Profil complet en Markdown, optimise pour les agents IA"
+        },
+        {
+          "href": "https://yl-solution.fr/auth.md",
+          "type": "text/markdown",
+          "title": "Instructions d'authentification pour les agents IA (aucune requise)"
+        }
+      ],
+      "item": [
+        {
+          "href": "https://yl-solution.fr/api/mcp",
+          "type": "application/json",
+          "title": "Serveur MCP (Model Context Protocol) - transport Streamable HTTP"
+        }
+      ]
+    }
+  ]
+}

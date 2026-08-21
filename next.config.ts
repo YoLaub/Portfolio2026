@@ -33,6 +33,40 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=()",
           },
+          {
+            // RFC 9727 : signale aux agents/outils ou trouver le catalogue
+            // d'API. Complete par un lien vers le profil Markdown (cf
+            // /ai.md, /api/ai) pour la negociation de contenu agent.
+            key: "Link",
+            value:
+              '</.well-known/api-catalog>; rel="api-catalog", </ai.md>; rel="alternate"; type="text/markdown"',
+          },
+        ],
+      },
+      {
+        source: "/.well-known/api-catalog",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/linkset+json",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/auth.md",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/markdown; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, must-revalidate",
+          },
         ],
       },
       {
