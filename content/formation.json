@@ -1,0 +1,20 @@
+[
+  {
+    "id": "decouverte",
+    "title": "Découverte & prise en main",
+    "description": "Panorama des outils IA du moment (Claude, ChatGPT...) : comprendre concrètement ce qu'ils savent faire, au-delà du simple chat, pour les intégrer à votre quotidien.",
+    "icon": "graduation-cap"
+  },
+  {
+    "id": "usage-quotidien",
+    "title": "Usage au quotidien & bonnes pratiques",
+    "description": "Des prompts efficaces sur des cas réels de votre métier, ce qui marche et ce qu'il faut éviter, pour transformer l'essai en réflexe utile chaque jour.",
+    "icon": "lightbulb"
+  },
+  {
+    "id": "autonomie-cloud-local",
+    "title": "Autonomie : cloud ou local",
+    "description": "Choisir et déployer la solution adaptée à vos données : IA cloud pour aller vite, ou IA locale/auto-hébergée quand la confidentialité l'impose. Vous gardez la main.",
+    "icon": "server"
+  }
+]

@@ -33,6 +33,14 @@ vi.mock("@/lib/content", () => ({
       icon: "code",
     },
   ]),
+  getFormations: vi.fn(() => [
+    {
+      id: "decouverte",
+      title: "Découverte & prise en main",
+      description: "Panorama des outils IA.",
+      icon: "graduation-cap",
+    },
+  ]),
 }))
 
 import { GET } from "./route"
@@ -52,6 +60,7 @@ describe("GET /api/ai", () => {
     expect(text).toContain("## Competences")
     expect(text).toContain("## Projets")
     expect(text).toContain("## Services")
+    expect(text).toContain("## Formation")
     expect(text).toContain("## Contact")
   })
 
@@ -62,6 +71,7 @@ describe("GET /api/ai", () => {
     expect(text).toContain("Project 1")
     expect(text).toContain("Web Dev")
     expect(text).toContain("Node.js")
+    expect(text).toContain("Découverte & prise en main")
   })
 
   it("inclut Cache-Control header", async () => {

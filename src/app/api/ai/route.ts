@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getProfile, getProjects, getSkills, getServices } from "@/lib/content"
+import { getProfile, getProjects, getSkills, getServices, getFormations } from "@/lib/content"
 import type { SkillData } from "@/lib/content"
 
 function groupSkillsByCategory(skills: SkillData[]): Record<string, string[]> {
@@ -15,6 +15,7 @@ function buildMarkdown(
   projects: ReturnType<typeof getProjects>,
   skills: ReturnType<typeof getSkills>,
   services: ReturnType<typeof getServices>,
+  formations: ReturnType<typeof getFormations>,
 ): string {
   const grouped = groupSkillsByCategory(skills)
 
@@ -65,6 +66,14 @@ function buildMarkdown(
   }
   lines.push("")
 
+  // Formation
+  lines.push("## Formation")
+  lines.push("")
+  for (const formation of formations) {
+    lines.push(`- **${formation.title}** : ${formation.description}`)
+  }
+  lines.push("")
+
   // Contact
   lines.push("## Contact")
   lines.push("")
@@ -81,8 +90,9 @@ export async function GET() {
     const projects = getProjects()
     const skills = getSkills()
     const services = getServices()
+    const formations = getFormations()
 
-    const markdown = buildMarkdown(profile, projects, skills, services)
+    const markdown = buildMarkdown(profile, projects, skills, services, formations)
 
     return new NextResponse(markdown, {
       headers: {

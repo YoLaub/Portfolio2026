@@ -13,7 +13,7 @@ describe("GET /api/docs", () => {
     expect(data.openapi).toBe("3.0.3")
   })
 
-  it("contient les 6 endpoints (5 portfolio + /ai.md)", async () => {
+  it("contient les 7 endpoints (6 portfolio + /ai.md)", async () => {
     const response = await GET()
     const data = await response.json()
     const paths = Object.keys(data.paths)
@@ -22,8 +22,9 @@ describe("GET /api/docs", () => {
     expect(paths).toContain("/portfolio/projects/{id}")
     expect(paths).toContain("/portfolio/skills")
     expect(paths).toContain("/portfolio/services")
+    expect(paths).toContain("/portfolio/formation")
     expect(paths).toContain("/ai.md")
-    expect(paths).toHaveLength(6)
+    expect(paths).toHaveLength(7)
   })
 
   it("contient les schémas requis dans components", async () => {
@@ -35,6 +36,7 @@ describe("GET /api/docs", () => {
     expect(schemaNames).toContain("ProjectContent")
     expect(schemaNames).toContain("ServiceData")
     expect(schemaNames).toContain("SkillData")
+    expect(schemaNames).toContain("FormationData")
     expect(schemaNames).toContain("ErrorResponse")
   })
 

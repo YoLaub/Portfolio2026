@@ -2,6 +2,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { getProfile, getProjects } from "@/lib/content"
 import { services } from "@/data/services"
 import { skills } from "@/data/skills"
+import { formations } from "@/data/formations"
 import { contactInputShape, runContactTool, ipFromHeaders } from "@/lib/mcp/contact"
 
 function jsonResource(uri: string, data: unknown) {
@@ -59,6 +60,17 @@ export function registerMcpServer(server: McpServer): void {
       mimeType: "application/json",
     },
     async (uri) => jsonResource(uri.href, skills)
+  )
+
+  server.registerResource(
+    "formation",
+    "yl://formation",
+    {
+      title: "Formations",
+      description: "Modules de formation aux outils IA proposés",
+      mimeType: "application/json",
+    },
+    async (uri) => jsonResource(uri.href, formations)
   )
 
   server.registerResource(

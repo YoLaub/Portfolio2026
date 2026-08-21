@@ -3,7 +3,8 @@ import { Hero } from "@/components/Hero"
 import { ApproachSection } from "@/components/ApproachSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
-import { SkillsSection } from "@/components/SkillsSection"
+import { FormationSection } from "@/components/FormationSection"
+import { SkillsBanner } from "@/components/SkillsBanner"
 import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 import { ChatAgent } from "@/components/ChatAgent"
@@ -26,9 +27,11 @@ export default function Home() {
 
         <ProjectsSection projects={projects} />
 
-        <SkillsSection />
+        <FormationSection />
 
         <ContactSection />
+
+        <SkillsBanner />
       </main>
       <Footer />
       <ChatAgent />

@@ -3,6 +3,7 @@ import {
   getProfile,
   getServices,
   getSkills,
+  getFormations,
   getProjects,
   getProjectById,
 } from "@/lib/content"
@@ -64,6 +65,21 @@ describe("content helpers", () => {
       expect(first.id).toBeTypeOf("string")
       expect(first.name).toBeTypeOf("string")
       expect(first.category).toBeTypeOf("string")
+    })
+  })
+
+  describe("getFormations", () => {
+    it("returns a non-empty array of FormationData", () => {
+      const formations = getFormations()
+
+      expect(Array.isArray(formations)).toBe(true)
+      expect(formations.length).toBeGreaterThan(0)
+
+      const first = formations[0]
+      expect(first.id).toBeTypeOf("string")
+      expect(first.title).toBeTypeOf("string")
+      expect(first.description).toBeTypeOf("string")
+      expect(first.icon).toBeTypeOf("string")
     })
   })
 

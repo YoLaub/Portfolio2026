@@ -14,6 +14,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js"
 import { registerMcpServer } from "./server"
 import { services } from "@/data/services"
+import { formations } from "@/data/formations"
 
 // Monte un vrai serveur MCP relié à un client via le transport in-memory du
 // SDK : on exerce le protocole (initialize, tools, resources) sans HTTP.
@@ -78,7 +79,7 @@ describe("serveur MCP (protocole via transport in-memory)", () => {
     expect(mockSendContactEmail).not.toHaveBeenCalled()
   })
 
-  it("resources/list expose profil, services, skills et projets", async () => {
+  it("resources/list expose profil, services, skills, formation et projets", async () => {
     const { client } = await connectClient()
 
     const { resources } = await client.listResources()
@@ -89,6 +90,7 @@ describe("serveur MCP (protocole via transport in-memory)", () => {
         "yl://profile",
         "yl://services",
         "yl://skills",
+        "yl://formation",
         "yl://projects",
       ])
     )
@@ -101,5 +103,14 @@ describe("serveur MCP (protocole via transport in-memory)", () => {
     const parsed = JSON.parse((res.contents[0] as { text: string }).text)
 
     expect(parsed).toEqual(services)
+  })
+
+  it("resources/read yl://formation renvoie les modules de formation en JSON", async () => {
+    const { client } = await connectClient()
+
+    const res = await client.readResource({ uri: "yl://formation" })
+    const parsed = JSON.parse((res.contents[0] as { text: string }).text)
+
+    expect(parsed).toEqual(formations)
   })
 })

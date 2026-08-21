@@ -182,6 +182,33 @@ const openApiSpec = {
         },
       },
     },
+    "/portfolio/formation": {
+      get: {
+        summary: "Modules de formation",
+        operationId: "getFormations",
+        responses: {
+          "200": {
+            description: "Tableau de modules de formation aux outils IA",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "array",
+                  items: { $ref: "#/components/schemas/FormationData" },
+                },
+              },
+            },
+          },
+          "500": {
+            description: "Erreur serveur",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/ErrorResponse" },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   components: {
     schemas: {
@@ -246,6 +273,16 @@ const openApiSpec = {
           id: { type: "string", example: "react" },
           name: { type: "string", example: "React" },
           category: { type: "string", example: "Frontend" },
+        },
+      },
+      FormationData: {
+        type: "object",
+        required: ["id", "title", "description", "icon"],
+        properties: {
+          id: { type: "string", example: "decouverte" },
+          title: { type: "string", example: "Découverte & prise en main" },
+          description: { type: "string", example: "Panorama des outils IA du moment..." },
+          icon: { type: "string", example: "graduation-cap" },
         },
       },
       ErrorResponse: {

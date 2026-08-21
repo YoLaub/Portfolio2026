@@ -58,6 +58,13 @@ export interface SkillData {
   category: string
 }
 
+export interface FormationData {
+  id: string
+  title: string
+  description: string
+  icon: string
+}
+
 export interface ApproachItem {
   id: string
   tag: string
@@ -87,6 +94,12 @@ export function getApproach(): ApproachItem[] {
   const filePath = path.join(CONTENT_DIR, "approach.json")
   const raw = fs.readFileSync(filePath, "utf-8")
   return JSON.parse(raw) as ApproachItem[]
+}
+
+export function getFormations(): FormationData[] {
+  const filePath = path.join(CONTENT_DIR, "formation.json")
+  const raw = fs.readFileSync(filePath, "utf-8")
+  return JSON.parse(raw) as FormationData[]
 }
 
 function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {

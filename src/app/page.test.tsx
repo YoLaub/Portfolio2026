@@ -55,8 +55,17 @@ vi.mock("@/components/ServicesSection", () => ({
   ),
 }))
 
-vi.mock("@/components/SkillsSection", () => ({
-  SkillsSection: () => (
+vi.mock("@/components/FormationSection", () => ({
+  FormationSection: () => (
+    <section id="formation" aria-label="Formation">
+      <h2>Formation</h2>
+      <article>Module 1</article>
+    </section>
+  ),
+}))
+
+vi.mock("@/components/SkillsBanner", () => ({
+  SkillsBanner: () => (
     <section id="competences" aria-label="Compétences">
       <h2>Compétences</h2>
     </section>
@@ -111,7 +120,7 @@ describe("Home Page - Accessibility", () => {
     it("contains multiple <section> elements with aria-labels", () => {
       const { container } = render(<Home />)
       const sections = container.querySelectorAll("section[aria-label]")
-      expect(sections.length).toBeGreaterThanOrEqual(6)
+      expect(sections.length).toBeGreaterThanOrEqual(7)
     })
 
     it("contains <article> elements for content cards", () => {
@@ -206,7 +215,13 @@ describe("Home Page - Accessibility", () => {
       expect(services).toHaveAttribute("aria-label", "Services")
     })
 
-    it("Skills section has aria-label 'Compétences'", () => {
+    it("Formation section has aria-label 'Formation'", () => {
+      const { container } = render(<Home />)
+      const formation = container.querySelector("section#formation")
+      expect(formation).toHaveAttribute("aria-label", "Formation")
+    })
+
+    it("Skills banner has aria-label 'Compétences'", () => {
       const { container } = render(<Home />)
       const competences = container.querySelector("section#competences")
       expect(competences).toHaveAttribute("aria-label", "Compétences")
