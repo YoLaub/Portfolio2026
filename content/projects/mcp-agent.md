@@ -9,7 +9,7 @@ techStack:
   - API Routes
   - JSON
   - MCP
-image: /images/projects/mcp-agent.webp
+image: /images/projects/mcp-agent-v2.webp
 platform: web
 liveUrl: https://yl-solution.fr/api/mcp
 githubUrl: https://github.com/YoLaub/Portfolio2026

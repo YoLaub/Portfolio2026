@@ -8,15 +8,15 @@ techStack:
   - React Native
   - MinIO
   - Presidio
-image: /images/projects/loar/cover.webp
-imageDark: /images/projects/loar/cover-dark.webp
+image: /images/projects/loar/cover-v2.webp
+imageDark: /images/projects/loar/cover-dark-v2.webp
 platform: mobile
 featured: true
 screens:
-  - /images/projects/loar/screen-1.webp
-  - /images/projects/loar/screen-2.webp
-  - /images/projects/loar/screen-3.webp
-  - /images/projects/loar/screen-4.webp
+  - /images/projects/loar/screen-1-v2.webp
+  - /images/projects/loar/screen-2-v2.webp
+  - /images/projects/loar/screen-3-v2.webp
+  - /images/projects/loar/screen-4-v2.webp
 ---
 
 Application mobile React Native : compagnon IA spécialisé en SMOP. Onboarding guidé, backend Python, stockage objet MinIO et anonymisation des données personnelles via Presidio pour garantir la confidentialité.

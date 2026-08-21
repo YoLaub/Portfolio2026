@@ -17,7 +17,7 @@ describe("projects data - LOAR mobile entry", () => {
     const loar = getProjects().find((p) => p.id === "loar")
     expect(loar?.screens).toHaveLength(4)
     for (const src of loar!.screens!) {
-      expect(src).toMatch(/\/images\/projects\/loar\/screen-\d\.webp$/)
+      expect(src).toMatch(/\/images\/projects\/loar\/screen-\d.*\.webp$/)
     }
   })
 
