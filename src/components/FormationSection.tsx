@@ -14,7 +14,7 @@ export function FormationSection() {
           </h2>
           <p className="text-text-secondary text-center mb-12 max-w-xl mx-auto">
             Une formation basique et pratique aux outils IA, pour que vous en gardiez la
-            main au quotidien — que vous restiez sur du cloud ou que vous passiez en local.
+            main au quotidien, que vous restiez sur du cloud ou que vous passiez en local.
           </p>
         </AnimatedSection>
 
@@ -34,7 +34,7 @@ export function FormationSection() {
 
         <AnimatedSection delay={formations.length * 0.08} className="mt-8 text-center">
           <p className="text-text-secondary text-sm">
-            Modules à la carte, adaptés à votre équipe et à vos outils —{" "}
+            Modules à la carte, adaptés à votre équipe et à vos outils :{" "}
             <span className="text-accent font-semibold">350 € / demi-journée</span>.
           </p>
         </AnimatedSection>

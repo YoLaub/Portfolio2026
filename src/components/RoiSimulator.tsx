@@ -115,7 +115,7 @@ export function RoiSimulator({ compact = false }: RoiSimulatorProps) {
         <div>
           <p className="text-text-secondary text-sm mb-1">Rentabilisé en</p>
           <p className="text-2xl font-bold text-accent">
-            {paybackMonths !== null ? `≈ ${paybackMonths} mois` : "—"}
+            {paybackMonths !== null ? `≈ ${paybackMonths} mois` : "N/A"}
           </p>
         </div>
       </div>

@@ -93,7 +93,7 @@ export function Hero() {
 
               <p className="max-w-[520px] text-[17px] leading-[1.6] text-hero-text-secondary sm:text-[20px]">
                 Développeur freelance. Sites, applications, automatisations et
-                formation à l&apos;IA — des outils numériques sur mesure, pensés
+                formation à l&apos;IA : des outils numériques sur mesure, pensés
                 pour votre métier.
               </p>
 
