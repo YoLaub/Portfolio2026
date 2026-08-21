@@ -81,13 +81,11 @@ export function Hero() {
                 Programmer
                 <br />
                 pour{" "}
-                <span className="relative inline-block text-[#E87C0A]">
+                <span
+                  className="text-[#E87C0A] [background-repeat:no-repeat] [background-position:0_100%] [background-size:100%_0.12em]"
+                  style={{ backgroundImage: "linear-gradient(rgba(232,124,10,.28), rgba(232,124,10,.28))" }}
+                >
                   gagner
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-1.5 -z-10 h-2.5 rounded"
-                    style={{ background: "rgba(232,124,10,.28)" }}
-                  />
                 </span>
                 <br />
                 du temps.
