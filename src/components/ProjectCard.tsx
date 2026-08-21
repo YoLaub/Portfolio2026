@@ -1,7 +1,8 @@
 "use client"
 
-import { useId, useState } from "react"
+import { useId, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
+import { useTheme } from "next-themes"
 import type { ProjectData } from "@/data/projects"
 import { PhoneMockup } from "@/components/PhoneMockup"
 import { BrowserMockup } from "@/components/BrowserMockup"
@@ -11,12 +12,30 @@ interface ProjectCardProps {
   project: ProjectData
 }
 
+// Meme garde que ThemeToggle : evite un mismatch d'hydratation, resolvedTheme
+// n'etant connu qu'une fois monte cote client.
+const emptySubscribe = () => () => {}
+function useMounted() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  )
+}
+
 // Carte "bento" : la couverture est toujours visible (plus de texte seul en
 // attente de clic), le detail (longDescription, galerie, liens) s'ouvre dans
 // la GlassModal deja utilisee pour le detail technique des services.
 export function ProjectCard({ project }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const titleId = useId()
+  const { resolvedTheme } = useTheme()
+  const mounted = useMounted()
+
+  // Avant montage (SSR / 1er rendu client) : toujours la couverture claire,
+  // pour rester coherent avec ce que le serveur a envoye.
+  const isDark = mounted && resolvedTheme === "dark"
+  const coverImage = isDark && project.imageDark ? project.imageDark : project.image
 
   return (
     <>
@@ -27,11 +46,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           onClick={() => setIsOpen(true)}
           aria-haspopup="dialog"
           className={`relative block w-full aspect-16/10 overflow-hidden cursor-pointer ${
-            project.platform === "mobile" ? "bg-[#f6f0e9]" : "bg-bg-primary"
+            project.platform === "mobile"
+              ? isDark && project.imageDark
+                ? "bg-[#15182e]"
+                : "bg-[#f6f0e9]"
+              : "bg-bg-primary"
           }`}
         >
           <Image
-            src={project.image}
+            src={coverImage}
             alt={`Aperçu de ${project.title}`}
             fill
             sizes="400px"

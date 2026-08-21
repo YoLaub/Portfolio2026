@@ -1,11 +1,17 @@
-import { describe, it, expect, afterEach } from "vitest"
+import { describe, it, expect, afterEach, vi } from "vitest"
 import { render, screen, cleanup } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { ProjectCard } from "@/components/ProjectCard"
 import type { ProjectData } from "@/data/projects"
 
+let mockResolvedTheme: string | undefined = "light"
+vi.mock("next-themes", () => ({
+  useTheme: () => ({ resolvedTheme: mockResolvedTheme, setTheme: vi.fn() }),
+}))
+
 afterEach(() => {
   cleanup()
+  mockResolvedTheme = "light"
 })
 
 const mobileProject: ProjectData = {
@@ -15,6 +21,7 @@ const mobileProject: ProjectData = {
   longDescription: "Compagnon IA mobile spécialisé.",
   techStack: ["React Native"],
   image: "/images/projects/loar/cover.webp",
+  imageDark: "/images/projects/loar/cover-dark.webp",
   screens: [
     "/images/projects/loar/screen-1.webp",
     "/images/projects/loar/screen-2.webp",
@@ -74,5 +81,29 @@ describe("ProjectCard - detail en modale", () => {
     await user.click(screen.getByRole("button", { name: /Voir le projet/i }))
     expect(screen.getByRole("dialog")).toBeInTheDocument()
     expect(screen.getByText(webProject.longDescription as string)).toBeInTheDocument()
+  })
+})
+
+describe("ProjectCard - couverture jour/nuit (LOAR)", () => {
+  it("affiche la couverture claire en theme clair", () => {
+    mockResolvedTheme = "light"
+    render(<ProjectCard project={mobileProject} />)
+    const imgs = screen.getAllByRole("img")
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("cover.webp"))).toBe(true)
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("cover-dark.webp"))).toBe(false)
+  })
+
+  it("affiche la couverture sombre en theme sombre", () => {
+    mockResolvedTheme = "dark"
+    render(<ProjectCard project={mobileProject} />)
+    const imgs = screen.getAllByRole("img")
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("cover-dark.webp"))).toBe(true)
+  })
+
+  it("retombe sur la couverture par defaut si aucune variante sombre n'est fournie", () => {
+    mockResolvedTheme = "dark"
+    render(<ProjectCard project={webProject} />)
+    const imgs = screen.getAllByRole("img")
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("restobook.webp"))).toBe(true)
   })
 })

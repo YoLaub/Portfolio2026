@@ -10,7 +10,7 @@ const AVAILABILITY: string | null = "2 créneaux libres en septembre"
 // (cf docs/bugs&correction/design_handoff_hero_nuit/README.md).
 const PROOF_STATS = [
   { value: "-70%", label: "de tâches manuelles" },
-  { value: "12 outils", label: "synchronisés entre eux" },
+  { value: "Vos outils", label: "synchronisés entre eux" },
   { value: "1 seul flux", label: "CRM · mails · docs · API" },
 ]
 

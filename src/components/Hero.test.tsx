@@ -47,7 +47,7 @@ describe("Hero - contenu", () => {
   it("affiche les 3 chiffres de preuve", () => {
     render(<Hero />)
     expect(screen.getByText("-70%")).toBeInTheDocument()
-    expect(screen.getByText("12 outils")).toBeInTheDocument()
+    expect(screen.getByText("Vos outils")).toBeInTheDocument()
     expect(screen.getByText("1 seul flux")).toBeInTheDocument()
   })
 })

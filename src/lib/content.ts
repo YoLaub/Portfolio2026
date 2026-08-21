@@ -25,6 +25,8 @@ export interface ProjectMeta {
   longDescription?: string
   techStack: string[]
   image: string
+  /** Variante de `image` pour le theme sombre du site (ex: logo/illustration de marque avec son propre fond). */
+  imageDark?: string
   liveUrl?: string
   githubUrl?: string
   screens?: string[]
@@ -96,6 +98,7 @@ function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {
   }
   if (data.description) meta.description = data.description as string
   if (data.longDescription) meta.longDescription = data.longDescription as string
+  if (data.imageDark) meta.imageDark = data.imageDark as string
   if (data.liveUrl) meta.liveUrl = data.liveUrl as string
   if (data.githubUrl) meta.githubUrl = data.githubUrl as string
   if (data.screens) meta.screens = data.screens as string[]

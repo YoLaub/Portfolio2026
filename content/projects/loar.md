@@ -9,6 +9,7 @@ techStack:
   - MinIO
   - Presidio
 image: /images/projects/loar/cover.webp
+imageDark: /images/projects/loar/cover-dark.webp
 platform: mobile
 featured: true
 screens:
