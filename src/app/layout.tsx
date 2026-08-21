@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Manrope } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import { services } from "@/data/services";
 import "./globals.css";
@@ -17,6 +17,15 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+});
+
+// Reservee au hero "Nuit" (cf docs/bugs&correction/design_handoff_hero_nuit) :
+// le reste du site reste en Inter (--font-inter / font-sans).
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -152,7 +161,7 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${manrope.variable}`}
     >
       <body className="antialiased bg-bg-primary text-text-primary">
         <a

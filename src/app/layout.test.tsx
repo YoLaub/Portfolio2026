@@ -4,6 +4,7 @@ import { render, cleanup } from "@testing-library/react"
 vi.mock("next/font/google", () => ({
   Inter: () => ({ variable: "--font-inter" }),
   JetBrains_Mono: () => ({ variable: "--font-jetbrains" }),
+  Manrope: () => ({ variable: "--font-manrope" }),
 }))
 
 vi.mock("@/components/Providers", () => ({
