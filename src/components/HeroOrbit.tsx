@@ -164,8 +164,8 @@ export function HeroOrbit() {
                 top: node.top,
                 marginLeft: "-28px",
                 marginTop: "-28px",
-                background: "rgba(255,255,255,.06)",
-                border: "1px solid rgba(255,255,255,.14)",
+                background: "var(--color-hero-node-bg)",
+                border: "1px solid var(--color-hero-node-border)",
               }}
               {...spin(60, true)}
             >
@@ -182,7 +182,7 @@ export function HeroOrbit() {
             top: "76px",
             width: "252px",
             height: "252px",
-            border: "1px solid rgba(255,255,255,.1)",
+            border: "1px solid var(--color-hero-node-border)",
           }}
           {...spin(38, true)}
         >

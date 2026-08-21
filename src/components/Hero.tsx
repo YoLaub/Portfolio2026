@@ -6,7 +6,7 @@ import { HeroOrbit } from "./HeroOrbit"
 // retirer la pill (mettre AVAILABILITY a null).
 const AVAILABILITY: string | null = "2 créneaux libres en septembre"
 
-// Chiffres de preuve du hero "Nuit" — a valider avant mise en ligne
+// Chiffres de preuve du hero — a valider avant mise en ligne
 // (cf docs/bugs&correction/design_handoff_hero_nuit/README.md).
 const PROOF_STATS = [
   { value: "-70%", label: "de tâches manuelles" },
@@ -24,7 +24,7 @@ const MARQUEE_ITEMS = [
 
 function MarqueeGroup() {
   return (
-    <div className="flex shrink-0 items-center gap-10 pr-10 font-mono text-[15px] tracking-[.04em] whitespace-nowrap text-white/42">
+    <div className="flex shrink-0 items-center gap-10 pr-10 font-mono text-[15px] tracking-[.04em] whitespace-nowrap text-hero-marquee">
       {MARQUEE_ITEMS.map((item) => (
         <span key={item} className="flex items-center gap-10">
           {item}
@@ -42,7 +42,7 @@ export function Hero() {
     <section id="hero" aria-label="Accueil" className="px-4 pt-6 sm:pt-8 lg:pt-10">
       <div className="mx-auto max-w-[1440px]">
         <div
-          className="relative overflow-hidden rounded-[28px] bg-[#100f0e] text-white"
+          className="relative overflow-hidden rounded-[28px] border border-hero-border bg-hero-bg text-hero-text"
           style={{ fontFamily: "var(--font-manrope, ui-sans-serif, system-ui, sans-serif)" }}
         >
           {/* Decors : halo + grille technique, purement visuels */}
@@ -59,7 +59,7 @@ export function Hero() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px)",
+                "linear-gradient(var(--color-hero-grid) 1px, transparent 1px), linear-gradient(90deg, var(--color-hero-grid) 1px, transparent 1px)",
               backgroundSize: "88px 88px",
             }}
           />
@@ -68,10 +68,7 @@ export function Hero() {
             {/* Colonne texte */}
             <div className="flex flex-col items-start gap-7 motion-safe:animate-[hero-rise-in_.7s_cubic-bezier(.2,.8,.2,1)_both] motion-reduce:animate-none">
               {AVAILABILITY && (
-                <div
-                  className="inline-flex items-center gap-2.5 self-start rounded-full px-3.5 py-2 font-mono text-[13px] text-white/72"
-                  style={{ border: "1px solid rgba(255,255,255,.16)" }}
-                >
+                <div className="inline-flex items-center gap-2.5 self-start rounded-full border border-hero-border-strong px-3.5 py-2 font-mono text-[13px] text-hero-pill-text">
                   <span
                     className="h-[7px] w-[7px] rounded-full bg-[#6ee08a]"
                     style={{ boxShadow: "0 0 10px #6ee08a" }}
@@ -96,7 +93,7 @@ export function Hero() {
                 du temps.
               </h1>
 
-              <p className="max-w-[520px] text-[17px] leading-[1.6] text-white/66 sm:text-[20px]">
+              <p className="max-w-[520px] text-[17px] leading-[1.6] text-hero-text-secondary sm:text-[20px]">
                 Développeur freelance. Sites, applications, automatisations et
                 formation à l&apos;IA — des outils numériques sur mesure, pensés
                 pour votre métier.
@@ -122,7 +119,7 @@ export function Hero() {
                 </a>
                 <a
                   href="#projets"
-                  className="inline-flex flex-1 items-center justify-center gap-2.5 rounded-[14px] border border-white/20 px-6 py-4 text-[17px] font-semibold text-white transition-colors duration-200 hover:border-white/50 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:flex-none sm:px-7 sm:py-5"
+                  className="inline-flex flex-1 items-center justify-center gap-2.5 rounded-[14px] border border-hero-border-strong px-6 py-4 text-[17px] font-semibold text-hero-text transition-colors duration-200 hover:border-hero-text/50 hover:bg-hero-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-text sm:flex-none sm:px-7 sm:py-5"
                 >
                   Voir mes projets
                 </a>
@@ -132,13 +129,13 @@ export function Hero() {
                 {PROOF_STATS.map((stat, i) => (
                   <div key={stat.value} className="flex items-center gap-8 sm:gap-[34px]">
                     {i > 0 && (
-                      <span className="hidden h-[38px] w-px bg-white/14 sm:block" aria-hidden="true" />
+                      <span className="hidden h-[38px] w-px bg-hero-divider sm:block" aria-hidden="true" />
                     )}
                     <div className="flex flex-col gap-1.5">
-                      <span className="text-[30px] leading-none font-extrabold text-white">
+                      <span className="text-[30px] leading-none font-extrabold text-hero-text">
                         {stat.value}
                       </span>
-                      <span className="font-mono text-[12px] leading-none text-white/55">
+                      <span className="font-mono text-[12px] leading-none text-hero-text-tertiary">
                         {stat.label}
                       </span>
                     </div>
@@ -152,7 +149,7 @@ export function Hero() {
           </div>
 
           {/* Bandeau defilant */}
-          <div className="relative mt-8 overflow-hidden border-t border-white/8 py-[18px] sm:mt-14">
+          <div className="relative mt-8 overflow-hidden border-t border-hero-border py-[18px] sm:mt-14">
             <div className="flex w-max motion-safe:animate-[hero-marquee_26s_linear_infinite] motion-reduce:animate-none">
               <MarqueeGroup />
               <MarqueeGroup />

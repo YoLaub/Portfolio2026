@@ -25,6 +25,22 @@ html {
   --color-border: #262626;
   --color-success: #10b981;
   --color-error: #ef4444;
+
+  /* Palette dediee au hero (cf docs/bugs&correction/design_handoff_hero_nuit) :
+     suit le theme clair/sombre du site, comme le reste des tokens ci-dessus. */
+  --color-hero-bg: #100f0e;
+  --color-hero-text: #ffffff;
+  --color-hero-text-secondary: rgba(255, 255, 255, 0.66);
+  --color-hero-text-tertiary: rgba(255, 255, 255, 0.55);
+  --color-hero-pill-text: rgba(255, 255, 255, 0.72);
+  --color-hero-border: rgba(255, 255, 255, 0.08);
+  --color-hero-border-strong: rgba(255, 255, 255, 0.2);
+  --color-hero-surface: rgba(255, 255, 255, 0.06);
+  --color-hero-node-bg: rgba(255, 255, 255, 0.06);
+  --color-hero-node-border: rgba(255, 255, 255, 0.14);
+  --color-hero-divider: rgba(255, 255, 255, 0.14);
+  --color-hero-marquee: rgba(255, 255, 255, 0.42);
+  --color-hero-grid: rgba(255, 255, 255, 0.045);
 }
 
 /* Font mapping — Tailwind utilities font-sans et font-mono */
@@ -47,12 +63,26 @@ html {
     --color-border: #e5e5e5;
     --color-success: #10b981;
     --color-error: #ef4444;
+
+    --color-hero-bg: #fbf4ec;
+    --color-hero-text: #171717;
+    --color-hero-text-secondary: rgba(23, 23, 23, 0.66);
+    --color-hero-text-tertiary: rgba(23, 23, 23, 0.55);
+    --color-hero-pill-text: rgba(23, 23, 23, 0.72);
+    --color-hero-border: rgba(23, 23, 23, 0.1);
+    --color-hero-border-strong: rgba(23, 23, 23, 0.22);
+    --color-hero-surface: rgba(23, 23, 23, 0.045);
+    --color-hero-node-bg: rgba(23, 23, 23, 0.045);
+    --color-hero-node-border: rgba(23, 23, 23, 0.14);
+    --color-hero-divider: rgba(23, 23, 23, 0.14);
+    --color-hero-marquee: rgba(23, 23, 23, 0.42);
+    --color-hero-grid: rgba(23, 23, 23, 0.06);
   }
 }
 
-/* Animations du hero "Nuit" (cf docs/bugs&correction/design_handoff_hero_nuit).
-   Palette figee (pas de token) : ce bloc garde toujours son propre look sombre,
-   independamment du theme clair/sombre du reste du site. */
+/* Animations du hero "Nuit"/"Jour" (cf docs/bugs&correction/design_handoff_hero_nuit).
+   La palette suit desormais le theme clair/sombre via les tokens --color-hero-*
+   ci-dessus (@theme + overrides .light), les keyframes restent identiques. */
 @keyframes hero-pulse-glow {
   0%, 100% { opacity: .35; transform: scale(1); }
   50% { opacity: .7; transform: scale(1.08); }
@@ -82,4 +112,18 @@ html {
   --color-border: #e5e5e5;
   --color-success: #10b981;
   --color-error: #ef4444;
+
+  --color-hero-bg: #fbf4ec;
+  --color-hero-text: #171717;
+  --color-hero-text-secondary: rgba(23, 23, 23, 0.66);
+  --color-hero-text-tertiary: rgba(23, 23, 23, 0.55);
+  --color-hero-pill-text: rgba(23, 23, 23, 0.72);
+  --color-hero-border: rgba(23, 23, 23, 0.1);
+  --color-hero-border-strong: rgba(23, 23, 23, 0.22);
+  --color-hero-surface: rgba(23, 23, 23, 0.045);
+  --color-hero-node-bg: rgba(23, 23, 23, 0.045);
+  --color-hero-node-border: rgba(23, 23, 23, 0.14);
+  --color-hero-divider: rgba(23, 23, 23, 0.14);
+  --color-hero-marquee: rgba(23, 23, 23, 0.42);
+  --color-hero-grid: rgba(23, 23, 23, 0.06);
 }
