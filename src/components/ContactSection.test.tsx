@@ -39,7 +39,7 @@ describe("ContactSection — Structure", () => {
     render(<ContactSection />)
 
     expect(screen.getByRole("heading", { name: /prenons contact/i })).toBeInTheDocument()
-    expect(screen.getByText(/analyse du besoin gratuite/i)).toBeInTheDocument()
+    expect(screen.getByText(/analyse gratuite du besoin/i)).toBeInTheDocument()
   })
 
   it("intègre le module de réservation maison", () => {
