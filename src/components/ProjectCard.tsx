@@ -1,46 +1,54 @@
 "use client"
 
-import { useState } from "react"
+import { useId, useState } from "react"
 import Image from "next/image"
-import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import type { ProjectData } from "@/data/projects"
 import { PhoneMockup } from "@/components/PhoneMockup"
 import { BrowserMockup } from "@/components/BrowserMockup"
+import { GlassModal } from "@/components/GlassModal"
 
 interface ProjectCardProps {
   project: ProjectData
-  isOpen: boolean
-  onToggle: () => void
 }
 
-export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
-  const prefersReduced = useReducedMotion()
-  const contentId = `project-content-${project.id}`
-  const [animating, setAnimating] = useState(false)
+// Carte "bento" : la couverture est toujours visible (plus de texte seul en
+// attente de clic), le detail (longDescription, galerie, liens) s'ouvre dans
+// la GlassModal deja utilisee pour le detail technique des services.
+export function ProjectCard({ project }: ProjectCardProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const titleId = useId()
 
   return (
-    <article
-      className={`bg-bg-elevated border rounded-xl transition-all duration-200 ${
-        isOpen ? "border-accent" : "border-border hover:border-accent hover:-translate-y-1 hover:shadow-lg"
-      }`}
-    >
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-controls={contentId}
-        className="w-full text-left p-6 flex items-start justify-between gap-4 cursor-pointer"
+    <>
+      <article
+        className={`group h-full flex flex-col overflow-hidden rounded-xl border border-border bg-bg-elevated transition-all duration-200 hover:border-accent hover:-translate-y-1 hover:shadow-lg ${
+          project.featured ? "sm:col-span-2" : ""
+        }`}
       >
-        <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-bold text-text-primary mb-2">
-            {project.title}
-          </h3>
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-haspopup="dialog"
+          className="relative block w-full aspect-16/10 overflow-hidden cursor-pointer"
+        >
+          <Image
+            src={project.image}
+            alt={`Aperçu de ${project.title}`}
+            fill
+            sizes={project.featured ? "(min-width: 640px) 800px, 400px" : "400px"}
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
           {project.platform === "mobile" && (
-            <span className="inline-block mb-2 bg-accent-soft text-accent font-mono text-xs px-2 py-1 rounded">
+            <span className="absolute top-3 left-3 bg-bg-primary/80 backdrop-blur-sm text-accent font-mono text-xs px-2 py-1 rounded">
               Mobile · React Native
             </span>
           )}
+        </button>
+
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="text-xl font-bold text-text-primary mb-2">{project.title}</h3>
           <p className="text-text-secondary mb-3">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
@@ -50,64 +58,24 @@ export function ProjectCard({ project, isOpen, onToggle }: ProjectCardProps) {
               </span>
             ))}
           </div>
-        </div>
-        <span
-          className={`text-text-secondary mt-1 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            aria-hidden="true"
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="mt-auto self-start text-sm font-medium text-accent hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            <path
-              d="M5 7.5L10 12.5L15 7.5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
+            Voir le projet →
+          </button>
+        </div>
+      </article>
 
-      {prefersReduced ? (
-        isOpen && (
-          <div id={contentId} role="region" aria-label={project.title} className="px-6 pb-6 border-t border-border pt-4">
-            <ProjectCardContent project={project} />
-          </div>
-        )
-      ) : (
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.div
-              key="content"
-              id={contentId}
-              role="region"
-              aria-label={project.title}
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ overflow: animating ? "hidden" : "visible" }}
-              onAnimationStart={() => setAnimating(true)}
-              onAnimationComplete={() => setAnimating(false)}
-            >
-              <div className="px-6 pb-6 border-t border-border pt-4">
-                <ProjectCardContent project={project} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
-    </article>
+      <GlassModal isOpen={isOpen} onClose={() => setIsOpen(false)} title={project.title} titleId={titleId}>
+        <ProjectDetail project={project} />
+      </GlassModal>
+    </>
   )
 }
 
-function ProjectCardContent({ project }: { project: ProjectData }) {
+function ProjectDetail({ project }: { project: ProjectData }) {
   return (
     <>
       {project.screens && project.screens.length > 0 ? (
@@ -118,7 +86,7 @@ function ProjectCardContent({ project }: { project: ProjectData }) {
             <BrowserMockup screens={project.screens} appName={project.title} />
           )}
         </div>
-      ) : project.image ? (
+      ) : (
         <div className="mb-6 flex justify-center">
           <div className="relative w-full max-w-md aspect-16/10 rounded-xl border border-border overflow-hidden shadow-lg">
             <Image
@@ -130,7 +98,7 @@ function ProjectCardContent({ project }: { project: ProjectData }) {
             />
           </div>
         </div>
-      ) : null}
+      )}
       <p className="text-text-secondary mb-4">{project.longDescription}</p>
       <div className="flex flex-wrap gap-3">
         {project.liveUrl && (

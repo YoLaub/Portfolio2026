@@ -1,5 +1,6 @@
 import { describe, it, expect, afterEach } from "vitest"
 import { render, screen, cleanup } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { ProjectCard } from "@/components/ProjectCard"
 import type { ProjectData } from "@/data/projects"
 
@@ -33,26 +34,45 @@ const webProject: ProjectData = {
   image: "/images/projects/restobook.webp",
 }
 
-describe("ProjectCard - mobile mockup", () => {
-  it("affiche le PhoneMockup (image d'écran) dans le tiroir quand la carte est ouverte", () => {
-    render(<ProjectCard project={mobileProject} isOpen={true} onToggle={() => {}} />)
+describe("ProjectCard - couverture toujours visible", () => {
+  it("affiche la couverture du projet directement, sans avoir a ouvrir la carte", () => {
+    render(<ProjectCard project={webProject} />)
+    const imgs = screen.getAllByRole("img")
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("restobook.webp"))).toBe(true)
+  })
+
+  it("affiche un badge Mobile pour un projet platform mobile", () => {
+    render(<ProjectCard project={mobileProject} />)
+    expect(screen.getByText("Mobile · React Native")).toBeInTheDocument()
+  })
+
+  it("n'affiche pas de badge mobile pour un projet web", () => {
+    render(<ProjectCard project={webProject} />)
+    expect(screen.queryByText(/mobile/i)).not.toBeInTheDocument()
+  })
+})
+
+describe("ProjectCard - detail en modale", () => {
+  it("n'affiche pas le PhoneMockup (galerie d'ecrans) tant que la modale n'est pas ouverte", () => {
+    render(<ProjectCard project={mobileProject} />)
+    const imgs = screen.getAllByRole("img")
+    expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("screen-1.webp"))).toBe(false)
+  })
+
+  it("ouvre la modale avec la galerie d'ecrans au clic sur la couverture", async () => {
+    const user = userEvent.setup()
+    render(<ProjectCard project={mobileProject} />)
+    await user.click(screen.getByRole("button", { name: /Aperçu de LOAR/i }))
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
     const imgs = screen.getAllByRole("img")
     expect(imgs.some((i) => (i.getAttribute("src") ?? "").includes("screen-1.webp"))).toBe(true)
   })
 
-  it("n'affiche pas le PhoneMockup tant que la carte est fermée", () => {
-    render(<ProjectCard project={mobileProject} isOpen={false} onToggle={() => {}} />)
-    expect(screen.queryByRole("img")).not.toBeInTheDocument()
-  })
-
-  it("affiche un badge Mobile pour un projet platform mobile", () => {
-    render(<ProjectCard project={mobileProject} isOpen={false} onToggle={() => {}} />)
-    expect(screen.getByText("Mobile · React Native")).toBeInTheDocument()
-  })
-
-  it("n'affiche ni mockup ni badge pour un projet web", () => {
-    render(<ProjectCard project={webProject} isOpen={false} onToggle={() => {}} />)
-    expect(screen.queryByText(/mobile/i)).not.toBeInTheDocument()
-    expect(screen.queryByRole("img")).not.toBeInTheDocument()
+  it("ouvre la modale avec le detail au clic sur 'Voir le projet'", async () => {
+    const user = userEvent.setup()
+    render(<ProjectCard project={webProject} />)
+    await user.click(screen.getByRole("button", { name: /Voir le projet/i }))
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
+    expect(screen.getByText(webProject.longDescription as string)).toBeInTheDocument()
   })
 })
