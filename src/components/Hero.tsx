@@ -64,7 +64,7 @@ export function Hero() {
             }}
           />
 
-          <div className="relative grid grid-cols-1 gap-12 px-6 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-11 lg:py-[84px]">
+          <div className="relative grid min-w-0 grid-cols-1 gap-12 px-6 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-11 lg:py-[84px]">
             {/* Colonne texte */}
             <div className="flex flex-col items-start gap-7 motion-safe:animate-[hero-rise-in_.7s_cubic-bezier(.2,.8,.2,1)_both] motion-reduce:animate-none">
               {AVAILABILITY && (
@@ -144,7 +144,7 @@ export function Hero() {
 
             {/* Colonne graphique : se centre dans la ligne de la grille sans
                 forcer la colonne texte (plus courte) a s'etirer avec elle. */}
-            <div className="lg:self-center">
+            <div className="min-w-0 lg:self-center">
               <HeroOrbit />
             </div>
           </div>

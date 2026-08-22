@@ -131,7 +131,7 @@ export function HeroOrbit() {
   return (
     <div
       aria-hidden="true"
-      className="relative flex h-[320px] items-center justify-center sm:h-[380px] lg:h-[520px]"
+      className="relative flex h-[320px] min-w-0 items-center justify-center overflow-hidden sm:h-[380px] lg:h-[520px]"
     >
       <div className="relative h-[404px] w-[404px] scale-[0.64] sm:scale-[0.8] lg:scale-100">
         {/* Liens : croix de 4 filets en rotation lente */}
