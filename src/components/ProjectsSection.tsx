@@ -59,9 +59,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     MES PROJETS
                   </div>
                   <h2 className="m-0 text-[clamp(38px,10vw,82px)] leading-[0.94] font-extrabold tracking-[-.04em] text-balance">
-                    Des outils
+                    Mes
                     <br />
-                    <span className="text-[#E87C0A]">qui tournent vraiment.</span>
+                    <span className="text-[#E87C0A]">réalisations.</span>
                   </h2>
                 </div>
                 <p className="max-w-[380px] text-base leading-relaxed text-hero-text-secondary sm:pb-2">

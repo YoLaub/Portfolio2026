@@ -44,7 +44,7 @@ const projects: ProjectData[] = [
 describe("ProjectsSection - en-tête", () => {
   it("affiche le titre de la section et l'accroche", () => {
     render(<ProjectsSection projects={projects} />)
-    expect(screen.getByRole("heading", { level: 2, name: /des outils/i })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { level: 2, name: /réalisations/i })).toBeInTheDocument()
   })
 })
 
