@@ -10,6 +10,7 @@ techStack:
   - PWA
 image: /images/projects/miamigo.webp
 platform: web
+category: Fidélité · précommande
 ---
 
 Plateforme pour boulangeries artisanales : fidélité digitale par QR, précommande de pain sur créneaux de retrait, et pilotage de production combinant commandes fermes et prévision statistique pour limiter les invendus. Backend Go en architecture hexagonale, frontend React en PWA installable, pensés pour un usage sans friction en boutique.

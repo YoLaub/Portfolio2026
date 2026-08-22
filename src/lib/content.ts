@@ -36,6 +36,8 @@ export interface ProjectMeta {
   listed?: boolean
   /** Rang d'affichage manuel parmi les projets non "featured" (croissant, défaut = ordre alphabétique du fichier). */
   order?: number
+  /** Étiquette courte affichée sur la carte projet (ex: "SaaS multi-tenant"). */
+  category?: string
 }
 
 export interface ProjectContent extends ProjectMeta {
@@ -119,6 +121,7 @@ function parseProjectMeta(data: Record<string, unknown>): ProjectMeta {
   if (data.platform) meta.platform = data.platform as "mobile" | "web"
   if (typeof data.listed === "boolean") meta.listed = data.listed
   if (typeof data.order === "number") meta.order = data.order
+  if (data.category) meta.category = data.category as string
   return meta
 }
 

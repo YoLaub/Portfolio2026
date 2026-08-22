@@ -13,6 +13,7 @@ techStack:
 image: /images/projects/queueflow.webp
 platform: web
 order: 0
+category: SaaS multi-tenant
 ---
 
 SaaS multi-tenant de gestion de commandes pour fast foods : deux files (comptoir et à distance) suivies en temps réel par le gérant, le staff cuisine et les écrans clients. Isolation multi-tenant appliquée côté serveur (RLS + claim JWT), temps réel via Pusher Channels, et modules de gestion d'équipe, plannings et chiffre d'affaires.

@@ -36,6 +36,7 @@ html {
   --color-hero-border: rgba(255, 255, 255, 0.08);
   --color-hero-border-strong: rgba(255, 255, 255, 0.2);
   --color-hero-surface: rgba(255, 255, 255, 0.06);
+  --color-hero-surface-hover: rgba(255, 255, 255, 0.09);
   --color-hero-node-bg: rgba(255, 255, 255, 0.06);
   --color-hero-node-border: rgba(255, 255, 255, 0.14);
   --color-hero-divider: rgba(255, 255, 255, 0.14);
@@ -72,6 +73,7 @@ html {
     --color-hero-border: rgba(23, 23, 23, 0.1);
     --color-hero-border-strong: rgba(23, 23, 23, 0.22);
     --color-hero-surface: rgba(23, 23, 23, 0.045);
+    --color-hero-surface-hover: rgba(23, 23, 23, 0.08);
     --color-hero-node-bg: rgba(23, 23, 23, 0.045);
     --color-hero-node-border: rgba(23, 23, 23, 0.14);
     --color-hero-divider: rgba(23, 23, 23, 0.14);
@@ -121,6 +123,7 @@ html {
   --color-hero-border: rgba(23, 23, 23, 0.1);
   --color-hero-border-strong: rgba(23, 23, 23, 0.22);
   --color-hero-surface: rgba(23, 23, 23, 0.045);
+  --color-hero-surface-hover: rgba(23, 23, 23, 0.08);
   --color-hero-node-bg: rgba(23, 23, 23, 0.045);
   --color-hero-node-border: rgba(23, 23, 23, 0.14);
   --color-hero-divider: rgba(23, 23, 23, 0.14);

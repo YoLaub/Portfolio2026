@@ -12,6 +12,7 @@ image: /images/projects/loar/cover-v2.webp
 imageDark: /images/projects/loar/cover-dark-v2.webp
 platform: mobile
 featured: true
+category: Projet phare
 screens:
   - /images/projects/loar/screen-1-v2.webp
   - /images/projects/loar/screen-2-v2.webp
