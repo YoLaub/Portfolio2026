@@ -41,7 +41,7 @@ export function ProjectShowcaseCard({ project, index, variant }: ProjectShowcase
       className={
         isMobileApp
           ? "object-contain p-6 transition-transform duration-300 group-hover:scale-105"
-          : "object-cover transition-transform duration-300 group-hover:scale-105"
+          : "object-cover object-left transition-transform duration-300 group-hover:scale-105"
       }
     />
   )
