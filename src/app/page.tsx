@@ -25,9 +25,9 @@ export default function Home() {
 
         <ServicesSection />
 
-        <ProjectsSection projects={projects} />
-
         <FormationSection />
+
+        <ProjectsSection projects={projects} />
 
         <ContactSection />
 

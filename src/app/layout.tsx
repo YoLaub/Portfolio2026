@@ -81,7 +81,6 @@ const servicePriceSpecs: Record<
   automatisation: { price: 400, unitText: "jour" },
   conseil: { price: 250, unitText: "jour" },
   maintenance: { minPrice: 20, unitText: "mois" },
-  formation: { price: 350, unitText: "demi-journée" },
 };
 
 // ProfessionalService plutot que Person : meilleur signal pour la recherche
