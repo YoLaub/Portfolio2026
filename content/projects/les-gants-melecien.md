@@ -9,6 +9,7 @@ techStack:
   - PostgreSQL
 image: /images/projects/les-gants-melecien/cover.webp
 platform: web
+order: 1
 category: Site vitrine
 liveUrl: https://les-gants-meleciens.fr/
 screens:

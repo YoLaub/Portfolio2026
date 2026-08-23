@@ -11,6 +11,7 @@ techStack:
   - MCP
 image: /images/projects/mcp-agent-v2.webp
 platform: web
+order: 2
 category: API · MCP
 liveUrl: https://yl-solution.fr/api/mcp
 githubUrl: https://github.com/YoLaub/Portfolio2026
