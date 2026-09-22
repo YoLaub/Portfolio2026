@@ -92,9 +92,9 @@ export function Hero() {
               </h1>
 
               <p className="max-w-[520px] text-[17px] leading-[1.6] text-hero-text-secondary sm:text-[20px]">
-                Développeur freelance. Sites, applications, automatisations et
-                formation à l&apos;IA : des outils numériques sur mesure, pensés
-                pour votre métier.
+                Développeur freelance. Sites, applications, intégrations et
+                formation à l&apos;IA : des outils numériques modernes, pensés
+                IA-friendly pour votre métier.
               </p>
 
               <div className="flex w-full flex-wrap items-center gap-3.5 sm:w-auto">

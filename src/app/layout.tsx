@@ -30,9 +30,9 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
+  title: "Yoann Laubert - Applications, intégration & DevOps | Vannes & toute la France",
   description:
-    "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+    "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Applications sur mesure, intégration et DevOps : des outils modernes, pensés IA-friendly, au plus près de votre métier.",
   alternates: {
     canonical: "/",
   },
@@ -42,6 +42,8 @@ export const metadata: Metadata = {
     "développeur freelance France",
     "concepteur d'applications",
     "application sur mesure",
+    "intégration",
+    "DevOps",
     "React",
     "Next.js",
     "Java",
@@ -49,12 +51,11 @@ export const metadata: Metadata = {
     "TypeScript",
     "Vannes",
     "MCP",
-    "agents IA",
   ],
   openGraph: {
-    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
+    title: "Yoann Laubert - Applications, intégration & DevOps | Vannes & toute la France",
     description:
-      "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Conception d'applications sur mesure, agents IA et MCP : j'outille votre métier au plus près du terrain.",
+      "Développeur freelance basé à Vannes, interventions à distance dans toute la France. Applications sur mesure, intégration et DevOps : des outils modernes, pensés IA-friendly, au plus près de votre métier.",
     url: "/",
     siteName: "YL-solution",
     type: "website",
@@ -63,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoann Laubert - Concepteur d'applications & agents IA | Vannes & toute la France",
+    title: "Yoann Laubert - Développeur logiciel, intégration & DevOps | Vannes & toute la France",
     description:
-      "Développeur freelance basé à Vannes, interventions à distance dans toute la France : applications sur mesure, agents IA et MCP.",
+      "Développeur freelance basé à Vannes, interventions à distance dans toute la France : applications sur mesure, intégration et DevOps, pensées IA-friendly.",
     // twitter:image fourni automatiquement par src/app/twitter-image.tsx
   },
 };
@@ -78,7 +79,6 @@ const servicePriceSpecs: Record<
   "site-web": { minPrice: 500 },
   application: { minPrice: 1500 },
   api: { price: 250, unitText: "jour" },
-  automatisation: { price: 400, unitText: "jour" },
   conseil: { price: 250, unitText: "jour" },
   maintenance: { minPrice: 20, unitText: "mois" },
 };
@@ -95,7 +95,7 @@ const jsonLd = {
   image: `${SITE_URL}/opengraph-image`,
   email: "ylsolution.web@gmail.com",
   description:
-    "Sites, applications et automatisations IA sur mesure pour PME, artisans et commerces, livrés à distance dans toute la France. Connecteurs, scripts, agents IA : votre métier outillé au plus près du terrain.",
+    "Sites, applications et intégrations sur mesure pour PME, artisans et commerces, livrés à distance dans toute la France. Logiciel, intégration, DevOps : des outils modernes, pensés IA-friendly, au plus près du terrain.",
   priceRange: "€",
   address: {
     "@type": "PostalAddress",
@@ -107,7 +107,7 @@ const jsonLd = {
   founder: {
     "@type": "Person",
     name: "Yoann Laubert",
-    jobTitle: "Concepteur d'applications et agents IA, développeur freelance",
+    jobTitle: "Développeur logiciel, intégration et DevOps, freelance",
     knowsAbout: [
       "React",
       "Next.js",
@@ -116,9 +116,9 @@ const jsonLd = {
       "Spring Boot",
       "Node.js",
       "PostgreSQL",
-      "Agents IA",
+      "Intégration",
+      "DevOps",
       "MCP",
-      "Automatisation",
     ],
   },
   sameAs: [

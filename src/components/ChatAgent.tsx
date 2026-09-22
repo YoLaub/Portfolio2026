@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
-import { RoiSimulator } from "@/components/RoiSimulator"
 
 // ─── Types locaux miroir des types API ───────────────────────────────
 interface SkillData {
@@ -384,12 +383,6 @@ export function ChatAgent() {
   function handleServiceDetail(s: ServiceData) {
     addUserAction(s.title)
     const actions: ChatAction[] = []
-    if (s.id === "automatisation") {
-      actions.push(
-        { label: "Combien ça rapporte ?", onClick: () => handleRoiSimulator() },
-        { label: "Conformité RGPD / EU AI Act", onClick: () => handleComplianceInfo() }
-      )
-    }
     actions.push(
       { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
       { label: "Voir un autre service", onClick: () => handlersRef.current.services() },
@@ -406,59 +399,6 @@ export function ChatAgent() {
         )}
       </div>,
       actions
-    )
-  }
-
-  // Simulateur d'impact, accessible depuis le service Automatisation & systèmes
-  // agentiques : reutilise le meme composant que la section Services, en
-  // version compacte pour la largeur du panneau de chat.
-  function handleRoiSimulator() {
-    addUserAction("Combien ça rapporte ?")
-    addBotMessage(
-      <div>
-        <p className="font-semibold text-text-primary mb-3">
-          Simulez l&apos;impact d&apos;une automatisation
-        </p>
-        <RoiSimulator compact />
-      </div>,
-      [
-        { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
-        backToMenuAction,
-      ]
-    )
-  }
-
-  // Détail dédié conformité RGPD / EU AI Act, accessible depuis le service
-  // Automatisation & systèmes agentiques.
-  function handleComplianceInfo() {
-    addUserAction("Conformité RGPD / EU AI Act")
-    addBotMessage(
-      <div>
-        <p className="font-semibold text-text-primary mb-1">Conformité RGPD & EU AI Act</p>
-        <p className="text-text-secondary text-sm mb-2">
-          La confidentialité et la conformité se pensent dès la conception du workflow, pas
-          après coup :
-        </p>
-        <ul className="text-text-secondary text-sm list-disc pl-4 space-y-1 mb-2">
-          <li>
-            RGPD : minimisation des données transmises au modèle, hébergement en Europe ou
-            on-premise si nécessaire, droit à l&apos;effacement respecté.
-          </li>
-          <li>
-            EU AI Act : classification du risque de votre cas d&apos;usage, traçabilité des
-            décisions prises par l&apos;agent, supervision humaine sur les étapes sensibles.
-          </li>
-        </ul>
-        <p className="text-text-secondary text-sm">
-          Concrètement : je peux prototyper rapidement sur Claude, puis basculer le même
-          workflow sur un modèle open source souverain hébergé en Europe ou on-premise si vos
-          contraintes réglementaires l&apos;exigent, sans réécrire la logique métier.
-        </p>
-      </div>,
-      [
-        { label: "Discuter de votre projet", onClick: () => handlersRef.current.discussProject() },
-        backToMenuAction,
-      ]
     )
   }
 

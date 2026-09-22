@@ -76,7 +76,7 @@ describe("RootLayout", () => {
       const catalog = jsonLd.hasOfferCatalog as Record<string, unknown>
       expect(catalog["@type"]).toBe("OfferCatalog")
       const items = catalog.itemListElement as Array<Record<string, unknown>>
-      expect(items.length).toBeGreaterThanOrEqual(6)
+      expect(items.length).toBeGreaterThanOrEqual(5)
       const first = items[0]
       expect((first.itemOffered as Record<string, unknown>).name).toBeDefined()
       expect(first.priceSpecification).toBeDefined()

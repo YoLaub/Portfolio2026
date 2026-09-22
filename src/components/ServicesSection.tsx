@@ -3,7 +3,6 @@
 import { services } from "@/data/services"
 import { ServiceCard } from "@/components/ServiceCard"
 import { AnimatedSection } from "@/components/AnimatedSection"
-import { RoiSimulator } from "@/components/RoiSimulator"
 
 export function ServicesSection() {
   return (
@@ -33,22 +32,6 @@ export function ServicesSection() {
             )
           })}
         </div>
-
-        <AnimatedSection delay={services.length * 0.08} className="mt-12">
-          <div className="rounded-xl border border-border bg-bg-secondary p-7 sm:p-10">
-            <p className="font-mono text-xs uppercase tracking-wider text-accent mb-2">
-              Simulateur
-            </p>
-            <h3 className="text-2xl font-bold text-text-primary mb-2 text-balance">
-              Un agent, combien ça rapporte ?
-            </h3>
-            <p className="text-text-secondary mb-8">
-              Trois curseurs, une estimation chiffrée en temps réel du temps et de l&apos;argent
-              qu&apos;une automatisation peut vous faire gagner.
-            </p>
-            <RoiSimulator />
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   )

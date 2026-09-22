@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og"
 // og:image / twitter:image pointant vers cette route. Couleurs alignees sur
 // la palette du site (globals.css) : fond sombre, accent ambre.
 export const alt =
-  "Yoann Laubert, concepteur d'applications et agents IA, developpeur freelance a Vannes"
+  "Yoann Laubert, developpeur d'applications, integration et DevOps, freelance a Vannes"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -89,7 +89,7 @@ export default function OpengraphImage() {
               lineHeight: 1.1,
             }}
           >
-            Concepteur d&apos;applications &amp; agents IA
+            Développeur logiciel, intégration &amp; DevOps
           </div>
           <div
             style={{
@@ -99,7 +99,7 @@ export default function OpengraphImage() {
               lineHeight: 1.2,
             }}
           >
-            Sites, applications, automatisations sur mesure - Vannes
+            Sites, applications, intégrations sur mesure - Vannes
           </div>
         </div>
 

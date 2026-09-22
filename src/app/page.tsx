@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero"
 import { ApproachSection } from "@/components/ApproachSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
 import { ServicesSection } from "@/components/ServicesSection"
+import { OkyrSection } from "@/components/OkyrSection"
 import { FormationSection } from "@/components/FormationSection"
 import { SkillsBanner } from "@/components/SkillsBanner"
 import { ContactSection } from "@/components/ContactSection"
@@ -24,6 +25,8 @@ export default function Home() {
         <ApproachSection />
 
         <ServicesSection />
+
+        <OkyrSection />
 
         <FormationSection />
 
