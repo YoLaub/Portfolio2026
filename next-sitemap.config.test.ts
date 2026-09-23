@@ -18,12 +18,12 @@ describe("next-sitemap.config", () => {
   });
 
   it("should allow all crawlers in robots.txt policies", () => {
-    expect(config.robotsTxtOptions).toBeDefined();
-    expect(config.robotsTxtOptions.policies).toBeDefined();
+    const robotsTxtOptions = config.robotsTxtOptions;
+    expect(robotsTxtOptions).toBeDefined();
+    const policies = robotsTxtOptions!.policies;
+    expect(policies).toBeDefined();
 
-    const allPolicy = config.robotsTxtOptions.policies.find(
-      (p: { userAgent: string; allow: string }) => p.userAgent === "*"
-    );
+    const allPolicy = policies!.find((p) => p.userAgent === "*");
     expect(allPolicy).toBeDefined();
     expect(allPolicy!.allow).toBe("/");
     expect(allPolicy!.disallow).toContain("/api/");

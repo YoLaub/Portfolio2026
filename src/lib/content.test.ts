@@ -96,7 +96,7 @@ describe("content helpers", () => {
       expect(first.image).toBeTypeOf("string")
 
       // ProjectMeta should NOT have content
-      expect((first as Record<string, unknown>).content).toBeUndefined()
+      expect((first as unknown as Record<string, unknown>).content).toBeUndefined()
     })
   })
 
