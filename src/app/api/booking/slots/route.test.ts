@@ -53,6 +53,20 @@ describe("GET /api/booking/slots", () => {
     expect(response.headers.get("Cache-Control")).toContain("no-store")
   })
 
+  it("renvoie une capacité théorique (agenda sans occupation) au moins égale au nombre de créneaux libres", async () => {
+    mockIsGoogleConfigured.mockReturnValue(true)
+    mockGetBusyIntervals.mockResolvedValue([
+      { start: "2026-07-07T07:00:00Z", end: "2026-07-07T07:30:00Z" },
+    ])
+
+    const response = await GET()
+    const data = await response.json()
+
+    expect(data.capacity).toBeTypeOf("number")
+    expect(data.capacity).toBeGreaterThan(0)
+    expect(data.capacity).toBeGreaterThanOrEqual(data.slots.length)
+  })
+
   it("interroge le freebusy sur l'horizon complet", async () => {
     mockIsGoogleConfigured.mockReturnValue(true)
     mockGetBusyIntervals.mockResolvedValue([])

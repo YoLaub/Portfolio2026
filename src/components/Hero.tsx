@@ -1,10 +1,58 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { HeroOrbit } from "./HeroOrbit"
 
-// Contenu simple, pas encore relie a une source dynamique (cf handoff : "a
-// rendre dynamique si possible"). A mettre a jour a la main / brancher plus
-// tard sur l'agenda reel. Si aucun creneau : ne pas afficher "0 creneau",
-// retirer la pill (mettre AVAILABILITY a null).
-const AVAILABILITY: string | null = "2 créneaux libres en septembre"
+// Pastille de dispo branchée sur l'agenda réel (/api/booking/slots, même
+// source que BookingSection). Le texte reste générique ("Disponible" /
+// "Indisponible") : c'est la couleur qui indique le remplissage, du vert
+// au rouge, à mesure que les créneaux libres se raréfient. Tant que l'appel
+// n'a pas abouti (chargement, agenda non configuré, erreur), on n'affiche
+// rien plutôt qu'une info fausse.
+const AVAILABILITY_SUCCESS: [number, number, number] = [16, 185, 129] // --color-success
+const AVAILABILITY_ERROR: [number, number, number] = [239, 68, 68] // --color-error
+
+interface Availability {
+  label: "Disponible" | "Indisponible"
+  color: string
+}
+
+function lerpColor(t: number): string {
+  const clamped = Math.min(1, Math.max(0, t))
+  const [r, g, b] = AVAILABILITY_SUCCESS.map((from, i) =>
+    Math.round(from + (AVAILABILITY_ERROR[i] - from) * clamped)
+  )
+  return `rgb(${r}, ${g}, ${b})`
+}
+
+function useAvailability(): Availability | null {
+  const [availability, setAvailability] = useState<Availability | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch("/api/booking/slots")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { slots?: unknown[]; capacity?: number } | null) => {
+        if (cancelled || !data || !Array.isArray(data.slots) || !data.capacity) return
+        const free = data.slots.length
+        if (free === 0) {
+          setAvailability({ label: "Indisponible", color: lerpColor(1) })
+          return
+        }
+        // Remplissage plafonné à 92% tant qu'il reste au moins un créneau :
+        // la couleur s'approche du rouge sans jamais s'y confondre avant
+        // le vrai "Indisponible".
+        const fullness = Math.min(0.92, 1 - free / data.capacity)
+        setAvailability({ label: "Disponible", color: lerpColor(fullness) })
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return availability
+}
 
 // Chiffres de preuve du hero — a valider avant mise en ligne
 // (cf docs/bugs&correction/design_handoff_hero_nuit/README.md).
@@ -38,6 +86,8 @@ function MarqueeGroup() {
 }
 
 export function Hero() {
+  const availability = useAvailability()
+
   return (
     <section id="hero" aria-label="Accueil" className="px-4 pt-3 sm:pt-4 lg:pt-6">
       <div className="mx-auto max-w-[1440px]">
@@ -67,13 +117,17 @@ export function Hero() {
           <div className="relative grid min-w-0 grid-cols-1 gap-12 px-6 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-11 lg:py-[84px]">
             {/* Colonne texte */}
             <div className="flex flex-col items-start gap-7 motion-safe:animate-[hero-rise-in_.7s_cubic-bezier(.2,.8,.2,1)_both] motion-reduce:animate-none">
-              {AVAILABILITY && (
+              {availability && (
                 <div className="inline-flex items-center gap-2.5 self-start rounded-full border border-hero-border-strong px-3.5 py-2 font-mono text-[13px] text-hero-pill-text">
                   <span
-                    className="h-[7px] w-[7px] rounded-full bg-[#6ee08a]"
-                    style={{ boxShadow: "0 0 10px #6ee08a" }}
+                    data-testid="availability-dot"
+                    className="h-[7px] w-[7px] rounded-full transition-colors duration-500"
+                    style={{
+                      backgroundColor: availability.color,
+                      boxShadow: `0 0 10px ${availability.color}`,
+                    }}
                   />
-                  {AVAILABILITY}
+                  {availability.label}
                 </div>
               )}
 

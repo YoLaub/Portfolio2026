@@ -25,8 +25,14 @@ export async function GET() {
 
     const busy = await getBusyIntervals(timeMin, timeMax)
     const slots = generateSlots(busy, now)
+    // Capacité théorique (aucun créneau occupé) : sert de référence pour
+    // jauger le remplissage de l'agenda côté UI (pastille du Hero).
+    const capacity = generateSlots([], now).length
 
-    return NextResponse.json({ available: true, slots }, { headers: NO_STORE })
+    return NextResponse.json(
+      { available: true, slots, capacity },
+      { headers: NO_STORE }
+    )
   } catch (error) {
     console.error("[API Booking Slots]", error)
     return NextResponse.json(
