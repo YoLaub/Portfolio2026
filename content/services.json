@@ -18,20 +18,20 @@
     "title": "Connexion de vos outils entre eux",
     "description": "Relier vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
     "icon": "server",
-    "price": "250 € / jour"
+    "price": "Sur devis"
   },
   {
     "id": "conseil",
     "title": "Conseil technique",
     "description": "Un regard expert sur votre projet. Choix technologiques, architecture et bonnes pratiques.",
     "icon": "lightbulb",
-    "price": "250 € / jour"
+    "price": "Sur devis"
   },
   {
     "id": "maintenance",
     "title": "Maintenance & évolution",
     "description": "Votre site ou application reste performant et à jour. Corrections, améliorations et nouvelles fonctionnalités, en abonnement mensuel.",
     "icon": "wrench",
-    "price": "À partir de 20 € / mois"
+    "price": "Sur devis"
   }
 ]

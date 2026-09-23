@@ -42,15 +42,14 @@ describe("content helpers", () => {
       expect(first.icon).toBeTypeOf("string")
     })
 
-    it("expose un tarif sur les sites, applications et prestations TJM", () => {
+    it("expose un tarif fixe sur les sites et applications, le reste est sur devis", () => {
       const services = getServices()
       const byId = (id: string) => services.find((s) => s.id === id)
 
       expect(byId("site-web")?.price).toBe("À partir de 500 €")
       expect(byId("application")?.price).toBe("À partir de 1 500 €")
-      expect(byId("conseil")?.price).toBe("250 € / jour")
-      // La maintenance est un abonnement mensuel
-      expect(byId("maintenance")?.price).toBe("À partir de 20 € / mois")
+      expect(byId("conseil")?.price).toBe("Sur devis")
+      expect(byId("maintenance")?.price).toBe("Sur devis")
     })
   })
 
