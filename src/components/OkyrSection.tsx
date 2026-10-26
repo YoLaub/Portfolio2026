@@ -9,15 +9,16 @@ export function OkyrSection() {
         <AnimatedSection>
           <div className="rounded-xl border border-border bg-bg-secondary p-7 sm:p-10 text-center">
             <p className="font-mono text-xs uppercase tracking-wider text-accent mb-2">
-              Automatisation &amp; agents IA
+              Automatisations, agents IA &amp; formation
             </p>
             <h2 className="text-2xl font-bold text-text-primary mb-3 text-balance">
-              Ce n&apos;est plus mon métier ici, c&apos;est celui d&apos;Okyr
+              Pour automatiser vos processus, découvrez Okyr.
             </h2>
             <p className="text-text-secondary mb-6 max-w-2xl mx-auto">
-              Avec un associé, j&apos;ai fondé Okyr pour concentrer tout ce qui touche à
-              l&apos;automatisation et aux agents IA. Pour un projet dans ce domaine,
-              c&apos;est là-bas que ça se passe.
+              Avec Okyr, nous concevons des automatisations et des agents IA destinés à prendre en charge
+              des workflows complets. Besoin de former vos équipes à l’IA ou d’identifier des usages
+              concrets ? Ce sujet est traité avec Okyr. YL Solution reste votre interlocuteur pour les
+              sites, applications métier, intégrations techniques et leur fiabilité au quotidien.
             </p>
             <a
               href="https://okyr.fr"

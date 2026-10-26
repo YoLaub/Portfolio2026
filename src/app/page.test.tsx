@@ -215,10 +215,10 @@ describe("Home Page - Accessibility", () => {
       expect(services).toHaveAttribute("aria-label", "Services")
     })
 
-    it("Formation section has aria-label 'Formation'", () => {
+    it("ne conserve pas de section de formation IA sur le site YL Solution", () => {
       const { container } = render(<Home />)
       const formation = container.querySelector("section#formation")
-      expect(formation).toHaveAttribute("aria-label", "Formation")
+      expect(formation).not.toBeInTheDocument()
     })
 
     it("Skills banner has aria-label 'Compétences'", () => {
