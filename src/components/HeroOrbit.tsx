@@ -230,7 +230,7 @@ export function HeroOrbit() {
             className="font-mono text-[11px] font-bold tracking-[.1em]"
             style={{ color: "rgba(16,15,14,.65)" }}
           >
-            TOUT CONNECTÉ
+            OUTIL UTILE
           </span>
         </motion.div>
       </div>

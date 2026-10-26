@@ -54,20 +54,19 @@ function useAvailability(): Availability | null {
   return availability
 }
 
-// Chiffres de preuve du hero — a valider avant mise en ligne
-// (cf docs/bugs&correction/design_handoff_hero_nuit/README.md).
+// Engagements de réassurance du hero : ils remplacent les promesses chiffrées
+// et décrivent la méthode de travail validée pour YL Solution.
 const PROOF_STATS = [
-  { value: "-70%", label: "de tâches manuelles" },
-  { value: "Vos outils", label: "synchronisés entre eux" },
-  { value: "1 seul flux", label: "CRM · mails · docs · API" },
+  "Comprendre votre métier",
+  "Construire l’outil juste",
+  "Le faire évoluer avec vous",
 ]
 
 const MARQUEE_ITEMS = [
   "SITES WEB",
   "APPLICATIONS MÉTIER",
-  "AUTOMATISATIONS",
-  "FORMATION IA",
-  "INTÉGRATIONS API",
+  "INTÉGRATIONS TECHNIQUES",
+  "MAINTENANCE & ÉVOLUTION",
 ]
 
 function MarqueeGroup() {
@@ -132,23 +131,13 @@ export function Hero() {
               )}
 
               <h1 className="m-0 text-[clamp(44px,11vw,104px)] leading-[0.92] font-extrabold tracking-[-.045em] text-balance">
-                Programmer
-                <br />
-                pour{" "}
-                <span
-                  className="text-[#E87C0A] [background-repeat:no-repeat] [background-position:0_100%] [background-size:100%_0.12em]"
-                  style={{ backgroundImage: "linear-gradient(rgba(232,124,10,.28), rgba(232,124,10,.28))" }}
-                >
-                  gagner
-                </span>
-                <br />
-                du temps.
+                Le numérique qui s’adapte à votre métier.
               </h1>
 
               <p className="max-w-[520px] text-[17px] leading-[1.6] text-hero-text-secondary sm:text-[20px]">
-                Développeur freelance. Sites, applications, intégrations et
-                formation à l&apos;IA : des outils numériques modernes, pensés
-                IA-friendly pour votre métier.
+                Sites web, applications métier et intégrations techniques conçus autour de votre façon
+                de travailler. Pour remplacer les outils mal adaptés par une solution claire, fiable et
+                faite pour durer.
               </p>
 
               <div className="flex w-full flex-wrap items-center gap-3.5 sm:w-auto">
@@ -156,7 +145,7 @@ export function Hero() {
                   href="#contact"
                   className="group relative inline-flex flex-1 items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#E87C0A] px-6 py-4 text-[17px] font-bold text-[#100f0e] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#ff9526] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E87C0A] sm:flex-none sm:px-[30px] sm:py-5"
                 >
-                  Prendre RDV
+                  Parler de votre besoin
                   <span className="font-mono text-[18px]" aria-hidden="true">
                     →
                   </span>
@@ -173,24 +162,19 @@ export function Hero() {
                   href="#projets"
                   className="inline-flex flex-1 items-center justify-center gap-2.5 rounded-[14px] border border-hero-border-strong px-6 py-4 text-[17px] font-semibold text-hero-text transition-colors duration-200 hover:border-hero-text/50 hover:bg-hero-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-text sm:flex-none sm:px-7 sm:py-5"
                 >
-                  Voir mes projets
+                  Voir mes réalisations
                 </a>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-1.5 sm:gap-x-[34px]">
+              <div className="flex flex-col items-start gap-x-4 gap-y-3 pt-1.5 2xl:flex-row 2xl:items-center">
                 {PROOF_STATS.map((stat, i) => (
-                  <div key={stat.value} className="flex items-center gap-8 sm:gap-[34px]">
+                  <div key={stat} className="flex items-center gap-4">
                     {i > 0 && (
-                      <span className="hidden h-[38px] w-px bg-hero-divider sm:block" aria-hidden="true" />
+                      <span className="hidden h-3.5 w-px bg-hero-divider 2xl:block" aria-hidden="true" />
                     )}
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[30px] leading-none font-extrabold text-hero-text">
-                        {stat.value}
-                      </span>
-                      <span className="font-mono text-[12px] leading-none text-hero-text-tertiary">
-                        {stat.label}
-                      </span>
-                    </div>
+                    <span className="font-mono text-[12px] leading-none whitespace-nowrap text-hero-text-tertiary">
+                      {stat}
+                    </span>
                   </div>
                 ))}
               </div>

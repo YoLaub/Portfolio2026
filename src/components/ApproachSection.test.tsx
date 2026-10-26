@@ -43,4 +43,13 @@ describe("ApproachSection", () => {
       expect(screen.getByText(item.body)).toBeInTheDocument()
     }
   })
+
+  it("présente les quatre étapes du positionnement YL Solution", () => {
+    render(<ApproachSection />)
+    expect(screen.getByText("Partir de votre réalité")).toBeInTheDocument()
+    expect(screen.getByText("Construire l’outil utile")).toBeInTheDocument()
+    expect(screen.getByText("Travailler en direct")).toBeInTheDocument()
+    expect(screen.getByText("Faire durer")).toBeInTheDocument()
+    expect(screen.queryByText(/formation & autonomie/i)).not.toBeInTheDocument()
+  })
 })

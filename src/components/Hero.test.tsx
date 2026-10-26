@@ -24,31 +24,37 @@ afterEach(() => {
 })
 
 describe("Hero - contenu", () => {
-  it("affiche le H1 de positionnement (plus le nom propre)", () => {
+  it("affiche le positionnement YL Solution centré sur le métier", () => {
     render(<Hero />)
     const h1 = screen.getByRole("heading", { level: 1 })
-    expect(h1.textContent).toMatch(/programmer/i)
-    expect(h1.textContent).toMatch(/gagner/i)
-    expect(h1.textContent).toMatch(/temps/i)
+    expect(h1).toHaveTextContent("Le numérique qui s’adapte à votre métier.")
+    expect(
+      screen.getByText(
+        /Sites web, applications métier et intégrations techniques conçus autour de votre façon de travailler/i
+      )
+    ).toBeInTheDocument()
   })
 
   it("propose les deux CTA vers contact et projets", () => {
     render(<Hero />)
-    expect(screen.getByRole("link", { name: /prendre rdv/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /parler de votre besoin/i })).toHaveAttribute(
       "href",
       "#contact"
     )
-    expect(screen.getByRole("link", { name: /voir mes projets/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /voir mes réalisations/i })).toHaveAttribute(
       "href",
       "#projets"
     )
   })
 
-  it("affiche les 3 chiffres de preuve", () => {
+  it("affiche les trois engagements de réassurance sans promesse chiffrée", () => {
     render(<Hero />)
-    expect(screen.getByText("-70%")).toBeInTheDocument()
-    expect(screen.getByText("Vos outils")).toBeInTheDocument()
-    expect(screen.getByText("1 seul flux")).toBeInTheDocument()
+    expect(screen.getByText("Comprendre votre métier")).toBeInTheDocument()
+    expect(screen.getByText("Construire l’outil juste")).toBeInTheDocument()
+    expect(screen.getByText("Le faire évoluer avec vous")).toBeInTheDocument()
+    expect(screen.queryByText("-70%")).not.toBeInTheDocument()
+    expect(screen.queryByText("Vos outils")).not.toBeInTheDocument()
+    expect(screen.queryByText("1 seul flux")).not.toBeInTheDocument()
   })
 })
 
@@ -65,9 +71,14 @@ describe("Hero - graphique decoratif", () => {
 })
 
 describe("Hero - bandeau defilant", () => {
-  it("duplique le contenu du marquee pour une boucle sans couture", () => {
+  it("duplique le bandeau des services YL Solution, sans automatisation ni formation IA", () => {
     render(<Hero />)
-    expect(screen.getAllByText("AUTOMATISATIONS")).toHaveLength(2)
+    expect(screen.getAllByText("SITES WEB")).toHaveLength(2)
+    expect(screen.getAllByText("APPLICATIONS MÉTIER")).toHaveLength(2)
+    expect(screen.getAllByText("INTÉGRATIONS TECHNIQUES")).toHaveLength(2)
+    expect(screen.getAllByText("MAINTENANCE & ÉVOLUTION")).toHaveLength(2)
+    expect(screen.queryByText("AUTOMATISATIONS")).not.toBeInTheDocument()
+    expect(screen.queryByText("FORMATION IA")).not.toBeInTheDocument()
   })
 })
 

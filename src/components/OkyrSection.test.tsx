@@ -35,4 +35,12 @@ describe("OkyrSection", () => {
     expect(link).toHaveAttribute("target", "_blank")
     expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"))
   })
+
+  it("explique le relais Okyr pour l’automatisation, les agents IA et la formation", () => {
+    render(<OkyrSection />)
+    expect(screen.getByText("Pour automatiser vos processus, découvrez Okyr.")).toBeInTheDocument()
+    expect(screen.getByText(/automatisations et des agents IA/i)).toBeInTheDocument()
+    expect(screen.getByText(/former vos équipes à l’IA/i)).toBeInTheDocument()
+    expect(screen.getByText(/sites, applications métier, intégrations techniques/i)).toBeInTheDocument()
+  })
 })
