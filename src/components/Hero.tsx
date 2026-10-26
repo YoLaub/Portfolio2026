@@ -166,13 +166,13 @@ export function Hero() {
                 </a>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-1.5 sm:gap-x-[34px]">
+              <div className="flex flex-col items-start gap-x-4 gap-y-3 pt-1.5 2xl:flex-row 2xl:items-center">
                 {PROOF_STATS.map((stat, i) => (
-                  <div key={stat} className="flex items-center gap-8 sm:gap-[34px]">
+                  <div key={stat} className="flex items-center gap-4">
                     {i > 0 && (
-                      <span className="hidden h-[38px] w-px bg-hero-divider sm:block" aria-hidden="true" />
+                      <span className="hidden h-3.5 w-px bg-hero-divider 2xl:block" aria-hidden="true" />
                     )}
-                    <span className="font-mono text-[12px] leading-none text-hero-text-tertiary">
+                    <span className="font-mono text-[12px] leading-none whitespace-nowrap text-hero-text-tertiary">
                       {stat}
                     </span>
                   </div>
