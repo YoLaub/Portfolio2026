@@ -171,7 +171,7 @@ export function NavBar() {
             href={BOOKING_ANCHOR}
             className="bg-accent text-bg-primary font-semibold rounded-lg px-4 py-2 text-sm hover:bg-accent-hover transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            Prendre RDV
+            Parler de votre besoin
           </a>
         </div>
 
@@ -284,7 +284,7 @@ export function NavBar() {
                 onClick={() => setIsMenuOpen(false)}
                 className="bg-accent text-bg-primary font-semibold rounded-lg px-6 py-3 text-base hover:bg-accent-hover transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
-                Prendre RDV
+                Parler de votre besoin
               </a>
             </div>
           </motion.div>
