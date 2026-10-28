@@ -55,15 +55,6 @@ vi.mock("@/components/ServicesSection", () => ({
   ),
 }))
 
-vi.mock("@/components/FormationSection", () => ({
-  FormationSection: () => (
-    <section id="formation" aria-label="Formation">
-      <h2>Formation</h2>
-      <article>Module 1</article>
-    </section>
-  ),
-}))
-
 vi.mock("@/components/SkillsBanner", () => ({
   SkillsBanner: () => (
     <section id="competences" aria-label="Compétences">

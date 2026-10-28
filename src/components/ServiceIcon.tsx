@@ -1,5 +1,4 @@
-// Icones partagees entre ServiceCard et FormationSection (meme jeu visuel,
-// style traits/Feather, boite de dessin 24x24).
+// Icones de ServiceCard (style traits/Feather, boite de dessin 24x24).
 export function getServiceIcon(icon: string, className = "w-8 h-8") {
   switch (icon) {
     case "globe":

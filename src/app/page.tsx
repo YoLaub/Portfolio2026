@@ -27,7 +27,6 @@ export default function Home() {
 
         <OkyrSection />
 
-
         <ProjectsSection projects={projects} />
 
         <ContactSection />

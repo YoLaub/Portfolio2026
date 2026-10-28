@@ -26,6 +26,13 @@ describe("content helpers", () => {
       // La prise de RDV est intégrée au site : plus de lien Calendly
       expect("calendly" in profile.links).toBe(false)
     })
+
+    it("porte le positionnement YL Solution dans le jobTitle", () => {
+      const profile: Profile = getProfile()
+
+      expect(profile.jobTitle).toMatch(/s’adapte à votre métier/)
+      expect(profile.jobTitle).not.toMatch(/gagner du temps/i)
+    })
   })
 
   describe("getServices", () => {

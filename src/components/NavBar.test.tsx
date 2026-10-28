@@ -12,4 +12,13 @@ describe("NavBar - liens", () => {
     expect(container.querySelector('a[href="#formation"]')).not.toBeInTheDocument()
     expect(screen.queryByRole("link", { name: /^formation$/i })).not.toBeInTheDocument()
   })
+
+  it("reprend le libellé du CTA principal du hero vers #contact", () => {
+    render(<NavBar />)
+    expect(screen.getByRole("link", { name: /parler de votre besoin/i })).toHaveAttribute(
+      "href",
+      "#contact"
+    )
+    expect(screen.queryByText(/prendre rdv/i)).not.toBeInTheDocument()
+  })
 })

@@ -140,7 +140,7 @@ export function Hero() {
                 faite pour durer.
               </p>
 
-              <div className="flex w-full flex-wrap items-center gap-3.5 sm:w-auto">
+              <div className="flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
                 <a
                   href="#contact"
                   className="group relative inline-flex flex-1 items-center justify-center gap-2.5 overflow-hidden rounded-[14px] bg-[#E87C0A] px-6 py-4 text-[17px] font-bold text-[#100f0e] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#ff9526] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E87C0A] sm:flex-none sm:px-[30px] sm:py-5"
