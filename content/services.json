@@ -1,37 +1,176 @@
 [
   {
     "id": "site-web",
-    "title": "Création de sites web",
+    "placement": "step",
+    "title": "Le site web",
     "description": "Un site moderne, rapide et optimisé pour Google. Pensé pour vos visiteurs, conçu pour convertir.",
     "icon": "globe",
-    "price": "À partir de 500 €"
+    "okyr": false,
+    "tag": "MOI",
+    "short": "La vitrine de votre boutique, ouverte jour et nuit.",
+    "priceShort": "Dès 500 €",
+    "price": "Création de site · dès 500 €",
+    "image": "= la vitrine de votre boutique",
+    "who": "Moi, directement",
+    "phrase": "Un site, c'est la vitrine de votre boutique… sauf qu'elle est ouverte jour et nuit, et visible depuis n'importe quel canapé.",
+    "story": "Avant d'entrer dans un magasin, on regarde la vitrine. Sur internet, c'est pareil : quand quelqu'un cherche votre nom, votre site est la première chose qu'il voit. C'est la porte d'entrée la moins chère du numérique : on commence petit, et on agrandit la boutique plus tard.",
+    "uses": [
+      "Être trouvé quand on vous cherche sur Google",
+      "Montrer ce que vous faites, vos horaires, vos prix",
+      "Donner confiance avant le premier appel"
+    ],
+    "role": "Je conçois et je code votre site moi-même : rapide, simple à mettre à jour, et prêt à grandir le jour où vous voudrez vendre ou gérer vos clients en ligne."
+  },
+  {
+    "id": "base-de-donnees",
+    "placement": "step",
+    "title": "La base de données",
+    "description": "Vos clients, commandes et produits rassemblés au même endroit, bien rangés et sans doublon. Incluse dans chaque application.",
+    "icon": "database",
+    "okyr": false,
+    "tag": "MOI",
+    "short": "L'armoire bien rangée où tout se retrouve.",
+    "priceShort": "Incluse",
+    "price": "Incluse dans chaque application",
+    "image": "= une armoire bien rangée",
+    "who": "Moi, directement",
+    "phrase": "Une base de données, c'est une armoire à tiroirs : un tiroir pour les clients, un pour les commandes, un pour les produits. Et on retrouve n'importe quelle fiche en une seconde.",
+    "story": "Aujourd'hui, vos infos sont peut-être dans un carnet, trois fichiers Excel et la tête de quelqu'un. La base de données rassemble tout au même endroit, bien étiqueté, sans doublon. C'est elle qui « se souvient » de tout pour votre site ou votre application.",
+    "uses": [
+      "Ne plus rien perdre ni recopier deux fois",
+      "Retrouver un client, une commande, un stock en un clic",
+      "Préparer le terrain pour vendre et automatiser"
+    ],
+    "role": "C'est le cœur de chaque application que je construis : je dessine les tiroirs selon VOTRE métier, pas l'inverse. Et vos données restent les vôtres."
+  },
+  {
+    "id": "vente-en-ligne",
+    "placement": "step",
+    "title": "La vente en ligne",
+    "description": "Commande, paiement et stock qui se met à jour tout seul : vendre en ligne à toute heure, en toute sécurité.",
+    "icon": "cart",
+    "okyr": false,
+    "tag": "MOI",
+    "short": "La caisse qui ne ferme jamais.",
+    "priceShort": "Sur devis",
+    "price": "Sur devis",
+    "image": "= une caisse qui ne ferme jamais",
+    "who": "Moi, directement",
+    "phrase": "Vendre en ligne, c'est ajouter une caisse à votre vitrine : le client choisit, paie, et vous recevez la commande… même pendant que vous dormez.",
+    "story": "Le site montre, la base de données retient, et la vente fait entrer l'argent. Commande, paiement, stock qui se met à jour tout seul : comme au comptoir, mais sans file d'attente. C'est ce que fait QueueFlow pour les petits fast-foods.",
+    "uses": [
+      "Prendre des commandes à toute heure",
+      "Encaisser en toute sécurité",
+      "Garder stock et commandes toujours à jour"
+    ],
+    "role": "Je relie la vitrine, la caisse et le stock pour que tout parle la même langue : paiement, commandes, suivi. Pas un module plaqué, un parcours pensé pour vos clients."
   },
   {
     "id": "application",
-    "title": "Applications sur mesure",
+    "placement": "step",
+    "title": "L'application métier",
     "description": "Votre idée transformée en outil : caisse, stock, dossiers, tableau de bord ou plateforme complète.",
     "icon": "code",
-    "price": "À partir de 1 500 €"
+    "okyr": false,
+    "tag": "MOI",
+    "short": "L'outil taillé pour votre main.",
+    "priceShort": "Dès 1 500 €",
+    "price": "Application sur mesure · dès 1 500 €",
+    "image": "= l'outil taillé pour votre main",
+    "who": "Moi, directement",
+    "phrase": "Un logiciel du commerce, c'est un couteau suisse : il fait un peu de tout, mais jamais exactement ce qu'il vous faut. Une application métier, c'est l'outil fabriqué pour votre main.",
+    "story": "Vous jonglez entre des tableaux, des papiers et des logiciels qui ne se parlent pas ? Une application rassemble vos gestes du quotidien dans un seul écran : vos dossiers, votre stock, votre caisse, vos tableaux de bord.",
+    "uses": [
+      "Un seul écran au lieu de cinq",
+      "Des boutons qui suivent votre façon de travailler",
+      "Sur ordinateur, tablette ou téléphone"
+    ],
+    "role": "C'est mon cœur de métier : j'observe comment vous travaillez, puis je construis l'outil autour. Caisse, stock, dossiers, tableaux de bord ou plateforme complète."
   },
   {
     "id": "api",
-    "title": "Connexion de vos outils entre eux",
+    "placement": "step",
+    "title": "Connecter vos outils",
     "description": "Relier vos logiciels (caisse, stock, CRM...) pour qu'ils échangent leurs informations automatiquement, sans ressaisie manuelle et en toute sécurité.",
     "icon": "server",
-    "price": "Sur devis"
+    "okyr": false,
+    "tag": "MOI",
+    "short": "Des outils qui se parlent enfin.",
+    "priceShort": "Sur devis",
+    "price": "Sur devis",
+    "image": "= des outils qui se parlent",
+    "who": "Moi, directement",
+    "phrase": "Connecter des outils, c'est installer un téléphone entre eux : quand la caisse vend un produit, elle prévient le stock tout de suite. Plus personne ne recopie.",
+    "story": "Chaque outil a une petite porte pour échanger des informations : on l'appelle une API. Mon travail, c'est de brancher ces portes entre elles. Votre caisse, votre stock, votre fichier clients et votre application s'échangent les infos tout seuls.",
+    "uses": [
+      "Fini la double saisie",
+      "Moins d'erreurs de recopie",
+      "Les mêmes chiffres partout, en même temps"
+    ],
+    "role": "Je branche vos outils existants entre eux et avec votre application. Vous gardez ce qui marche, on supprime le copier-coller."
+  },
+  {
+    "id": "automatisations",
+    "placement": "step",
+    "title": "Les automatisations",
+    "description": "Supprimer les tâches répétitives : factures, relances, rappels. Réalisées avec Okyr, partenaire automatisation & IA.",
+    "icon": "zap",
+    "okyr": true,
+    "tag": "OKYR",
+    "short": "Le premier domino fait tomber tous les autres.",
+    "priceShort": "Avec Okyr",
+    "price": "Via Okyr · sur devis",
+    "image": "= le premier domino",
+    "who": "Avec Okyr, mon partenaire",
+    "phrase": "Une automatisation, c'est une rangée de dominos : vous poussez le premier, et toute la suite tombe toute seule, dans le bon ordre.",
+    "story": "Une commande arrive ? La facture part, le stock baisse, le client reçoit sa confirmation. Personne n'a cliqué. Les automatisations s'occupent des tâches répétitives pour que vous gardiez votre temps pour le vrai travail.",
+    "uses": [
+      "Supprimer les tâches répétitives",
+      "Ne plus rien oublier : relances, factures, rappels",
+      "Gagner des heures chaque semaine"
+    ],
+    "role": "Pour poser des dominos, il faut des outils bien connectés : ça, c'est ma partie. Les automatisations elles-mêmes, je les confie à Okyr, mon partenaire spécialisé. Vous gardez un seul interlocuteur pour démarrer."
+  },
+  {
+    "id": "ia-mcp",
+    "placement": "step",
+    "title": "L'IA & le MCP",
+    "description": "Rendre vos outils lisibles par l'IA grâce à des prises MCP et API, en gardant la main sur ce qu'elle voit. Agents IA et formation avec Okyr.",
+    "icon": "sparkles",
+    "okyr": true,
+    "tag": "MOI + OKYR",
+    "short": "La prise universelle pour brancher l'IA sur vos outils.",
+    "priceShort": "Moi + Okyr",
+    "price": "Branchements MCP : moi · Agents & formation IA : Okyr",
+    "image": "= la prise universelle",
+    "who": "Moi + Okyr",
+    "phrase": "L'IA, c'est un assistant très malin… qui ne connaît rien de votre entreprise. Le MCP, c'est la prise universelle qui lui permet de se brancher sur vos outils pour vous aider vraiment.",
+    "story": "Comme un adaptateur de voyage qui marche dans tous les pays, le MCP donne à l'IA une façon standard de lire vos données : commandes, clients, documents. Elle peut alors répondre à vos questions ou préparer un devis. Mon propre site a sa prise MCP : une IA peut l'interroger pour savoir ce que je fais.",
+    "uses": [
+      "Une IA qui connaît votre activité",
+      "Des réponses tirées de vos vraies données",
+      "Un vrai coup de boost sur les tâches longues"
+    ],
+    "role": "Je construis les prises (MCP, API) qui rendent vos outils lisibles par l'IA, en gardant la main sur ce qu'elle voit. Les agents IA et la formation de vos équipes : c'est avec Okyr."
   },
   {
     "id": "conseil",
+    "placement": "extra",
     "title": "Conseil technique",
     "description": "Un regard expert sur votre projet. Choix technologiques, architecture et bonnes pratiques.",
     "icon": "lightbulb",
+    "short": "Un avis clair avant d'investir",
+    "priceShort": "sur devis",
     "price": "Sur devis"
   },
   {
     "id": "maintenance",
+    "placement": "extra",
     "title": "Maintenance & évolution",
     "description": "Votre site ou application reste performant et à jour. Corrections, améliorations et nouvelles fonctionnalités, en abonnement mensuel.",
     "icon": "wrench",
+    "short": "Sécurité, mises à jour, nouvelles idées",
+    "priceShort": "abonnement mensuel",
     "price": "Sur devis"
   }
 ]
