@@ -1,0 +1,761 @@
+/* Services staircase, ported from docs/bugs&correction/index (1).html.
+   Dark values come from the mockup; light values follow the hero palette
+   (--color-hero-* tokens in globals.css). */
+
+.theme {
+  --svc-bg: var(--color-hero-bg);
+  --svc-text: var(--color-hero-text);
+  --svc-text-2: var(--color-hero-text-secondary);
+  --svc-text-3: var(--color-hero-text-tertiary);
+  --svc-surface: var(--color-hero-surface);
+  --svc-line: var(--color-hero-node-border);
+  --svc-line-soft: var(--color-hero-border);
+  --svc-btn-line: var(--color-hero-border-strong);
+  --svc-accent: #e87c0a;
+  --svc-accent-hover: #ff9526;
+  --svc-on-accent: #100f0e;
+  --svc-accent-soft: #ffb266;
+  --svc-ink: #f1e6d8;
+  --svc-ink-strong: #fff3e6;
+  --svc-text-strong: rgba(255, 255, 255, 0.88);
+  --svc-price: rgba(255, 255, 255, 0.75);
+  --svc-dialog: #171513;
+  --svc-tile: #1c1916;
+  --svc-okyr-solid: #15120f;
+  --svc-scrim: rgba(10, 9, 8, 0.82);
+  --svc-font: var(--font-manrope), Manrope, Helvetica, sans-serif;
+  --svc-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :global(:root:not(.dark)) .theme {
+    --svc-accent-soft: #b45309;
+    --svc-ink: #3b2f24;
+    --svc-ink-strong: #2a2018;
+    --svc-text-strong: rgba(23, 23, 23, 0.88);
+    --svc-price: rgba(23, 23, 23, 0.75);
+    --svc-dialog: #fffaf4;
+    --svc-tile: #f3e8db;
+    --svc-okyr-solid: #fbefe2;
+    --svc-scrim: rgba(251, 244, 236, 0.85);
+  }
+}
+
+:global(.light) .theme {
+  --svc-accent-soft: #b45309;
+  --svc-ink: #3b2f24;
+  --svc-ink-strong: #2a2018;
+  --svc-text-strong: rgba(23, 23, 23, 0.88);
+  --svc-price: rgba(23, 23, 23, 0.75);
+  --svc-dialog: #fffaf4;
+  --svc-tile: #f3e8db;
+  --svc-okyr-solid: #fbefe2;
+  --svc-scrim: rgba(251, 244, 236, 0.85);
+}
+
+@keyframes svcPulseGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+@keyframes svcRiseIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes svcDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes svcFadeIn {
+  to { opacity: 1; }
+}
+
+/* ============ Section ============ */
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--svc-bg);
+  color: var(--svc-text);
+  font-family: var(--svc-font);
+}
+.inner {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 84px 44px 44px;
+}
+.glow {
+  position: absolute;
+  top: -220px;
+  left: 30%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 124, 10, 0.22), rgba(232, 124, 10, 0) 64%);
+  filter: blur(10px);
+  animation: svcPulseGlow 12s ease-in-out infinite;
+  pointer-events: none;
+}
+.head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 64px;
+  padding-bottom: 30px;
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: 500 13px/1 var(--svc-mono);
+  color: var(--svc-text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.kicker::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--svc-accent);
+}
+.title {
+  margin: 22px 0 0;
+  font: 800 76px/0.96 var(--svc-font);
+  letter-spacing: -0.04em;
+}
+.title span {
+  color: var(--svc-accent);
+}
+.lead {
+  margin: 0 0 8px;
+  max-width: 400px;
+  font: 400 18px/1.6 var(--svc-font);
+  color: var(--svc-text-2);
+}
+.legend {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font: 500 13px/1.3 var(--svc-mono);
+  color: var(--svc-text-2);
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.legend i {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--svc-btn-line);
+}
+.legend i.legendOkyr {
+  border: 1px dashed var(--svc-accent);
+}
+
+/* ============ Steps: staircase (desktop) ============ */
+.steps {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+.steps li {
+  margin-top: calc(var(--lift) * 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.startHere {
+  font: 700 12px/1 var(--svc-mono);
+  color: var(--svc-accent-soft);
+  letter-spacing: 0.08em;
+}
+.step {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--svc-surface);
+  border: 1px solid var(--svc-line);
+  color: var(--svc-text);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.step:hover {
+  transform: translateY(-6px);
+  border-color: var(--svc-accent);
+  background: rgba(232, 124, 10, 0.08);
+}
+.step:focus-visible,
+.btn:focus-visible,
+.close:focus-visible {
+  outline: 2px solid var(--svc-accent-soft);
+  outline-offset: 3px;
+}
+.isOkyr {
+  background: rgba(232, 124, 10, 0.04);
+  border: 1px dashed rgba(232, 124, 10, 0.6);
+}
+.stepTop {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font: 500 12px/1 var(--svc-mono);
+}
+.stepN {
+  color: var(--svc-accent);
+}
+.stepWho {
+  color: var(--svc-text-3);
+}
+.isOkyr .stepWho {
+  color: var(--svc-accent-soft);
+}
+.stepIllus {
+  color: var(--svc-ink);
+}
+.stepIllus svg,
+.dialogIllus svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stepTitle {
+  font: 700 17px/1.2 var(--svc-font);
+}
+.stepShort {
+  font: 400 13px/1.45 var(--svc-font);
+  color: var(--svc-text-3);
+}
+.stepFoot {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid var(--svc-line-soft);
+  font: 500 12px/1 var(--svc-mono);
+}
+.stepPrice {
+  color: var(--svc-price);
+}
+.stepCta {
+  color: var(--svc-accent-soft);
+  font-weight: 700;
+}
+
+.extras {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 44px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  background: var(--svc-surface);
+  border: 1px solid var(--svc-line-soft);
+}
+.extrasList {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.extrasList > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.extrasList strong {
+  font: 700 18px/1.2 var(--svc-font);
+}
+.extrasList small {
+  font: 500 12px/1.3 var(--svc-mono);
+  color: var(--svc-text-3);
+}
+.extrasSep {
+  width: 1px;
+  height: 40px;
+  background: var(--svc-line);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font: 700 16px/1 var(--svc-font);
+  padding: 18px 26px;
+  border-radius: 14px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.btnPrimary {
+  background: var(--svc-accent);
+  color: var(--svc-on-accent);
+}
+.btnPrimary:hover {
+  background: var(--svc-accent-hover);
+  transform: translateY(-2px);
+}
+.btnGhost {
+  background: transparent;
+  color: var(--svc-text);
+  border: 1px solid var(--svc-btn-line);
+  font-weight: 600;
+}
+.btnGhost:hover {
+  border-color: var(--svc-accent);
+}
+
+/* ============ Concept modal ============ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--svc-text);
+  font-family: var(--svc-font);
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: var(--svc-scrim);
+  backdrop-filter: blur(6px);
+  cursor: default;
+}
+.dialog {
+  position: relative;
+  width: 1080px;
+  max-width: 100%;
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  border-radius: 28px;
+  background: var(--svc-dialog);
+  border: 1px solid var(--svc-line);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+  animation: svcRiseIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.dialogArt {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 32px;
+  background: linear-gradient(165deg, rgba(232, 124, 10, 0.2), rgba(232, 124, 10, 0.03));
+  border-right: 1px solid var(--svc-line-soft);
+}
+.dialogStep {
+  font: 700 12px/1 var(--svc-mono);
+  color: var(--svc-accent-soft);
+  letter-spacing: 0.1em;
+}
+.dialogIllus {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: var(--svc-ink-strong);
+}
+.dialogImage {
+  font: 700 22px/1.3 var(--svc-font);
+}
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px 36px 32px;
+}
+.dialogBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dialogEyebrow {
+  font: 500 12px/1 var(--svc-mono);
+  color: var(--svc-text-3);
+  letter-spacing: 0.1em;
+}
+.close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--svc-btn-line);
+  background: transparent;
+  color: var(--svc-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 16px/1 var(--svc-mono);
+  cursor: pointer;
+  flex: none;
+}
+.close:hover {
+  border-color: var(--svc-accent);
+  color: var(--svc-accent-soft);
+}
+.back {
+  display: none;
+}
+.dialogMstep {
+  display: none;
+}
+.dialogTitle {
+  margin: 0;
+  font: 800 40px/1.05 var(--svc-font);
+  letter-spacing: -0.03em;
+}
+.dialogPhrase {
+  margin: 0;
+  font: 600 19px/1.5 var(--svc-font);
+  color: var(--svc-text-strong);
+}
+.dialogStory {
+  margin: 0;
+  font: 400 15px/1.65 var(--svc-font);
+  color: var(--svc-text-2);
+}
+.uses {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.label {
+  font: 700 12px/1 var(--svc-mono);
+  color: var(--svc-text-3);
+  letter-spacing: 0.1em;
+}
+.uses ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.uses li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font: 500 15px/1.45 var(--svc-font);
+  color: var(--svc-text-strong);
+}
+.uses li::before {
+  content: "✓";
+  color: var(--svc-accent);
+  font-weight: 700;
+}
+.role {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(232, 124, 10, 0.07);
+  border: 1px solid rgba(232, 124, 10, 0.35);
+}
+.roleHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.roleHead .label {
+  color: var(--svc-accent-soft);
+}
+.chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--svc-accent);
+  color: var(--svc-on-accent);
+  font: 700 11px/1 var(--svc-mono);
+}
+.roleText {
+  font: 400 15px/1.6 var(--svc-font);
+  color: var(--svc-text-strong);
+}
+.rolePrice {
+  font: 500 12px/1.4 var(--svc-mono);
+  color: var(--svc-text-2);
+}
+.dialogNav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+.dialogNav .btn {
+  font-size: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  white-space: normal;
+  text-align: center;
+}
+.next {
+  margin-left: auto;
+}
+
+/* Line drawing replayed on every open / step change */
+.traitAnim path,
+.traitAnim rect,
+.traitAnim circle {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: svcDraw 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.traitAnim text {
+  opacity: 0;
+  animation: svcFadeIn 0.5s 1.1s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traitAnim path,
+  .traitAnim rect,
+  .traitAnim circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .traitAnim text {
+    animation: none;
+    opacity: 1;
+  }
+  .dialog,
+  .glow {
+    animation: none;
+  }
+  .step:hover,
+  .btnPrimary:hover {
+    transform: none;
+  }
+}
+
+/* ============ Tablet: staircase -> vertical path ============ */
+@media (max-width: 1100px) {
+  .inner {
+    padding: 64px 24px 32px;
+  }
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .title {
+    font-size: 56px;
+  }
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .steps::before {
+    content: "";
+    position: absolute;
+    left: 51px;
+    top: 40px;
+    bottom: 20px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--svc-accent), rgba(232, 124, 10, 0.15));
+  }
+  .steps li {
+    margin-top: 0;
+    gap: 8px;
+  }
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    grid-template-areas: "illus body";
+    gap: 16px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 18px;
+    background: var(--svc-bg);
+  }
+  .step.isOkyr {
+    background: var(--svc-okyr-solid);
+  }
+  .step:hover {
+    transform: none;
+  }
+  .stepTop {
+    display: none;
+  }
+  .stepIllus {
+    grid-area: illus;
+    padding: 6px;
+    border-radius: 14px;
+    background: var(--svc-tile);
+    border: 1px solid var(--svc-line-soft);
+  }
+  .stepBody {
+    grid-area: body;
+    gap: 5px;
+  }
+  .stepBody::before {
+    content: attr(data-meta);
+    font: 500 11px/1 var(--svc-mono);
+    color: var(--svc-accent);
+  }
+  .stepFoot {
+    border-top: 0;
+    padding-top: 3px;
+    font-size: 11px;
+  }
+  .extras {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .extrasList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .extrasSep {
+    display: none;
+  }
+}
+
+/* ============ Mobile: full-screen modal ============ */
+@media (max-width: 720px) {
+  .inner {
+    padding: 48px 16px 30px;
+  }
+  .title {
+    font-size: 36px;
+    line-height: 0.98;
+  }
+  .lead {
+    font-size: 15px;
+  }
+  .legend {
+    flex-direction: column;
+    font-size: 11px;
+  }
+  .btn {
+    white-space: normal;
+  }
+  .modal {
+    padding: 0;
+    align-items: stretch;
+  }
+  .backdrop {
+    display: none;
+  }
+  .dialog {
+    width: 100%;
+    max-height: none;
+    height: 100%;
+    border-radius: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 16px 30px;
+    background: var(--svc-bg);
+  }
+  .dialogArt {
+    order: 1;
+    padding: 18px;
+    gap: 12px;
+    border-radius: 22px;
+    border: 1px solid rgba(232, 124, 10, 0.25);
+    background: linear-gradient(165deg, rgba(232, 124, 10, 0.22), rgba(232, 124, 10, 0.04));
+  }
+  .dialogArt .dialogStep {
+    display: none;
+  }
+  .dialogImage {
+    font-size: 17px;
+  }
+  .dialogContent {
+    display: contents;
+  }
+  .dialogBar {
+    order: 0;
+  }
+  .dialogEyebrow {
+    display: none;
+  }
+  .back {
+    display: inline-flex;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+  }
+  .close {
+    display: none;
+  }
+  .dialogMstep {
+    display: inline;
+    font: 700 11px/1 var(--svc-mono);
+    color: var(--svc-accent-soft);
+    letter-spacing: 0.1em;
+  }
+  .dialogTitle,
+  .dialogPhrase,
+  .dialogStory,
+  .uses,
+  .role,
+  .dialogNav {
+    order: 2;
+  }
+  .dialogTitle {
+    font-size: 30px;
+  }
+  .dialogPhrase {
+    font-size: 17px;
+  }
+  .dialogStory {
+    font-size: 14px;
+  }
+  .uses li,
+  .roleText {
+    font-size: 14px;
+  }
+  .role {
+    padding: 16px;
+  }
+  .roleHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dialogNav {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .dialogNav .btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+  }
+  .next {
+    margin-left: 0;
+  }
+}
