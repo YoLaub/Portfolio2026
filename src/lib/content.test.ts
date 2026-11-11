@@ -53,8 +53,8 @@ describe("content helpers", () => {
       const services = getServices()
       const byId = (id: string) => services.find((s) => s.id === id)
 
-      expect(byId("site-web")?.price).toBe("À partir de 500 €")
-      expect(byId("application")?.price).toBe("À partir de 1 500 €")
+      expect(byId("site-web")?.price).toBe("Création de site · dès 500 €")
+      expect(byId("application")?.price).toBe("Application sur mesure · dès 1 500 €")
       expect(byId("conseil")?.price).toBe("Sur devis")
       expect(byId("maintenance")?.price).toBe("Sur devis")
     })

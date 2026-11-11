@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { GET } from "./route"
+import { services } from "@/data/services"
 
 describe("GET /api/docs", () => {
   it("retourne status 200", async () => {
@@ -38,6 +39,16 @@ describe("GET /api/docs", () => {
     expect(schemaNames).toContain("SkillData")
     expect(schemaNames).toContain("FormationData")
     expect(schemaNames).toContain("ErrorResponse")
+  })
+
+  it("documente chaque champ réellement servi par /portfolio/services", async () => {
+    const response = await GET()
+    const data = await response.json()
+    const documented = Object.keys(data.components.schemas.ServiceData.properties)
+    const served = new Set(services.flatMap((s) => Object.keys(s)))
+    for (const field of served) {
+      expect(documented, field).toContain(field)
+    }
   })
 
   it("inclut Cache-Control header", async () => {

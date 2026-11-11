@@ -44,15 +44,8 @@ export interface ProjectContent extends ProjectMeta {
   content: string
 }
 
-export interface ServiceData {
-  id: string
-  title: string
-  description: string
-  icon: string
-  price?: string
-  /** Approfondissement technique optionnel, affiché à la demande (ex: détail du service dans le chat). */
-  detail?: string
-}
+import type { ServiceData } from "@/data/services"
+export type { ServiceData }
 
 export interface SkillData {
   id: string

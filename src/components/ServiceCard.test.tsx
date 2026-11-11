@@ -14,6 +14,9 @@ describe("ServiceCard", () => {
       title: "Création de sites web",
       description: "Un site moderne.",
       icon: "globe",
+      placement: "extra",
+      short: "",
+      priceShort: "",
     }
 
     render(<ServiceCard service={service} />)
@@ -28,6 +31,9 @@ describe("ServiceCard", () => {
       title: "Création de sites web",
       description: "Un site moderne.",
       icon: "globe",
+      placement: "extra",
+      short: "",
+      priceShort: "",
       price: "À partir de 500 €",
     }
 
@@ -42,6 +48,9 @@ describe("ServiceCard", () => {
       title: "Conseil technique",
       description: "Un regard expert.",
       icon: "lightbulb",
+      placement: "extra",
+      short: "",
+      priceShort: "",
     }
 
     render(<ServiceCard service={service} />)
